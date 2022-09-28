@@ -4,7 +4,7 @@ const {protect} = require('../middleware/auth')
 const comment = require('../controller/comments');
 
 
-//mounting the routes 
+//mounting the routes to app
 routes.route('/:postid').get(protect,comment.getComments).post(protect,comment.setComment);
 routes.route('/replay/:cid').post(protect,comment.setReplay).get(protect,comment.getReplay);
 routes.route('/update/:cid').patch(protect,comment.updateComment);
