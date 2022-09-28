@@ -97,7 +97,6 @@ object.register = asynchandler(async (req, res, next) => {
         .end();
 });
 //@desc   To login and get jws tocken
-//@url    POST /api/v1/user
 //@access Public
 object.login = asynchandler(async (req, res, next) => {
     const { email, password } = req.body;
