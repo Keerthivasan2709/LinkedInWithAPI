@@ -1,0 +1,16 @@
+.btn {
+    font-size: 1rem;
+}
+.btnPrimary{
+    color: white;
+    border: 1px solid white;
+    background-color: blue;
+
+}
+
+.btnSecondary{
+    color: black;
+    border: 1px solid black;
+    background-color: transparent;
+
+}
