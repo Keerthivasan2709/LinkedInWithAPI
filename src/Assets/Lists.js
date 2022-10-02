@@ -11,7 +11,7 @@ export const State = [
     "Peshawar",
     "Lahore"
 ]
-export const Organisation=[
+export const Organisation = [
     "Codingmart Technologies",
     "Wipro Limited",
     "Zoho Corporation",
@@ -21,7 +21,7 @@ export const Organisation=[
     "Microsoft",
     "Quinbay"
 ]
-export const role=[
+export const role = [
     "Web Developer",
     "FrontEnd Developer",
     "DevOps",
@@ -32,17 +32,24 @@ export const role=[
     "Tester",
     "CA"
 ]
-export const college=[
+export const college = [
     "K.S.Rangasamy College of Technology",
     "K.S.Rangasamy College of Engineering",
     "Karpagam College of Technology",
     "SRM College of Engineering"
 ]
-export const Degree=[
+export const Degree = [
     "BE Computer Science and Engineering",
     "BE Mechnical Engineering",
     "BE Electrical and Electronic Engineering",
     "BE Chemical Engineering",
     "BE Elctronic and Communication Engineering",
     "BE Information Technology"
+]
+export const countryCode = [
+    "+1",
+    "+44",
+    "+91",
+    "+86",
+    "+61"
 ]

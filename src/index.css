@@ -73,6 +73,7 @@ body {
 .justify-content-end{
   justify-content: end;
 }
+
 .headflex {
   max-width: 1040px;
   width: 92%;
@@ -168,7 +169,7 @@ body {
 }
 
 .bg-white {
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.678);
 }
 
 .bg-grey {
@@ -188,4 +189,7 @@ input:-webkit-autofill:hover,
 input:-webkit-autofill:focus, 
 input:-webkit-autofill:active  {
     -webkit-box-shadow: 0 0 0 30px var(--grey) inset !important;
+}
+button:disabled{
+  opacity: 0.5;
 }
