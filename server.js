@@ -1,6 +1,7 @@
 //imports 
 const express = require("express")
 const cookieParser = require("cookie-parser")
+const cors  = require('cors')
 //setting the environment variable 
 require("dotenv").config()
 
@@ -18,11 +19,20 @@ const errorhandler = require('./middleware/error')
 // setting the exprtess app 
 const app = express() 
 
+//enabling cors service
+app.use(cors())
+
+//setting the view engine handlebars
+app.set('view engine','handlebars')
+
 //setting the request body parser 
 app.use(express.json())
 
 //setting the cookie parser
 app.use(cookieParser())
+
+//using the static resourse
+app.use(express.static('resourse'))
 
 //setting the routes for the app 
 app.use('/api/v1/user',user)

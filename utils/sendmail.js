@@ -4,7 +4,7 @@ const nodemailer = require('nodemailer')
 transporter = nodemailer.createTransport({
     host:'smtp.gmail.com',
     secure:true,
-    service:'google',
+    port:465,
     auth:{
         user:process.env.MAIL_ID,
         pass:process.env.MAIL_PASS
@@ -12,7 +12,6 @@ transporter = nodemailer.createTransport({
 });
 
 exports.send = async function(obj){
-   // console.log(process.env.MAIL_ID,process.env.MAIL_PASS,mailid,resetcode)
    const message =  {
      from:process.env.MAIL_ID,
      to:obj.mailid,
@@ -27,10 +26,17 @@ exports.send = async function(obj){
            </div>`
     
    }
+   console.log(obj)
    const report = await transporter.sendMail(message)
    
 
 
 }
-
+// need a message object  containing
+//{       
+//      mailid: sender email
+//      sub : suject of the mail 
+//      message: content of the mail 
+//      url: route to need for verfication 
+// }
 

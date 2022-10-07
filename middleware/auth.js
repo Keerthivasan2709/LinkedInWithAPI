@@ -9,9 +9,9 @@ exports.protect = asynchandler(async (req,res,next)=>{
     if(req.headers.authorization && req.headers.authorization.startsWith('Bearer')){
         token = req.headers.authorization.split(" ")[1]
     }
-    // else if(req.cookies.token){
-    //     token = req.cookies.token
-    // }
+    else if(req.cookies.token){
+        token = req.cookies.token
+    }
     if(!token) return next(new ErrorResponce('Not authorized to this route (token not found)',401));
     try {
     // verify the token of the user 
@@ -28,7 +28,6 @@ exports.protect = asynchandler(async (req,res,next)=>{
     });
     
     data.email = decode.email 
-    data.name  = decode.name
     req.user = data
     next()  
     } catch (error) {
@@ -40,4 +39,4 @@ exports.protect = asynchandler(async (req,res,next)=>{
 
 //providing the specific access (primium User) (administrator) 
 
-// future enchancement (need to add field in model)
+// future enhancement (need to add field in model)

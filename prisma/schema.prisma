@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -10,128 +7,209 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Users{
-  uid     String  @default(uuid()) @unique
-  email   String  @unique 
-  password String
-  jsontoken String?  @default("need token")
-  restPasswordTocken String? 
-  restPasswordExpire DateTime? 
-  createdAt DateTime @default(now())
-}
-model Profile{
-  id String @unique @default(uuid())
-  firstName String? @default("add a firstname")
-  lastName String? @default("add a lastname")
-  userid String @unique 
-  profilepic String @default("file/defaultImage.jpg") 
-  mobileNumber String? @unique
-  description  String? @default("provide description")
-  tagDescription String? @default("provide short description")
-  skills  Skill[] 
-  companys UserCompany[]
-  usereducation UserEducation[] 
+model Users {
+  uid                String    @unique @default(uuid())
+  email              String    @unique
+  password           String
+  jsontoken          String?   @default("need token")
+  restPasswordTocken String?
+  restPasswordExpire DateTime?
+  createdAt          DateTime  @default(now())
 }
 
-model UserEducation{
-   id BigInt @unique @default(autoincrement()) 
-   profileid String
-   course String
-   institutionid String 
-   description String? @default("add description ")
-   startDate DateTime?
-   endDate   DateTime? 
-   persentage String?  @default("add your percentage")
-   useredu Profile @relation(fields: [profileid],references: [id])
-  }
-model Institution{
-  id String @default(uuid()) @unique 
-  name String
-  createdAt DateTime @default(now())
-  instituteId String @unique 
-  description String? @default("add description ")
-  addressid String? @default("add address")
-  pageid String? @default("add a page")
-}  
+model Profile {
+  id             String          @id @unique @default(uuid())
+  firstName      String?         @default("add a firstname")
+  lastName       String?         @default("add a lastname")
+  userid         String          @unique
+  profilepic     String          @default("file/defaultImage.jpg")
+  mobileNumber   String?         @unique
+  description    String?         @default("provide description")
+  tagDescription String?         @default("provide short description")
+  addressid      String
+  backgroundpic  String          @default("file/defaultBackgorund.jpg")
+  viewed         Int?            @default(1)
+  activity       Activity[]
+  posts          Posts[]
+  skills         Skill[]
+  companys       UserCompany[]
+  usereducation  UserEducation[]
+  following      Page[]
+ 
+}
 
-model UserCompany{
-   id BigInt @unique @default(autoincrement()) 
-   profileid String
-   position String
-   companyid String 
-   description String? @default("add description")
-   startDate DateTime?
-   endDate   DateTime? 
-   Domain    String? @default("please provide Domain")
-   usercompany Profile @relation(fields: [profileid],references: [id])
-  }
+model UserEducation {
+  profileid     String
+  course        String
+  institutionid String
+  description   String?     @default("add description ")
+  startDate     DateTime?
+  endDate       DateTime?
+  persentage    String?     @default("add your percentage")
+  student       Institution @relation(fields: [institutionid], references: [id])
+  useredu       Profile     @relation(fields: [profileid], references: [id])
 
-  model Company{
-    id BigInt @default(autoincrement()) @unique
-    name String
-    createdAt DateTime @default(now())
-    companyid String @unique 
-    description String? @default("add description")
-    addressid String?  @default("address")
-    pageid String?    @default("create page")
-    type String? @default("unknone ")
-  }
+  @@id([profileid, institutionid])
+}
 
-model Skill{
-    id String @unique @default(uuid())
-    userid String 
-    certificate  String?  @default("add Certificate")
-    userskill Profile @relation(fields: [userid],references: [id])
-    
-  }
- model connection {
-    id BigInt @unique @default(autoincrement())
-    senderid String 
-    receiverid String
-    ismutual Boolean? @default(false)
-  }
-model Posts{
-  id String @default(uuid()) @unique 
-  profileid String 
-  description String? @default("no description")
-  title String? @default("no title")
-  data String? @default("no the post data")
-  likes Like[]
-  createdAt DateTime @default(now())
-  comments Comments[]  
+model Institution {
+  id          String          @id @unique @default(uuid())
+  name        String
+  createdAt   DateTime        @default(now())
+  instituteId String          @unique
+  description String?         @default("add description ")
+  addressid   String?         @default("add address")
+  pageid      String?         @default("add a page")
+  students    UserEducation[]
 }
- model Like{
-    id String @unique @default(uuid())
-    postid String 
-    userid String
-    type String? @default("tumbsup")
-    like Posts @relation(fields: [postid],references: [id])
-    
+
+model UserCompany {
+  profileid   String
+  position    String
+  companyid   String
+  description String?   @default("add description")
+  startDate   DateTime?
+  endDate     DateTime?
+  Domain      String?   @default("please provide Domain")
+  company     Company   @relation(fields: [companyid], references: [id])
+  usercompany Profile   @relation(fields: [profileid], references: [id])
+
+  @@id([profileid, companyid])
 }
-model Comments {
-  id String @unique @default(uuid())
-  postid String 
-  userid String
-  description String 
-  createdAt DateTime @default(now())
-  replays Replay[]
-  liked commentLike[]
-  comment Posts @relation(fields: [postid],references: [id])
+
+model Company {
+  id          String        @id @unique @default(uuid())
+  name        String
+  createdAt   DateTime      @default(now())
+  companyid   String        @unique
+  description String?       @default("add description")
+  addressid   String?       @default("address")
+  pageid      String?       @default("create page")
+  type        String?       @default("unknone ")
+  company     UserCompany[]
 }
-model commentLike{
-    id String @unique @default(uuid())
-    commentid String
-    userid String
-    type String? @default("tumbsup")
-    commentlike Comments @relation(fields: [commentid],references: [id])
+
+model Skill {
+  id          String  @id @unique @default(uuid())
+  name        String
+  userid      String
+  certificate String? @default("add Certificate")
+  description String?
+  userskill   Profile @relation(fields: [userid], references: [id])
 }
-model Replay{
-  id String @unique @default(uuid())
-  commentid String 
-  description  String 
-  userid String 
-  createdAt DateTime @default(now())
-  replay Comments @relation(fields: [commentid],references: [id])
-}
+
+model connection {
+  id         String   @id @unique @default(uuid())
+  senderid   String
+  receiverid String
+  ismutual   Boolean? @default(false)
+
   
+}
 
+model Posts {
+  id          String     @id @unique @default(uuid())
+  profileid   String
+  description String?    @default("no description")
+  title       String?    @default("no title")
+  data        String?    @default("no the post data")
+  createdAt   DateTime   @default(now())
+  pageid      String
+  pagepost    Page       @relation(fields: [pageid], references: [id])
+  userpost    Profile    @relation(fields: [profileid], references: [id])
+  comments    Comments[]
+  likes       Like[]
+}
+
+model Like {
+  id     String  @id @unique @default(uuid())
+  postid String
+  userid String
+  type   String? @default("tumbsup")
+  like   Posts   @relation(fields: [postid], references: [id])
+}
+
+model Comments {
+  id          String        @id @unique @default(uuid())
+  postid      String
+  userid      String
+  description String
+  createdAt   DateTime      @default(now())
+  comment     Posts         @relation(fields: [postid], references: [id])
+  replays     Replay[]
+  liked       commentLike[]
+}
+
+model commentLike {
+  id          String   @id @unique @default(uuid())
+  commentid   String
+  userid      String
+  type        String?  @default("tumbsup")
+  commentlike Comments @relation(fields: [commentid], references: [id])
+}
+
+model Replay {
+  id          String   @id @unique @default(uuid())
+  commentid   String
+  description String
+  userid      String
+  createdAt   DateTime @default(now())
+  replay      Comments @relation(fields: [commentid], references: [id])
+}
+
+model verification {
+  id         String @id @unique @default(uuid())
+  token      String
+  email      String @unique
+  expiretime Int
+}
+
+model Address {
+  id      String @id @unique @default(uuid())
+  city    String
+  state   String
+  country String
+}
+
+model Page {
+  id          String       @id @unique @default(uuid())
+  belongsto   String       @unique
+  title       String?      @default("set a title")
+  websitelink String?
+  logpic      String?      @default("file/defaultlog0")
+  description String?      @default("add description")
+  pagetype    String
+  createdAt   DateTime     @default(now())
+  viewed      Int          @default(1)
+  pageAccess  PageAccess[]
+  posts       Posts[]
+  followers   Profile[]
+}
+
+model PageAccess {
+  id        String @id @default(uuid())
+  userid    String
+  pageid    String
+  role      String
+  pageAcess Page   @relation(fields: [pageid], references: [id])
+}
+
+model Message {
+  id           String  @id @unique @default(uuid())
+  connectionid String?
+  senderid     String
+  receiverid   String
+  message      String?
+  content      String?
+  postid       String?
+}
+
+model Activity {
+  id           String   @id @unique @default(uuid())
+  userid       String
+  type         String
+  message      String
+  createdAt    DateTime @default(now())
+  targetid     String
+  useractivity Profile  @relation(fields: [userid], references: [id])
+}
