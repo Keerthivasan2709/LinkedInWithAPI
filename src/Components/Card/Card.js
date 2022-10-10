@@ -3,21 +3,22 @@ import Input from '../Input/Input'
 import { Link } from 'react-router-dom'
 import './Card.css'
 import Button from '../Button/Button'
-function Card({ firstLabel, secondLabel, showLink, format, className, setRender, render, number, handleForm, name1, name2, value, type, handleSubmit }) {
+function Card({ firstLabel, secondLabel, showLink, format, className, setRender, inputValue, render, number, inputType, handleForm, name1, name2, value, type, handleSubmit, inputValue1, inputValue2 }) {
+
     return (
         <div className={`${className} p-2 my-2 d-flex flex-column align-items-center gap-5 rounded-5`} style={{ maxWidth: "320px" }}>
             <div className='d-flex flex-column w-100'>
                 <label>{firstLabel}</label>
-                <Input option={false} name={name1} type="text" handleForm={handleForm} />
+                <Input option={false} name={name1} type={inputType} inputValue={inputValue1} handleForm={handleForm} className="InputBox"/>
             </div>
             {
-                { render } === "password" ? <div className='d-flex flex-column w-100'>
+                render == "password" ? <div className='d-flex flex-column w-100'>
                     <label>{secondLabel}</label>
-                    <Input option={true} name={name2} type="password" handleForm={handleForm} />
+                    <Input option={true} name={name2} inputValue={inputValue2} type="password" handleForm={handleForm} />
                 </div> :
                     <div className='d-flex flex-column w-100'>
                         <label>{secondLabel}</label>
-                        <Input option={false} name={name2} type="text" handleForm={handleForm} />
+                        <Input option={false} name={name2} inputValue={inputValue2} type="text" handleForm={handleForm} />
                     </div>
             }
             {showLink ? <p className='smallText'>By clicking Agree & Join, you agree to the LinkedIn <a href="#">User Agreement</a>, <a href='#'>Privacy Policy</a>, and <a href="#">Cookie Policy</a>.</p> : <></>}

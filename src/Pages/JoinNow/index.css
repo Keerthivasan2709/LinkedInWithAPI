@@ -13,9 +13,6 @@ label {
     font-size: 0.9rem;
     margin-bottom: 0.2rem;
 }
-.lg-hide{
-  display: none;
-}
 
 @media screen and (max-width:768px) {
     .sm-hide {

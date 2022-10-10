@@ -3,16 +3,27 @@ import './index.css'
 import Button from '../../Components/Button/Button';
 import Footer from '../../Components/Footer/Footer';
 import Card from '../../Components/Card/Card';
-import { handleSubmit } from '../../Utils/Helpers';
 import { Login } from '../../Assets/Url';
+import { validateEmail, validatePassword, validatePhone, validateUserName } from '../../Utils/Regex';
 function Signin() {
     const [form, setForm] = useState({ email: "", password: "" })
     const handleChange = (e) => {
         const { name, value } = e.target;
         setForm({ ...form, [name]: value })
     }
-
+    const validate = (value) => {
+        if (validateEmail(value.email) || validatePhone(value.email)) {
+            if (validatePassword(value.password)) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+        return false;
+    }
     const handleSubmitOfDetails = (e) => {
+        validate(form)?
         fetch(`${Login}`, {
             method: "POST",
             body: JSON.stringify(form),
@@ -20,6 +31,7 @@ function Signin() {
         })
             .then(res => res.json())
             .then(res => { console.log(res); })
+            :alert("Enter the emailaddress/password")
     }
     return (
         <div className="headflex mt-2 wholeSignin">
@@ -28,7 +40,7 @@ function Signin() {
                 <div className='signInCard boxShadow p-2 d-flex flex-column align-items-stretch gap-5' style={{ padding: "30px" }}>
                     <h1>Sign in</h1>
                     <p>Stay updated on your professional world</p>
-                    <Card type="submit" firstLabel="Enter the Email/Password" value="Sign In" secondLabel="Password(6 or more character)" name1="email" name2="password" showLink={true} format="signIn" className="bg-grey SignInInput" handleForm={handleChange} onSubmit={handleSubmitOfDetails} />
+                    <Card type="submit" firstLabel="Enter the Email/PhoneNumber" value="Sign In" secondLabel="Password(6 or more character)" name1="email" name2="password" showLink={true} format="signIn" className="bg-grey " handleForm={handleChange} handleSubmit={handleSubmitOfDetails} />
                     <Button className="btnSecondary" name="Continue with Google" imgSrc="https://res.cloudinary.com/dibccigcp/image/upload/v1664284625/index_wemqbv.svg" />
                     <Button className="btnSecondary" name="Continue with apple" imgSrc="https://res.cloudinary.com/dibccigcp/image/upload/v1664347975/index_itul43.svg" />
                 </div>

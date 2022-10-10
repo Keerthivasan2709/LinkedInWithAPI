@@ -1,0 +1,101 @@
+.image {
+    width: 30px;
+}
+
+.postDate {
+    width: 20px;
+}
+
+.profileName {
+    font-size: 1rem;
+}
+
+.profileImg {
+    width: 45px;
+}
+
+.feedGrid {
+    display: grid;
+    grid-template-columns: 0.6fr 1.6fr 0.8fr;
+    gap: 1%;
+    align-items: flex-start;
+}
+
+.profileImage {
+    width: 50px;
+    position: relative;
+    top: 20px;
+    left: 40%;
+}
+
+.profileBackground {
+    background-image: url('https://res.cloudinary.com/dibccigcp/image/upload/v1664890021/Background_japmti.svg');
+    height: 15%;
+    background-size: cover;
+    width: 100%;
+    padding: 0.1%;
+    border-radius: 10px 10px 0px 0px;
+}
+.welcomeMsg{
+    font-size: 16px;
+    text-align: center;
+    margin-top: 5%;
+    font-weight: 600;
+}
+.addAProfile{
+    font-size: 14px;
+    font-weight: 400;
+    text-align: center;
+}
+.list{
+    padding: 0px 10px;
+}
+.makeBold{
+    font-weight: 600;
+}
+.blue{
+    color: var(--blue);
+}
+.grey{
+    color: #5E6262;
+}
+.premium{
+    margin-top: 6px;
+}
+.black{
+   color: black;
+}
+.mb-2{
+    margin-bottom: 20px !important;
+}
+.mt-2{
+    margin-top: 20px;
+}
+.mt-1{
+    margin-top: 10px;
+}
+.mb-1{
+    margin-bottom: 10px;
+}
+.discover{
+    font-size: 14px;
+    font-weight: 500;
+    color: black;
+    text-align: center;
+    padding: 10px 0px;
+}
+.bullet{
+    font-size: 21px;
+    color: #888C7B;
+}
+.newsHeading{
+    font-size: 14px;
+    font-weight: 700;
+}
+.newsDetails{
+    font-size: 12px;
+    font-weight: 400;
+}
+.likeReaction:hover .reactionList{
+    display: flex;
+}

@@ -1,0 +1,43 @@
+.iconImg{
+    width: 40px;
+}
+.navBarIcons{
+    max-width: 24px;
+}
+.navBarContainer{
+    display: grid;
+    grid-template-columns: 0.8fr 1fr;
+    padding: 5px 0px;
+    position: sticky;
+    top: 0px;
+    align-self: flex-start;
+}
+.premiumLink{
+    font-size: 0.7rem;
+    width: 80px;
+    color: var(--brown);
+    font-weight: normal;
+    text-decoration: underline;
+    text-align: center;
+
+}
+.verticalLine{
+   border-left: 1px solid rgba(0, 0, 0, 0.129);
+   height: 100%;
+}
+.navBarLink{
+    font-weight: 400;
+    color: black;
+}
+.underline{
+    text-decoration: underline;
+}
+.profileTooltip{
+    position: relative;
+    display: inline-block; 
+}
+.tooltiptext{
+    position:absolute;
+    top:50px;
+    visibility:hidden;
+}

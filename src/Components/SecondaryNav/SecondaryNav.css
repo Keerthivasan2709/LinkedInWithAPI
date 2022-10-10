@@ -1,0 +1,9 @@
+.secondaryNav{
+    bottom: 0px;
+    z-index: 2;
+    position: fixed;
+    background-color: white;
+}
+.secondaryIcon{
+    width: 30px;
+}
