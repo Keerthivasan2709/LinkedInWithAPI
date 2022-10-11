@@ -12,7 +12,17 @@ transporter = nodemailer.createTransport({
 });
 
 exports.send = async function(obj){
-   const message =  {
+  let message = {}
+  if(obj.html){
+   message.from=process.env.MAIL_ID,
+   message.to=obj.mailid,
+   message.subject=obj.sub,
+   message.html = html 
+   
+
+  }
+  else { 
+   message = {
      from:process.env.MAIL_ID,
      to:obj.mailid,
      subject:obj.sub,
@@ -26,6 +36,7 @@ exports.send = async function(obj){
            </div>`
     
    }
+  }
    console.log(obj)
    const report = await transporter.sendMail(message)
    

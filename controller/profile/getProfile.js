@@ -3,7 +3,7 @@
 //@url  api/v1/profile/:profileid
 //@access Private 
 
-const { transformDocument } = require("@prisma/client/runtime");
+
 const asynchandler = require("../../middleware/asynchandler");
 const client = require("../../utils/database");
 const ErrorResponce = require("../../utils/errorhandler");
@@ -121,7 +121,27 @@ exports.getProfile = asynchandler(async (req,res,next)=>{
 
         }
       })
-
+    //adding the viewed recorde 
+    const data  = await client.viewer.findFirst({
+      where:{profileid:req.params.profileid,
+             viewerid:req.user.id},
+      
+      
+    })
+    if(!data){
+      await client.profile.update({
+        where:{id:req.user.id},
+        data:{
+          viewed:{
+            create:{
+              viewerid:req.user.id,
+              profileid:req.params.profileid
+            }
+        },
+      }
+      })
+    } 
+    
     res.status(200).json({
       status:true,
       profile,

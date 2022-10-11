@@ -2,6 +2,7 @@
 const express = require("express")
 const cookieParser = require("cookie-parser")
 const cors  = require('cors')
+const path = require('path')
 //setting the environment variable 
 require("dotenv").config()
 
@@ -11,9 +12,13 @@ const profile  = require("./routes/profile")
 const post = require("./routes/posts")
 const connection = require("./routes/connection")
 const comment = require("./routes/comment")
+const payment = require("./routes/payment")
+const plans  =  require("./routes/plan")
+const feed  = require("./routes/feed")
+const page  = require("./routes/page")
+const data  = require("./routes/data") 
 
 //imorting the middleware functions
-const {protect} = require("./middleware/auth")
 const errorhandler = require('./middleware/error')
 
 // setting the exprtess app 
@@ -32,19 +37,19 @@ app.use(express.json())
 app.use(cookieParser())
 
 //using the static resourse
-app.use(express.static('resourse'))
+app.use('/api/v1/data',express.static(path.resolve('resourse')))
 
 //setting the routes for the app 
 app.use('/api/v1/user',user)
-
-//mounting the auth middle ware 
-// app.use(protect)
-
-//seeting the protected routes 
 app.use('/api/v1/profile',profile)
 app.use('/api/v1/post',post)
 app.use('/api/v1/conn',connection)
 app.use('/api/v1/post/comment',comment)
+app.use('/api/v1/feed',feed)
+app.use('/api/v1/payment',payment)
+app.use('/api/v1/plan',plans)
+app.use('/api/v1/data',data)
+app.use('/api/v1/page',page)
 
 //mounting the errorhandling middleware
 app.use(errorhandler)

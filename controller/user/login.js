@@ -23,6 +23,7 @@ exports.login = asynchandler(async (req, res, next) => {
         password: true,
         email: true,
         jsontoken: true,
+        type:true
       },
     });
    
@@ -35,15 +36,6 @@ exports.login = asynchandler(async (req, res, next) => {
     
     //removing the password
     delete data.password;
-    const profile = await client.profile.findUnique({
-      where: {
-        userid: data.uid,
-      },
-      select: {
-        id: true,
-      },
-    });
-  
     //verifying the token expiry date
     try {
       const decode = jwt.verify(data.jsontoken, process.env.JWT_SECRET);
@@ -59,7 +51,7 @@ exports.login = asynchandler(async (req, res, next) => {
         .end();
     } catch {
       //if token expire then generate token
-      const { token, options } = generateTokenResponce({ id: profile.id, email });
+      const { token, options } = generateTokenResponce({ id: data.uid,type:data.type, email });
       await client.users.update({
         where: {
           uid: data.id,

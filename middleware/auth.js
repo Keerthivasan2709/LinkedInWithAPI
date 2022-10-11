@@ -16,19 +16,40 @@ exports.protect = asynchandler(async (req,res,next)=>{
     try {
     // verify the token of the user 
     const decode = jwt.verify(token,process.env.JWT_SECRET) 
+       
+    //getting the user plan 
+    const plan = await client.userPlan.findFirst({
+        where:{userid:decode.id},
+    })
     
-    const data = await client.profile.findUnique({
+    let premium;
+
+    if(plan && new Date(plan.endsAt)>new Date(Date.now())) {
+        
+        premium = true
+     }
+     else{
+         premium = false
+     }
+
+
+    const data = await client.profile.update({
         where:{
-            id:decode.id
+            userid:decode.id
         },
-        select:{
-            id:true,
-        }
+        data:{
+           premium, 
+        },
+        
         
     });
     
-    data.email = decode.email 
-    req.user = data
+    
+
+    
+    //checking the plan validity 
+    
+    req.user = {id:data.id,type:decode.type,email:decode.email,premium}
     next()  
     } catch (error) {
         return next(new ErrorResponce('Not authorized to this route(user error)',401));

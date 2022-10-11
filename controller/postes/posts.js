@@ -3,13 +3,17 @@ const {createPost} = require('./createpost')
 const {getMyPosts} = require("./getmyposts")
 const {like}   = require("./likeposts")
 const {getPosts}  = require("./getposts")
+const {deletePost} = require("./deletePost")
+const {editPost} = require("./editPost")
 
 const object  = {
    
     getMyPosts,
     getPosts,
     like,
-    createPost
+    createPost,
+    deletePost,
+    editPost
     
 } 
 

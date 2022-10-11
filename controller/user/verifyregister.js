@@ -25,7 +25,8 @@ exports.verifyRegistration = asynchandler(async (req, res, next) => {
     startDate,
     endDate,
     course,
-    description
+    description,
+    phoneNumber
   } = req.body;
   
   const verify = await client.verification.findFirst({
@@ -104,7 +105,8 @@ exports.verifyRegistration = asynchandler(async (req, res, next) => {
         firstName:firstName,
         lastName:secondName,
         addressid: addressid.id,
-        description
+        description,
+        mobileNumber: phoneNumber?phoneNumber:null
       },
     });
    
@@ -170,7 +172,8 @@ exports.verifyRegistration = asynchandler(async (req, res, next) => {
     
     //generate json token for authentication
     const { token, options } = generateTokenResponce({
-      id: profile.id,
+      id: data.uid,
+      type: data.type,
       email: data.email,
     });
 

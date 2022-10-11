@@ -3,6 +3,9 @@ const client = require('../../utils/database')
 const ErrorResponce = require('../../utils')
 
 // feed profile info 
+//@desc To provide feed profile info
+//@url  GET api/v1/feed/profile
+//@access Private
 
 exports.feedProfile  = asynchandler(async (req,res,next)=>{
     const profileinfo = client.profile.findFirst({
@@ -14,8 +17,12 @@ exports.feedProfile  = asynchandler(async (req,res,next)=>{
             lastName:true,
             profilepic:true,
             backgroundpic:true,
-            viewed:true
-        }
+            _count:{
+            viewed:true,
+            }
+
+        },
+        
     })
     const connectionCount =  client.connection.count({
         where:{

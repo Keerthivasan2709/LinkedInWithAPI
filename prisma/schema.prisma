@@ -15,6 +15,8 @@ model Users {
   restPasswordTocken String?
   restPasswordExpire DateTime?
   createdAt          DateTime  @default(now())
+  type               String?
+  plans              UserPlan[] 
 }
 
 model Profile {
@@ -28,7 +30,9 @@ model Profile {
   tagDescription String?         @default("provide short description")
   addressid      String
   backgroundpic  String          @default("file/defaultBackgorund.jpg")
-  viewed         Int?            @default(1)
+  premium        Boolean         @default(false)
+  viewer         Viewer[]        @relation("viewer")
+  viewed         Viewer[]        @relation("viewed")  
   activity       Activity[]
   posts          Posts[]
   skills         Skill[]
@@ -36,6 +40,18 @@ model Profile {
   usereducation  UserEducation[]
   following      Page[]
  
+}
+
+model Viewer{
+  id Int  @id @default(autoincrement())
+  profileid String 
+  viewerid  String
+  viewedAt  DateTime 
+  viewer Profile @relation("viewer",fields: [profileid],references: [id]) 
+  viewed Profile @relation("viewed",fields: [viewerid],references: [id])
+
+
+
 }
 
 model UserEducation {
@@ -101,7 +117,7 @@ model Skill {
 model connection {
   id         String   @id @unique @default(uuid())
   senderid   String
-  receiverid String
+  receiverid String  
   ismutual   Boolean? @default(false)
 
   
@@ -114,11 +130,13 @@ model Posts {
   title       String?    @default("no title")
   data        String?    @default("no the post data")
   createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
   pageid      String
   pagepost    Page       @relation(fields: [pageid], references: [id])
   userpost    Profile    @relation(fields: [profileid], references: [id])
   comments    Comments[]
   likes       Like[]
+  hashtag     Hashtag[]
 }
 
 model Like {
@@ -196,12 +214,13 @@ model PageAccess {
 
 model Message {
   id           String  @id @unique @default(uuid())
-  connectionid String?
+  connectionid String?  
   senderid     String
   receiverid   String
   message      String?
   content      String?
   postid       String?
+  createdAt    DateTime  @default(now())
 }
 
 model Activity {
@@ -212,4 +231,46 @@ model Activity {
   createdAt    DateTime @default(now())
   targetid     String
   useractivity Profile  @relation(fields: [userid], references: [id])
+}
+
+model Plans {
+  id String  @id @default(uuid())
+  name String @unique
+  price Decimal 
+  discount Decimal? @default(0)
+  valdity Int   @default(30)
+  users   UserPlan[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime  @updatedAt
+}
+
+model UserPlan {
+  userid   String 
+  planid   String
+  startedAt DateTime @default(now())
+  endsAt   DateTime? 
+  user     Users @relation(fields: [userid],references: [uid])
+  plan     Plans @relation(fields: [planid],references: [id])
+  @@id([userid,planid])
+}
+model transaction{
+  userid   String
+  planid   String 
+  amount   Decimal? 
+  transactionid  String @id
+  status   String? 
+  createdAt DateTime  @default(now()) 
+  paymentMethod  String?
+}
+model News{
+  id   Int @id @default(autoincrement())
+  title String 
+  doneBy String 
+  createdAt DateTime @default(now())
+  updateAt DateTime @updatedAt
+}
+model Hashtag {
+  id Int @id @default(autoincrement())
+  tag String
+  posts Posts[]
 }
