@@ -5,7 +5,7 @@ const client = require("../../utils/database");
 const ErrorHandler = require("../../utils/errorhandler");
 
 //@desc To delete a post 
-//@url DELETE api/v1/post/delete/:postid
+//@url DELETE api/v1/post/:postid
 //@access Private 
 
 exports.deletePost = asynchandler(async (req,res,next)=>{

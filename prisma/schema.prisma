@@ -39,6 +39,8 @@ model Profile {
   companys       UserCompany[]
   usereducation  UserEducation[]
   following      Page[]
+  hashtags       Hashtag[]  
+  followedAds    advertisement[]        
  
 }
 
@@ -103,6 +105,7 @@ model Company {
   pageid      String?       @default("create page")
   type        String?       @default("unknone ")
   company     UserCompany[]
+  advertisements advertisement[]  
 }
 
 model Skill {
@@ -132,8 +135,10 @@ model Posts {
   createdAt   DateTime   @default(now())
   updatedAt   DateTime   @updatedAt
   pageid      String
+  newsid      Int
   pagepost    Page       @relation(fields: [pageid], references: [id])
   userpost    Profile    @relation(fields: [profileid], references: [id])
+  newspost    News       @relation(fields: [newsid],references: [id])
   comments    Comments[]
   likes       Like[]
   hashtag     Hashtag[]
@@ -245,13 +250,15 @@ model Plans {
 }
 
 model UserPlan {
+  id       String @id  @default(uuid())
   userid   String 
   planid   String
+  planstatus   PlanStatus
   startedAt DateTime @default(now())
   endsAt   DateTime? 
   user     Users @relation(fields: [userid],references: [uid])
   plan     Plans @relation(fields: [planid],references: [id])
-  @@id([userid,planid])
+  
 }
 model transaction{
   userid   String
@@ -266,11 +273,46 @@ model News{
   id   Int @id @default(autoincrement())
   title String 
   doneBy String 
+  newsDetail String @db.VarChar(500)
+  posts  Posts[]
   createdAt DateTime @default(now())
-  updateAt DateTime @updatedAt
+  updateAt DateTime @updatedAt 
+  readers Int @default(0)
 }
 model Hashtag {
   id Int @id @default(autoincrement())
-  tag String
+  tag String @unique
   posts Posts[]
+  createdAt DateTime @default(now())
+  upadateAt DateTime @updatedAt
+  following Profile[]
 }
+model advertisement {
+  id Int @id @default(autoincrement())
+  advertisemenLogo String?
+  title String?
+  type  String?
+  about String
+  followers Profile[]
+  companyid String
+  company Company @relation(fields: [companyid],references: [id])
+  records adsControll?  
+  
+}
+model adsControll{
+  id Int @id @default(autoincrement())
+  advertismentId advertisement @relation(fields: [id],references: [id])
+  displayed Int   @default(0)
+  viewed    Int   @default(0)
+  createdAt DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  
+  
+}
+
+//enum values 
+enum PlanStatus {
+  ACTIVE
+  EXPIRE 
+}
+

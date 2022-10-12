@@ -1,6 +1,6 @@
 //creating the post routes 
 const routes = require("express").Router()
-const {protect,likeCheck} = require("../middleware/auth")
+const {protect} = require("../middleware/auth")
 const post = require('../controller/postes/posts')
 
 //building the routes for the user

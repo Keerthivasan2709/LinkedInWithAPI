@@ -1,8 +1,9 @@
 const {listdata} = require('./list')
-
+const {pageDetails} = require('./pages')
 const object = {
   
-    listdata
+    listdata,
+    pageDetails
 
 }
 

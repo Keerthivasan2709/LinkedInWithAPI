@@ -2,6 +2,7 @@ const jwt  = require("jsonwebtoken")
 const asynchandler = require("./asynchandler")
 const ErrorResponce  = require("../utils/errorhandler")
 const client  = require("../utils/database")
+const { PlanStatus } = require("@prisma/client")
 
 exports.protect = asynchandler(async (req,res,next)=>{
     let token ;
@@ -19,19 +20,34 @@ exports.protect = asynchandler(async (req,res,next)=>{
        
     //getting the user plan 
     const plan = await client.userPlan.findFirst({
-        where:{userid:decode.id},
+        where:{userid:decode.id,
+               planstatus:PlanStatus.ACTIVE},
     })
     
     let premium;
 
-    if(plan && new Date(plan.endsAt)>new Date(Date.now())) {
+    if(plan){
+        if(new Date(plan.endsAt)>new Date(Date.now())) {
         
         premium = true
      }
      else{
+         await client.userPlan.update({
+            where:{
+              id:plan.id
+            },
+            data:{
+              planstatus:PlanStatus.EXPIRE  
+            }
+        })
          premium = false
-     }
 
+     }
+    }
+    else{
+        premium = false
+    }
+     
 
     const data = await client.profile.update({
         where:{

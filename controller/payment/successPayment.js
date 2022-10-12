@@ -1,3 +1,4 @@
+const { PlanStatus } = require("@prisma/client");
 const { Decimal } = require("@prisma/client/runtime");
 const asynchandler = require("../../middleware/asynchandler");
 const client = require("../../utils/database");
@@ -30,7 +31,8 @@ exports.successfullPayment = asynchandler( async (req,res,next)=>{
             planid:session.metadata.planid,
             amount: Decimal(payment.amount/100),
             status:session.payment_status,
-            paymentMethod:payment.charges.data[0].payment_method_details.type
+            paymentMethod:payment.charges.data[0].payment_method_details.type,
+            
         }
     })
 
@@ -42,7 +44,9 @@ exports.successfullPayment = asynchandler( async (req,res,next)=>{
             userid:session.metadata.userid,
             planid:plan.id,
             startedAt: new Date(Date.now()),
-            endsAt:new Date(Date.now()+plan.valdity*24*60*60*1000)
+            endsAt:new Date(Date.now()+plan.valdity*24*60*60*1000),
+            planstatus:PlanStatus.ACTIVE
+            
         }
     })
     if(!data) return next(new ErrorHandler("plan Update failed",500))

@@ -16,7 +16,8 @@ const payment = require("./routes/payment")
 const plans  =  require("./routes/plan")
 const feed  = require("./routes/feed")
 const page  = require("./routes/page")
-const data  = require("./routes/data") 
+const data  = require("./routes/data")
+const advertisement  = require("./routes/advertisement") 
 
 //imorting the middleware functions
 const errorhandler = require('./middleware/error')
@@ -50,6 +51,7 @@ app.use('/api/v1/payment',payment)
 app.use('/api/v1/plan',plans)
 app.use('/api/v1/data',data)
 app.use('/api/v1/page',page)
+app.use('/api/v1/advertisement',advertisement)
 
 //mounting the errorhandling middleware
 app.use(errorhandler)

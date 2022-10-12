@@ -1,6 +1,6 @@
 const asynchandler = require('../../middleware/asynchandler')
 const client = require('../../utils/database')
-const ErrorResponce = require('../../utils')
+const ErrorResponce = require('../../utils/errorhandler')
 
 // feed profile info 
 //@desc To provide feed profile info

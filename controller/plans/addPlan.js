@@ -1,5 +1,5 @@
 //@desc To add a plan 
-//@url api/v1/plan/add
+//@url POST api/v1/plan
 //@Access Private (ADMIN)
 
 const { Decimal } = require("@prisma/client/runtime");

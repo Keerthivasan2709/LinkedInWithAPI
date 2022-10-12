@@ -3,14 +3,17 @@
 const {resentActivity} = require('./recent')
 const {feedProfile} = require('./feedprofile')
 const {searchForContent} = require("./search")
+const {getNews} = require('./feednews')
+const {getRandomAds} = require('./feedAds')
 
 
-
-//cntroller object
+//controller object
 const obj = {
     resentActivity,
     feedProfile,
-    searchForContent
+    searchForContent,
+    getNews,
+    getRandomAds
 
 }
 

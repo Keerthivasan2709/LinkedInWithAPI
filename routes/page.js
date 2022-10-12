@@ -18,7 +18,7 @@ routes.route('/unfollow').post(protect,page.unfollowPage)
 
 
 //exporting the routes modules 
-module.exports  = page 
+module.exports  = routes
 
 
 

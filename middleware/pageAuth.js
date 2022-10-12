@@ -5,7 +5,7 @@ const asynchandler = require("./asynchandler")
 const ErrorResponse = require("../utils/errorhandler")
 const client = require('../utils/database')
 
-exports.pageAuthentication  =  asynchandler(async )
+exports.pageAuthentication  =  asynchandler(async (req,res,next)=>{
 try {
     const check = await client.page.findFirst({
         where:{
@@ -32,3 +32,4 @@ try {
 } catch (error) {
     return next(new ErrorResponse("Not Authorized to perform this opertaion",420))
 }
+})
