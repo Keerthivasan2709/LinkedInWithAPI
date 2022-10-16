@@ -5,7 +5,7 @@ const {like}   = require("./likeposts")
 const {getPosts}  = require("./getposts")
 const {deletePost} = require("./deletePost")
 const {editPost} = require("./editPost")
-
+const {recommendedPosts} = require('./recommendedPosts')
 const object  = {
    
     getMyPosts,
@@ -13,7 +13,8 @@ const object  = {
     like,
     createPost,
     deletePost,
-    editPost
+    editPost,
+    recommendedPosts
     
 } 
 

@@ -55,7 +55,7 @@ exports.deleteAtivityWithType = async (type)=>{
 
 
 // types of activities:
-// 1. profile - update profile activity 
+// 1. profile - view profile activity 
 // 2. comment - comment to post activity 
 // 3. reply -  reply to comment activity 
 // 4. likeCom - like to the comment 

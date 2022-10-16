@@ -10,7 +10,8 @@ try {
     const check = await client.page.findFirst({
         where:{
             id:req.body.pageid,
-            belongsto:req.user.id
+            belongsto:req.user.id,
+            
         }
     }) 
     if(check) {
@@ -30,6 +31,6 @@ try {
     req.page = data
     next()
 } catch (error) {
-    return next(new ErrorResponse("Not Authorized to perform this opertaion",420))
+    return next(new ErrorResponse("Not Authorized to perform this page opertaion",420))
 }
 })

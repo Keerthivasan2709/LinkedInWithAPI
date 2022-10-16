@@ -6,13 +6,13 @@ const client  = require("../../utils/database")
 
 
 //@desc Send request to the user 
-//@url  POST api/v1/conn/sreq/:receiverid 
+//@url  POST api/v1/connection/sreq/:receiverid 
 //@access Private
 
 exports.sendRequest  = asynchandler(async (req,res,next)=>{
-    const check = client.users.findUnique({
+    const check = client.profile.findUnique({
         where:{
-            uid:req.params.receiverid
+            id:req.params.receiverid,
         }
     })
     if(!check) return next(new ErrorResponce("the user not exist",413))

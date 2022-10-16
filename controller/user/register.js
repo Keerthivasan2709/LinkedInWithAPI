@@ -47,7 +47,7 @@ exports.register = asynchandler(async (req, res, next) => {
   
   }
   catch(err) {
-    return next(new ErrorResponse("problem in sending",403))
+    return next(new ErrorResponse(err.message,403))
   }
   })
   

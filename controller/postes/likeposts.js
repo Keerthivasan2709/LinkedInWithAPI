@@ -3,76 +3,46 @@ const client = require("../../utils/database")
 const ErrorResponse = require("../../utils/errorhandler")
 
 //@decs  Put like the post
-//@url   POST api/v1/post/like/:postid
+//@url   POST api/v1/post/like
 //@access Private 
 
 
 exports.like = asynchandler(async (req,res,next)=>{
-   
-    const data  = await client.posts.findFirst({
+   try{
+    if(!req.body.postid) return next(new ErrorResponse('postid field required in body',404))
+     try{ 
+    let data  = await client.like.delete({
         where:{
-            id:req.params.postid,
-            profileid:{
-                not:req.user.id 
+            postid_userid:{
+                userid:req.user.id, 
+                postid:req.body.postid,
             }
-        },
-        select:{
-            likes: {
-                where:{
-                    userid:req.user.id 
-                },
-                select:{
-                    id:true
-                }
-            },
-        },
-    })
-    if(!data){
-        client.posts.update({
-            where:{
-               id:req.params.postid
-            },
-            data:{
-                likes:{
-                   create:{
-                       userid:req.user.id,
-                       type:req.body.type
-                   }
-                }
-            }
-        })
-        .then(result=> res.status(200).json({liked:true}))
-        .catch(err=> res.status(458).json({status:false})) 
-    }
-    else{
-        if (data.likes.length == 0){
-            client.posts.update({
-                where:{
-                   id:req.params.postid
-                },
-                data:{
-                    likes:{
-                       create:{
-                           userid:req.user.id,
-                           type:req.body.type
-                       }
-                    }
-                }
-            })
-            .then(result=> res.status(200).json({liked:true}))
-            .catch(err=> res.status(458).json({status:false,msg:err.message})) 
-                 
         }
-        else{
+     })
+     return res.status(200).json({status:true,like:false})
+    }catch(error){
+     data = await client.like.create({
+        data:{
+            likedby:{
+                connect:{ 
+                id:req.user.id,
+                }
+            },
+            like:{
+                connect:{
+                    id:req.body.postid,
+                }
+            },
+        }
+     })
+     if(!data) return next(new ErrorResponse("unable to perform the requested operation",500))
+     res.status(200).json({
+        status:true,
+        like:true
 
-        client.like.delete({
-             where:{
-                id:data.likes[0].id 
-             }
-        })
-        .then(result => res.status(200).json({liked:false}))
-        .catch(err => res.status(451).json({status:false,msg:err.message}))
+     })  
     }
-     }
+    }
+    catch(err) {return next(new ErrorResponse(err.message,500))}  
     
 })

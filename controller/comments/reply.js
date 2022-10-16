@@ -1,5 +1,5 @@
 const client = require('../../utils/database')
-const ErrorResponce = require('../../utils/errorhandler')
+const ErrorResponse = require('../../utils/errorhandler')
 const asynchandler = require('../../middleware/asynchandler')
 
 //@desc to provide repaly for the comment 
@@ -20,7 +20,7 @@ exports.setReply = asynchandler(async (req,res,next)=>{
             }
         }
     })
-    if(!data) return next(new ErrorResponce("the replay not sent"))
+    if(!data) return next(new ErrorResponse("the replay not sent"))
     res.status(200).json({
         status:true,
         msg: "replay sent"
@@ -40,7 +40,7 @@ exports.getReply = asynchandler(async (req,res,next)=>{
             replays:true
         }
     })
-    if(!data) return next(new ErrorResponce("Unable to get data check the credentials ",403))
+    if(!data) return next(new ErrorResponse("Unable to get data check the credentials ",403))
     res.status(200).json({
         status:true,
         replay_count:data.replays.count,
@@ -87,9 +87,12 @@ exports.updateReply = asynchandler(async (req,res,next)=>{
             createdAt: new Date(Date.now())
         }
     })
-    if(!data) return next(new ErrorResponce("failed to update",457))
+    if(!data) return next(new ErrorResponse("failed to update",457))
     res.status(200).json({
         status:true,
         msg:"replay updated"
     })
 })
+
+
+

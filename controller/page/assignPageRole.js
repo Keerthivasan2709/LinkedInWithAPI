@@ -12,16 +12,16 @@ exports.assignPageRole = asynchandler(async (req,res,next)=>{
     try {
     if (!req.page.role) return next(new ErrorResponse("Error in middle ware",426))
     if(req.page.role!="admin") return next(new ErrorResponse("Not Authorized",420))
+    console.log(req.page.role)
     await client.page.update({
         where:{
             id:req.body.pageid,
-            belongsto:req.user.id,
         },
         data:{
             pageAccess:{
                 create:{
                     userid:req.body.userid,
-                    role:req.page.role.toLowerCase()
+                    role:req.body.role.toLowerCase()
                 }
             }
         }

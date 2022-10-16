@@ -18,7 +18,9 @@ exports.feedProfile  = asynchandler(async (req,res,next)=>{
             profilepic:true,
             backgroundpic:true,
             _count:{
+                select:{
             viewed:true,
+                }
             }
 
         },

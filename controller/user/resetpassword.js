@@ -8,13 +8,14 @@ const {generateTokenResponce}  = require("../../utils/generateToken")
 
 
 //@desc To verify the reset token and reseting the password
-//@url api/v1/user/resetpassword/:passcode
+//@url api/v1/user/resetpassword
 //@access Public
 exports.resetPassword = asynchandler(async (req, res, next) => {
     try {
+      if(!req.body.passcode) return next(new ErrorResponse("passcode required",420))
       const resetPassToken = crypto
         .createHash("sha256")
-        .update(req.params.passcode)
+        .update(req.body.passcode)
         .digest("hex");
       const data = await client.users.findFirst({
         where: {

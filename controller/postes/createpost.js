@@ -8,13 +8,18 @@ const {activityUpdate} = require('../../utils/activityManager')
 //@access Private 
 exports.createPost = asynchandler( async (req,res,next) => {
   try{ const post = await client.posts.create({
-        data:{
-            profileid:req.user.id,
-            description:req.body.description,
-            title:req.body.title,
-            data:req.body.data
+    data:{
+        description:req.body.description,
+        title:req.body.title,
+        data:req.body.data,
+        userpost:{
+            connect:{
+                id:req.user.id
+            }
         }
-    })
+
+    }
+  })
     // loging the activity 
     await activityUpdate({
         userid:req.user.id,

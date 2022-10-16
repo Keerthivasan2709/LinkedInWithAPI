@@ -10,21 +10,23 @@ const ErrorResponse = require('../../utils/errorhandler');
 exports.followPage = asynchandler(async (req,res,next)=>{
     try{await client.page.update({
         where:{
-            id:req.body.pageid
+            id:req.body.pageid,
         },
         data:{
             followers:{
-                connect: {
+                connect:{
                     id:req.user.id
                 }
             }
         }
+            
     })
     res.status(200).json({
         status:true,
         following:true
     })
 }catch(err){
+    
     return next(new ErrorResponse(err.message,500))
 }
 })

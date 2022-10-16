@@ -1,7 +1,7 @@
 const asynchandler = require("../../middleware/asynchandler");
 const bcrypt = require("bcryptjs");
 const client = require("../../utils/database");
-const ErrorResponce = require("../../utils/errorhandler");
+const ErrorResponse = require("../../utils/errorhandler");
 const { generateTokenResponce } = require("../../utils/generateToken");
 const {User,Profile,Address} = require('../../utils/validation');
 
@@ -23,7 +23,7 @@ exports.verifyRegistration = asynchandler(async (req, res, next) => {
     positionRole,
     organization,
     startDate,
-    endDate,
+    endDate, 
     course,
     description,
     phoneNumber
@@ -39,7 +39,7 @@ exports.verifyRegistration = asynchandler(async (req, res, next) => {
     },
   });
   
-  if (!verify) return next(new ErrorResponce("Invaild otp..", 405));
+  if (!verify) return next(new ErrorResponse("Invaild otp..", 405));
 
   //deleting the record
   await client.verification.delete({ where: { email } });
@@ -50,7 +50,7 @@ exports.verifyRegistration = asynchandler(async (req, res, next) => {
   try{
     User.validate({email,password})
   }
-  catch(err){ return next(new ErrorResponce(err.message+" user ",405))}
+  catch(err){ return next(new ErrorResponse(err.message+" user ",405))}
   //encripting the password
   const salt = await bcrypt.genSalt(10);
   password = await bcrypt.hash(password, salt);
@@ -80,10 +80,11 @@ exports.verifyRegistration = asynchandler(async (req, res, next) => {
           id:true
       }
     })
+    console.log("working till address")
     if(!addressid){
       // verifiing the address 
       try{ Address.validate({city,state,country})}
-      catch(err){ return next(new ErrorResponce(err.message,405))}
+      catch(err){ return next(new ErrorResponse(err.message,405))}
       addressid = await client.address.create({
         data:{
           city,
@@ -92,14 +93,16 @@ exports.verifyRegistration = asynchandler(async (req, res, next) => {
         }
       })
     }
+  
     // profile information verification 
     try {
       Profile.validate({firstName,secondName,role})
     } catch (error) {
-      return next(new ErrorResponce('profile error:'+error.message,405))
+      return next(new ErrorResponse('profile error:'+error.message,405))
     }
-    // creating the profile 
-    const profile = await client.profile.create({
+    // creating the profile
+    console.log("creating the profile")
+    let data2 = await client.profile.create({
       data: {
         userid: data.uid,
         firstName:firstName,
@@ -109,67 +112,8 @@ exports.verifyRegistration = asynchandler(async (req, res, next) => {
         mobileNumber: phoneNumber?phoneNumber:null
       },
     });
-   
-    // creating the role data 
-    if ("student" == role.toLowerCase()) {
-      // console.log("student entry")
-     try{ await client.profile.update({
-        where:{
-          id:profile.id,
-        },
-        data:{
+    console.log("created the profile",data2)
 
-          usereducation:{
-            create:{
-            startDate:new Date(startDate),
-            endDate:new Date(endDate),
-            course,
-            student:{
-              connect:{
-                id:organization
-                }
-              }
-            
-            },
-            
-          },
-          
-        }
-
-        
-      })
-    }
-    catch(err) { return next(new ErrorResponce(err.message+"edu",402))}  
-    }
-    else{
-      await client.profile.update({
-        where:{
-          id:profile.id
-        },
-        data:{
-            companys:{
-              create:{
-                startDate:new Date(startDate),
-                endDate:new Date(endDate),
-                position:positionRole,
-                Domain:course?course:null,
-                description:description?description:null,
-                company:{
-                  connect:{
-                    id:organization
-                  }
-                }
-              }
-            }
-        }
-      })
-    }
-
-  
-    
-   
-
-    
     //generate json token for authentication
     const { token, options } = generateTokenResponce({
       id: data.uid,
@@ -189,14 +133,75 @@ exports.verifyRegistration = asynchandler(async (req, res, next) => {
     } catch (err) {
       return next(new c("Unable to set token", 406));
     }
+   
+    // // creating the role data 
+    // if ("student" == role.toLowerCase()) {
+    //   // console.log("student entry")
+    //  try{ await client.profile.update({
+    //     where:{
+    //       id:data2.id,
+    //     },
+    //     data:{
+
+    //       usereducation:{
+    //         create:{
+    //         startDate:new Date(startDate),
+    //         endDate:new Date(endDate),
+    //         course,
+    //         student:{
+    //           connect:{
+    //             in:organization
+    //             }
+    //           }
+            
+    //         },
+            
+    //       },
+          
+    //     }
+
+        
+    //   })
+    // }
+    // catch(err) { return next(new ErrorResponse(err.message+" edu",402))}  
+    // }
+    // else{
+    //   await client.profile.update({
+    //     where:{
+    //       id:data2.id
+    //     },
+    //     data:{
+    //         companys:{
+    //           create:{
+    //             startDate:new Date(startDate),
+    //             endDate:new Date(endDate),
+    //             position:positionRole,
+    //             Domain:course?course:null,
+    //             description:description?description:null,
+    //             company:{
+    //               connect:{
+    //                 id:organization
+    //               }
+    //             }
+    //           }
+    //         }
+    //     }
+    //   })
+    // }
+
+  
+    
+   
+
+    
+    
     res
       .status(200)
       .cookie("token", token, options)
       .json({ status: true, token })
       .end();
   } catch (err) {
-    client.users.delete({ where: { uid: data.uid } });
-    client.profile.delete({where:{id:profile}})
-    return next(new c("unable to create profile", 401));
+    
+    return next(new ErrorResponse(err.message, 401));
   }
 });

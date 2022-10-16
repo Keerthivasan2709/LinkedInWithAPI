@@ -8,16 +8,16 @@ const ErrorHandler = require("../../utils/errorhandler");
 
 exports.viwedProfile = asynchandler(async (req, res, next) => {
   try {
+    
     let data;
     if (!req.user.premium) {
       data = await client.viewer.findMany({
         where: {
-          profileid: req.user.id,
+          profileid:req.user.id
         },
         take:3,
         select: {
           viewed: {
-            
             select: {
               profilepic: true,
               backgroundpic: true,
@@ -80,6 +80,7 @@ exports.viwedProfile = asynchandler(async (req, res, next) => {
     }
     res.status(200).json({
       status: true,
+      premium:req.user.premium,
       data,
     });
   } catch (err) {

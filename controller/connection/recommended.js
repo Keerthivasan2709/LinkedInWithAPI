@@ -23,8 +23,9 @@ exports.recommendConnection  = asynchandler(async (req,res,next)=>{
           senderid:true
         }
     })
+    if(data1.length>0) data1 = await filterUsers(data1,req.user.id) ;
     //filtering the users formating into one array
-    data1 = await filterUsers(data1,req.user.id)
+    
     let data2 = await client.profile.findMany({
         where:{
             id:req.user.id,
@@ -56,6 +57,7 @@ exports.recommendConnection  = asynchandler(async (req,res,next)=>{
             }
    
         })
+        
     res.status(200).json({
         status:true,
         data:data2

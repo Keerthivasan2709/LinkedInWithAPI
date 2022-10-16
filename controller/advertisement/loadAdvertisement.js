@@ -21,6 +21,9 @@ exports.getAdvertisement  =  asynchandler(async (req,res,next)=>{
         
       })
       await client.adsControll.update({
+        where:{
+            id:  parseInt(req.params.id)  
+        },
         data:{
             viewed:{
                 increment:1,

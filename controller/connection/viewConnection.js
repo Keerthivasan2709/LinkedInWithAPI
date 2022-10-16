@@ -9,7 +9,7 @@ const {filterUsers} = require("../../utils/utilityfuc")
 
 exports.viewConnection = asynchandler(async (req,res,next)=>{
    try{
-    const data  = await client.connection.findMany({
+    let data  = await client.connection.findMany({
         where:{
             OR:[
                 {
@@ -28,6 +28,7 @@ exports.viewConnection = asynchandler(async (req,res,next)=>{
         }
     })
     //filering the users
+    if(data.length<=0) return res.status(200).json({status:true,data })
     data = await filterUsers(data,req.user.id)
 
     //fetching all the profile detailes for the user 

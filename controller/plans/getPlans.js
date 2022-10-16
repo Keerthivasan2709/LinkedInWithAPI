@@ -12,9 +12,10 @@ exports.getPlans = asynchandler(async (req,res,next)=>{
     try{
         const data = await client.plans.findMany({
             select:{
+                id:true,
                 name:true,
                 price:true,
-                valdity:true,
+                validity:true,
                 discount:true,
             },
         

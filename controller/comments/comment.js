@@ -1,8 +1,9 @@
 
 const client = require('../../utils/database')
-const ErrorResponce = require('../../utils/errorhandler')
+const ErrorResponse = require('../../utils/errorhandler')
 const asynchandler = require('../../middleware/asynchandler')
 const { activityUpdate } = require('../../utils/activityManager')
+
 
 //@desc to update the comment 
 //@url  PATCH api/v1/post/comment/update/:cid
@@ -19,7 +20,7 @@ exports.updateComment = asynchandler(async (req,res,next)=>{
             createdAt: new Date(Date.now())
         }
     })
-    if(!data) return next(new ErrorResponce("failed to update",457))
+    if(!data) return next(new ErrorResponse("failed to update",457))
     res.status(200).json({
         status:true,
         msg:"comment updated"
@@ -40,7 +41,7 @@ exports.getComments = asynchandler(async (req,res,next)=>{
         },
     });
     
-    if(!data) return next(new ErrorResponce("Unable to get data check the credentials ",403))
+    if(!data) return next(new ErrorResponse("Unable to get data check the credentials ",403))
     res.status(200).json({
         status:true,
         count:data.length,
@@ -98,22 +99,24 @@ exports.deleteComment = asynchandler(async (req,res,next)=>{
 //@access Private 
 
 exports.setComment  = asynchandler(async (req,res,next)=>{
-    const data = await client.posts.update({
-        where:{
-            id:req.params.postid,
-        },
+    try{
+    
+    const data = await  client.comments.create({
         data:{
-            comments:{
-                create:{
-                    description:req.body.description,
-                    userid:req.user.id,
-                    }
+            description:req.body.description,
+            comment:{
+                connect:{
+                    id:req.params.postid
+            },
+        },
+            usercomment:{
+                connect:{
+                    id:req.user.id
+                }
             }
         }
-        
-        
     })
-    if(!data) return next(new ErrorResponce("Problem in storing",423))
+    if(!data) return next(new ErrorResponse("Problem in storing",423))
     await activityUpdate({
        userid:req.user.id,
        tagerid:data.id,
@@ -121,4 +124,5 @@ exports.setComment  = asynchandler(async (req,res,next)=>{
        type:"comment"
     })
     res.status(200).json({status:true})
+}catch(err) {return next(new ErrorResponse(err.message,500))}
 })

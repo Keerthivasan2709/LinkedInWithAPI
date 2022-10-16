@@ -9,6 +9,7 @@ const {viewPage} = require('./getPage')
 const {createPagePosts} = require('./pagePost')
 const {pagePostEdit} = require('./pagePostEdit')
 const {followPage,unfollowPage} = require('./followPage')
+const {viewMyPage} = require("./viewMyPage")
 //creating a controller object
 
 const obj = {
@@ -19,6 +20,7 @@ const obj = {
     pagePostEdit,
     followPage,
     unfollowPage,
+    viewMyPage
 }
 
 // freezing the object for the secutiry 

@@ -7,8 +7,9 @@ const post = require('../controller/postes/posts')
 
 routes.route("/create").post(protect,post.createPost)
 routes.route("/my").get(protect,post.getMyPosts)
-routes.route("/like/:postid").post(protect,post.like)
-routes.route("/:postid").delete(protect,post.deletePost).patch(protect,post.editPost)
-routes.route("/").get(protect,post.getPosts)
+routes.route("/like").post(protect,post.like)
+routes.route("/:postid").delete(protect,post.deletePost)
+routes.route('/recommend').get(protect,post.recommendedPosts)
+routes.route("/").get(protect,post.getPosts).patch(protect,post.editPost)
 //exporting the route object 
 module.exports = routes 

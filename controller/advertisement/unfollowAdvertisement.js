@@ -1,18 +1,18 @@
-// @desc to follow the advertisement 
-//@url POST api/v1/advertisement/follow
+// @desc to unfollow the advertisement 
+//@url POST api/v1/advertisement/unfollow
 //@access Private 
 
 const asynchandler = require("../../middleware/asynchandler");
 const client = require("../../utils/database");
 const ErrorHandler = require("../../utils/errorhandler");
 
-exports.followAds = asynchandler(async (req,res,next)=>{
+exports.unfollowAds = asynchandler(async (req,res,next)=>{
     try{
        const data = await client.advertisement.update({
         where:{id:req.body.id},
         data:{
             followers:{
-                connect:{
+                disconnect:{
                     id:req.user.id
                 }
             }
@@ -22,7 +22,7 @@ exports.followAds = asynchandler(async (req,res,next)=>{
        
        res.status(200).json({
         status:true,
-        following:true
+        following:false
         })
     }catch(err){return next(new ErrorHandler(err.message,500))}
 })

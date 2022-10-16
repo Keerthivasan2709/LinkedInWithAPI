@@ -1,5 +1,6 @@
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
+  previewFeatures = ["fullTextSearch", "fullTextIndex"]
 }
 
 datasource db {
@@ -8,52 +9,76 @@ datasource db {
 }
 
 model Users {
-  uid                String    @unique @default(uuid())
-  email              String    @unique
+  uid                String     @unique @default(uuid())
+  email              String     @unique
   password           String
-  jsontoken          String?   @default("need token")
+  jsontoken          String?    @default("need token")
   restPasswordTocken String?
   restPasswordExpire DateTime?
-  createdAt          DateTime  @default(now())
+  createdAt          DateTime   @default(now())
   type               String?
-  plans              UserPlan[] 
+  plans              UserPlan[]
 }
 
 model Profile {
-  id             String          @id @unique @default(uuid())
-  firstName      String?         @default("add a firstname")
-  lastName       String?         @default("add a lastname")
-  userid         String          @unique
-  profilepic     String          @default("file/defaultImage.jpg")
-  mobileNumber   String?         @unique
-  description    String?         @default("provide description")
-  tagDescription String?         @default("provide short description")
-  addressid      String
-  backgroundpic  String          @default("file/defaultBackgorund.jpg")
-  premium        Boolean         @default(false)
-  viewer         Viewer[]        @relation("viewer")
-  viewed         Viewer[]        @relation("viewed")  
-  activity       Activity[]
-  posts          Posts[]
-  skills         Skill[]
-  companys       UserCompany[]
-  usereducation  UserEducation[]
-  following      Page[]
-  hashtags       Hashtag[]  
-  followedAds    advertisement[]        
- 
+  id                  String                @id @unique @default(uuid())
+  firstName           String?               @default("add a firstname")
+  lastName            String?               @default("add a lastname")
+  userid              String                @unique
+  profilepic          String                @default("file/defaultImage.jpg")
+  mobileNumber        String?               @unique
+  description         String?               @default("provide description")
+  tagDescription      String?               @default("provide short description")
+  addressid           String
+  backgroundpic       String                @default("file/defaultBackgorund.jpg")
+  premium             Boolean               @default(false)
+  activity            Activity[]
+  usercomments        Comments[]
+  postliked           Like[]
+  posts               Posts[]
+  userreply           Reply[]
+  replyliked          ReplyLike[]
+  skills              Skill[]
+  companys            UserCompany[]
+  usereducation       UserEducation[]
+  viewer              Viewer[]              @relation("viewer")
+  viewed              Viewer[]              @relation("viewed")
+  commentliked        commentLike[]
+  newspostcomment     newsPostComments[]
+  newspostliked       newsPostLike[]
+  newspostreplyLike   newsReplyLike[]
+  newspostreply       newspostReply[]
+  newspostcommentlike newspostcommentLike[]
+  pagepostcomment     pagePostComments[]
+  pagepostliked       pagePostLike[]
+  pagepostreplylike   pageReplyLike[]
+  pagepostreply       pagepostReply[]
+  pagepostcommentlike pagepostcommentLike[]
+  hashtags            Hashtag[]
+  following           Page[]
+  followedAds         advertisement[]
+
+  @@index([firstName, lastName, description, tagDescription])
 }
 
-model Viewer{
-  id Int  @id @default(autoincrement())
-  profileid String 
+model PeopleFollowed {
+  id           String  @id @default(uuid())
+  followed     String
+  follower     String
+  notification Boolean @default(false)
+
+  @@unique([followed, follower])
+}
+
+model Viewer {
+  id        Int      @id @default(autoincrement())
+  profileid String
   viewerid  String
-  viewedAt  DateTime 
-  viewer Profile @relation("viewer",fields: [profileid],references: [id]) 
-  viewed Profile @relation("viewed",fields: [viewerid],references: [id])
+  viewedAt  DateTime
+  viewer    Profile  @relation("viewer", fields: [profileid], references: [id])
+  viewed    Profile  @relation("viewed", fields: [viewerid], references: [id])
 
-
-
+  @@unique([profileid, viewerid])
 }
 
 model UserEducation {
@@ -89,6 +114,7 @@ model UserCompany {
   startDate   DateTime?
   endDate     DateTime?
   Domain      String?   @default("please provide Domain")
+  status      String?
   company     Company   @relation(fields: [companyid], references: [id])
   usercompany Profile   @relation(fields: [profileid], references: [id])
 
@@ -96,16 +122,16 @@ model UserCompany {
 }
 
 model Company {
-  id          String        @id @unique @default(uuid())
-  name        String
-  createdAt   DateTime      @default(now())
-  companyid   String        @unique
-  description String?       @default("add description")
-  addressid   String?       @default("address")
-  pageid      String?       @default("create page")
-  type        String?       @default("unknone ")
-  company     UserCompany[]
-  advertisements advertisement[]  
+  id             String          @id @unique @default(uuid())
+  name           String
+  createdAt      DateTime        @default(now())
+  companyid      String          @unique
+  description    String?         @default("add description")
+  addressid      String?         @default("address")
+  pageid         String?         @default("create page")
+  type           String?         @default("unknone ")
+  company        UserCompany[]
+  advertisements advertisement[]
 }
 
 model Skill {
@@ -120,10 +146,10 @@ model Skill {
 model connection {
   id         String   @id @unique @default(uuid())
   senderid   String
-  receiverid String  
+  receiverid String
   ismutual   Boolean? @default(false)
 
-  
+  @@unique([senderid, receiverid])
 }
 
 model Posts {
@@ -134,22 +160,72 @@ model Posts {
   data        String?    @default("no the post data")
   createdAt   DateTime   @default(now())
   updatedAt   DateTime   @updatedAt
-  pageid      String
-  newsid      Int
-  pagepost    Page       @relation(fields: [pageid], references: [id])
   userpost    Profile    @relation(fields: [profileid], references: [id])
-  newspost    News       @relation(fields: [newsid],references: [id])
   comments    Comments[]
   likes       Like[]
+  hashtag     Hashtag[]
+
+  @@index([description, title])
+}
+
+model pagePost {
+  id          String             @id @unique @default(uuid())
+  profileid   String
+  description String?            @default("no description")
+  title       String?            @default("no title")
+  data        String?            @default("no the post data")
+  createdAt   DateTime           @default(now())
+  updatedAt   DateTime           @updatedAt
+  pageid      String
+  pagePost    Page               @relation(fields: [pageid], references: [id])
+  comments    pagePostComments[]
+  like        pagePostLike[]
+  hashtag     Hashtag[]
+}
+
+model newsPost {
+  id          String             @id @unique @default(uuid())
+  profileid   String
+  description String?            @default("no description")
+  title       String?            @default("no title")
+  data        String?            @default("no the post data")
+  createdAt   DateTime           @default(now())
+  updatedAt   DateTime           @updatedAt
+  newsid      Int
+  newspost    News               @relation(fields: [newsid], references: [id])
+  comments    newsPostComments[]
+  like        newsPostLike[]
   hashtag     Hashtag[]
 }
 
 model Like {
-  id     String  @id @unique @default(uuid())
-  postid String
-  userid String
-  type   String? @default("tumbsup")
-  like   Posts   @relation(fields: [postid], references: [id])
+  postid  String
+  userid  String
+  type    String? @default("tumbsup")
+  likedby Profile @relation(fields: [userid], references: [id])
+  like    Posts   @relation(fields: [postid], references: [id], map: "post")
+
+  @@id([postid, userid])
+}
+
+model pagePostLike {
+  postid  String
+  userid  String
+  type    String?  @default("tumbsup")
+  likedby Profile  @relation(fields: [userid], references: [id])
+  like    pagePost @relation(fields: [postid], references: [id], map: "post")
+
+  @@id([postid, userid])
+}
+
+model newsPostLike {
+  postid  String
+  userid  String
+  type    String?  @default("tumbsup")
+  likedby Profile  @relation(fields: [userid], references: [id])
+  like    newsPost @relation(fields: [postid], references: [id], map: "post")
+
+  @@id([postid, userid])
 }
 
 model Comments {
@@ -159,25 +235,126 @@ model Comments {
   description String
   createdAt   DateTime      @default(now())
   comment     Posts         @relation(fields: [postid], references: [id])
-  replays     Replay[]
+  usercomment Profile       @relation(fields: [userid], references: [id])
+  replays     Reply[]
   liked       commentLike[]
 }
 
+model pagePostComments {
+  id          String                @id @unique @default(uuid())
+  postid      String
+  userid      String
+  description String
+  createdAt   DateTime              @default(now())
+  comment     pagePost              @relation(fields: [postid], references: [id])
+  usercomment Profile               @relation(fields: [userid], references: [id])
+  replays     pagepostReply[]
+  liked       pagepostcommentLike[]
+}
+
+model newsPostComments {
+  id          String                @id @unique @default(uuid())
+  postid      String
+  userid      String
+  description String
+  createdAt   DateTime              @default(now())
+  comment     newsPost              @relation(fields: [postid], references: [id])
+  usercomment Profile               @relation(fields: [userid], references: [id])
+  replays     newspostReply[]
+  liked       newspostcommentLike[]
+}
+
 model commentLike {
-  id          String   @id @unique @default(uuid())
   commentid   String
   userid      String
   type        String?  @default("tumbsup")
   commentlike Comments @relation(fields: [commentid], references: [id])
+  likedby     Profile  @relation(fields: [userid], references: [id])
+
+  @@id([commentid, userid])
 }
 
-model Replay {
-  id          String   @id @unique @default(uuid())
+model pagepostcommentLike {
+  commentid   String
+  userid      String
+  type        String?          @default("tumbsup")
+  commentlike pagePostComments @relation(fields: [commentid], references: [id])
+  likedby     Profile          @relation(fields: [userid], references: [id])
+
+  @@id([commentid, userid])
+}
+
+model newspostcommentLike {
+  commentid   String
+  userid      String
+  type        String?          @default("tumbsup")
+  commentlike newsPostComments @relation(fields: [commentid], references: [id])
+  likedby     Profile          @relation(fields: [userid], references: [id])
+
+  @@id([commentid, userid])
+}
+
+model Reply {
+  id          String      @id @unique @default(uuid())
   commentid   String
   description String
   userid      String
-  createdAt   DateTime @default(now())
-  replay      Comments @relation(fields: [commentid], references: [id])
+  createdAt   DateTime    @default(now())
+  replay      Comments    @relation(fields: [commentid], references: [id])
+  userreply   Profile     @relation(fields: [userid], references: [id])
+  liked       ReplyLike[]
+}
+
+model newspostReply {
+  id          String           @id @unique @default(uuid())
+  commentid   String
+  description String
+  userid      String
+  createdAt   DateTime         @default(now())
+  replay      newsPostComments @relation(fields: [commentid], references: [id])
+  userreply   Profile          @relation(fields: [userid], references: [id])
+  liked       newsReplyLike[]
+}
+
+model pagepostReply {
+  id          String           @id @unique @default(uuid())
+  commentid   String
+  description String
+  userid      String
+  createdAt   DateTime         @default(now())
+  replay      pagePostComments @relation(fields: [commentid], references: [id])
+  userreply   Profile          @relation(fields: [userid], references: [id])
+  liked       pageReplyLike[]
+}
+
+model ReplyLike {
+  replyid String
+  type    String? @default("thumsup")
+  userid  String
+  reply   Reply   @relation(fields: [replyid], references: [id])
+  likedby Profile @relation(fields: [userid], references: [id])
+
+  @@id([replyid, userid])
+}
+
+model pageReplyLike {
+  replyid String
+  type    String?       @default("thumsup")
+  userid  String
+  reply   pagepostReply @relation(fields: [replyid], references: [id])
+  likedby Profile       @relation(fields: [userid], references: [id])
+
+  @@id([replyid, userid])
+}
+
+model newsReplyLike {
+  replyid String
+  type    String?       @default("thumsup")
+  userid  String
+  reply   newspostReply @relation(fields: [replyid], references: [id])
+  likedby Profile       @relation(fields: [userid], references: [id])
+
+  @@id([replyid, userid])
 }
 
 model verification {
@@ -205,8 +382,10 @@ model Page {
   createdAt   DateTime     @default(now())
   viewed      Int          @default(1)
   pageAccess  PageAccess[]
-  posts       Posts[]
+  posts       pagePost[]
   followers   Profile[]
+
+  @@index([title, description])
 }
 
 model PageAccess {
@@ -215,17 +394,19 @@ model PageAccess {
   pageid    String
   role      String
   pageAcess Page   @relation(fields: [pageid], references: [id])
+
+  @@unique([pageid, role, userid])
 }
 
 model Message {
-  id           String  @id @unique @default(uuid())
-  connectionid String?  
+  id           String   @id @unique @default(uuid())
+  connectionid String?
   senderid     String
   receiverid   String
   message      String?
   content      String?
   postid       String?
-  createdAt    DateTime  @default(now())
+  createdAt    DateTime @default(now())
 }
 
 model Activity {
@@ -235,84 +416,87 @@ model Activity {
   message      String
   createdAt    DateTime @default(now())
   targetid     String
+  belongsTo    String
+  tagetpic     String
   useractivity Profile  @relation(fields: [userid], references: [id])
 }
 
 model Plans {
-  id String  @id @default(uuid())
-  name String @unique
-  price Decimal 
-  discount Decimal? @default(0)
-  valdity Int   @default(30)
-  users   UserPlan[]
-  createdAt DateTime @default(now())
-  updatedAt DateTime  @updatedAt
+  id        String     @id @default(uuid())
+  name      String     @unique
+  price     Decimal
+  discount  Decimal?   @default(0)
+  validity   Int        @default(30)
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  users     UserPlan[]
 }
 
 model UserPlan {
-  id       String @id  @default(uuid())
-  userid   String 
-  planid   String
-  planstatus   PlanStatus
-  startedAt DateTime @default(now())
-  endsAt   DateTime? 
-  user     Users @relation(fields: [userid],references: [uid])
-  plan     Plans @relation(fields: [planid],references: [id])
-  
-}
-model transaction{
-  userid   String
-  planid   String 
-  amount   Decimal? 
-  transactionid  String @id
-  status   String? 
-  createdAt DateTime  @default(now()) 
-  paymentMethod  String?
-}
-model News{
-  id   Int @id @default(autoincrement())
-  title String 
-  doneBy String 
-  newsDetail String @db.VarChar(500)
-  posts  Posts[]
-  createdAt DateTime @default(now())
-  updateAt DateTime @updatedAt 
-  readers Int @default(0)
-}
-model Hashtag {
-  id Int @id @default(autoincrement())
-  tag String @unique
-  posts Posts[]
-  createdAt DateTime @default(now())
-  upadateAt DateTime @updatedAt
-  following Profile[]
-}
-model advertisement {
-  id Int @id @default(autoincrement())
-  advertisemenLogo String?
-  title String?
-  type  String?
-  about String
-  followers Profile[]
-  companyid String
-  company Company @relation(fields: [companyid],references: [id])
-  records adsControll?  
-  
-}
-model adsControll{
-  id Int @id @default(autoincrement())
-  advertismentId advertisement @relation(fields: [id],references: [id])
-  displayed Int   @default(0)
-  viewed    Int   @default(0)
-  createdAt DateTime @default(now())
-  updatedAt    DateTime @updatedAt
-  
-  
+  userid     String
+  planid     String
+  startedAt  DateTime   @default(now())
+  endsAt     DateTime?
+  planstatus PlanStatus
+  id         String     @id @default(uuid())
+  plan       Plans      @relation(fields: [planid], references: [id])
+  user       Users      @relation(fields: [userid], references: [uid])
 }
 
-//enum values 
+model transaction {
+  userid        String
+  planid        String
+  amount        Decimal?
+  transactionid String   @id
+  status        String?
+  createdAt     DateTime @default(now())
+  paymentMethod String?
+}
+
+model News {
+  id         Int        @id @default(autoincrement())
+  title      String
+  doneBy     String
+  newsDetail String     @db.VarChar(500)
+  createdAt  DateTime   @default(now())
+  updateAt   DateTime   @updatedAt
+  readers    Int        @default(0)
+  posts      newsPost[]
+}
+
+model Hashtag {
+  id        Int        @id @default(autoincrement())
+  tag       String     @unique
+  createdAt DateTime   @default(now())
+  upadateAt DateTime   @updatedAt
+  posts     Posts[]
+  following Profile[]
+  newspost  newsPost[]
+  pageposts pagePost[]
+}
+
+model advertisement {
+  id               Int          @id @default(autoincrement())
+  advertisemenLogo String?
+  title            String?
+  type             String?
+  about            String
+  companyid        String
+  company          Company      @relation(fields: [companyid], references: [id])
+  records          adsControll?
+  followers        Profile[]
+}
+
+model adsControll {
+  id             Int           @id @default(autoincrement())
+  displayed      Int           @default(0)
+  viewed         Int           @default(0)
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+  advertismentId advertisement @relation(fields: [id], references: [id])
+}
+
 enum PlanStatus {
   ACTIVE
-  EXPIRE 
+  EXPIRE
 }
-

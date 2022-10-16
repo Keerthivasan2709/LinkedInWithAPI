@@ -12,9 +12,9 @@ exports.addPlan = asynchandler(async (req,res,next)=>{
  const plan  = await client.plans.create({
     data:{
         name:req.body?.name,
-        price: Decimal(req.body.price),
-        discount: Decimal(req.body.discount),
-        valdity: parseInt(req.body.valdity),
+        price: req.body.price,
+        discount: req.body.discount,
+        validity: req.body.valdity,
     }
 
  })

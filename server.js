@@ -31,6 +31,9 @@ app.use(cors())
 //setting the view engine handlebars
 app.set('view engine','handlebars')
 
+//to enable file-uplodingprocess 
+// app.use()
+
 //setting the request body parser 
 app.use(express.json())
 
@@ -44,7 +47,7 @@ app.use('/api/v1/data',express.static(path.resolve('resourse')))
 app.use('/api/v1/user',user)
 app.use('/api/v1/profile',profile)
 app.use('/api/v1/post',post)
-app.use('/api/v1/conn',connection)
+app.use('/api/v1/connection',connection)
 app.use('/api/v1/post/comment',comment)
 app.use('/api/v1/feed',feed)
 app.use('/api/v1/payment',payment)

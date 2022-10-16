@@ -11,7 +11,7 @@ const ErrorResponse =  require("../../utils/errorhandler")
 exports.viewPage = asynchandler(async (req,res,next)=>{
        // adding the view count
     try {
-        await client.page.update({
+        await client.page.updateMany({
             where:{
                 id:req.params.id,
             },
@@ -25,22 +25,7 @@ exports.viewPage = asynchandler(async (req,res,next)=>{
                 id:req.params.pageid,
             },
             include:{
-                posts:{
-                    take:7,
-                    skip:1,
-                    select:{
-                        
-                    },
-                    include:
-                    {
-                        userpost:{
-                            select:{
-                                profilepic:true,
-                                firstName:true,
-                            }
-                        }
-                    }
-              },
+                posts:true,
                 followers:{
                   select:{
                     profilepic:true,

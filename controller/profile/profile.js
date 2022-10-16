@@ -3,11 +3,20 @@ const {getMyProfile} =  require('./getMyProfile')
 const {editProfile} = require('./editprofile')
 const {getProfile} = require('./getProfile')
 const {resumeBuilder} = require('./buildResume')
+const {followPeople} = require('./followPeople')
+const {updateUserEducation} = require('./updateEducation')
+const {updateUserCompany} = require('./updateUserCompany')
+const {viwedProfile} = require('./getViwedProfile')
+
 const object  = {
     getMyProfile,
     editProfile,
     getProfile,
-    resumeBuilder
+    resumeBuilder,
+    followPeople,
+    updateUserCompany,
+    updateUserEducation,
+    viwedProfile
 
 } 
 

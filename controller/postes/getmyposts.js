@@ -12,13 +12,24 @@ exports.getMyPosts = asynchandler( async (req,res,next) => {
             profileid: req.user.id
         },
         include:{
-            likes:true
+            _count:{
+                select:{
+                    likes:true
+                }
+            },
+            userpost:{
+                select:{
+                    profilepic:true,
+                    firstName:true,
+                    lastName:true,
+                }
+            }
+            
         }
+            
         })
     if(!data) return next(new ErrorResponse("there is no posts",423))
-    data.forEach(ele=>{
-        ele.liked = ele.likes.length
-    })
+   
     res.status(200).json({
         count: data.length ,
         data

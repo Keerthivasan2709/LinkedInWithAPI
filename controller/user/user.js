@@ -4,13 +4,15 @@ const {verifyRegistration} = require('./verifyregister')
 const {forgotPass} = require('./forgotpass')
 const {resetPassword} = require('./resetpassword')
 const {login} = require('./login')
+const {logOut} = require('./logout')
 const object = {
     
      register,
      verifyRegistration,
      forgotPass,
      resetPassword,
-     login
+     login,
+     logOut
 
 
 

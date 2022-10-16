@@ -6,7 +6,7 @@ const ErrorHandler = require("../../utils/errorhandler");
 
 //@desc TO get the resent activity of the user 
 //@url  GET api/v1/feed/resent
-//@access POrivate 
+//@access Private 
 
 exports.resentActivity = asynchandler(async (req,res,next)=>{
     try {

@@ -6,11 +6,13 @@
 
 const asynchandler = require("../../middleware/asynchandler");
 const client = require("../../utils/database");
-const ErrorResponce = require("../../utils/errorhandler");
-const {filterUsers} = require("../../utils/utilityfuc") 
+const ErrorResponse = require("../../utils/errorhandler");
+const {filterUsers} = require("../../utils/utilityfuc"); 
+
 exports.getProfile = asynchandler(async (req,res,next)=>{
     try{
-      const profile = await client.profile.findFirst({
+      if(!req.params.profileid) return next(new ErrorResponse("invaild request parameter",402))
+      const profile = await client.profile.findUnique({
         where:{
                 id:req.params.profileid,
         },
@@ -69,6 +71,7 @@ exports.getProfile = asynchandler(async (req,res,next)=>{
         }
         
       })
+    if(!profile) return next(new ErrorResponse("profile not found",404))
     //getting the mutual connection 
     let connection = await client.connection.findMany({
       where:{
@@ -83,9 +86,11 @@ exports.getProfile = asynchandler(async (req,res,next)=>{
         senderid:true
       }
     })  
+    let mutualConnection = []
       //filtering the users
-      connection = await filterUsers(connection,req.user.id)
-      const mutualConnection = await client.connection.count({
+      if(connection.length>0)
+      {connection = await filterUsers(connection,req.user.id);
+      mutualConnection = await client.connection.count({
         
         where:{
           OR:[
@@ -108,6 +113,7 @@ exports.getProfile = asynchandler(async (req,res,next)=>{
                 
       
       })
+    }
 
       //getting the address details 
       const address = await client.address.findUnique({
@@ -122,25 +128,22 @@ exports.getProfile = asynchandler(async (req,res,next)=>{
         }
       })
     //adding the viewed recorde 
-    const data  = await client.viewer.findFirst({
-      where:{profileid:req.params.profileid,
-             viewerid:req.user.id},
-      
-      
-    })
-    if(!data){
-      await client.profile.update({
-        where:{id:req.user.id},
-        data:{
-          viewed:{
-            create:{
-              viewerid:req.user.id,
-              profileid:req.params.profileid
-            }
-        },
+    await client.viewer.upsert({
+      where:{
+        profileid_viewerid:{
+          profileid:req.params.profileid,
+          viewerid:req.user.id,
+        }
+      },
+      update:{
+        viewedAt:new Date(Date.now())
+      },
+      create:{
+        profileid:req.params.profileid,
+        viewerid:req.user.id,
+        viewedAt:new Date(Date.now())
       }
-      })
-    } 
+    })
     
     res.status(200).json({
       status:true,
@@ -150,6 +153,6 @@ exports.getProfile = asynchandler(async (req,res,next)=>{
     })
     }
     catch(err){
-        return next(new ErrorResponce(err.message,404))
+        return next(new ErrorResponse(err.message,404))
     }
 })

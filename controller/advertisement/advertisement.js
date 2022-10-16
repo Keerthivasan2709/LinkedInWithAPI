@@ -4,14 +4,15 @@ const {deleteAds} = require('./deleteAdvertisment')
 const {followAds} = require('./followAdvertisment')
 const {getAdvertisement} = require('./loadAdvertisement')
 const {updateAds} = require('./updateAdvertisement')
-
+const {unfollowAds}  = require('./unfollowAdvertisement')
 //creating the controller object 
 const obj = {
     createAds,
     deleteAds,
     followAds,
     getAdvertisement,
-    updateAds
+    updateAds,
+    unfollowAds
 }
 
 //freezing the object 

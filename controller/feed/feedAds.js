@@ -38,8 +38,8 @@ exports.getRandomAds = asynchandler(async (req,res,next)=>{
             }
         }
      })
-     
-    if(!data) return next(new ErrorHandler("unable to fetch",500))
+     console.log(data)
+    if(!data) return next(new ErrorHandler("records not available",500))
     res.status(200).json({
         status:true,
         data

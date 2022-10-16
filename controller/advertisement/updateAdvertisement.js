@@ -18,5 +18,10 @@ exports.updateAds   =  asynchandler(async (req,res,next)=>{
            about:req.body.about,
         }
      })
+     if(!data) return next(new ErrorHandler("unable to update",500))
+     res.status(200).json({
+        status:true,
+        data
+     })
     }catch(err){return next(new ErrorHandler(err.message,500))}
 })

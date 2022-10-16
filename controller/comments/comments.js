@@ -1,7 +1,7 @@
 // creatinf the controller for comment 
 
 const {setReply,getReply,deleteReply,updateReply}  = require('./reply')
-const {likeComment,getLike} = require('./like')
+const {likeComment,getLike,likeReplay} = require('./like')
 const {updateComment,deleteComment,setComment,getComments} = require('./comment')
 const object = {
 
@@ -14,7 +14,8 @@ const object = {
     setReply,
     getReply,
     deleteReply,
-    updateReply
+    updateReply,
+    likeReplay
 
 }
 //freezing the objects for the security 

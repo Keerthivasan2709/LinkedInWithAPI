@@ -1,5 +1,5 @@
 const client = require('../../utils/database')
-const ErrorResponce = require('../../utils/errorhandler')
+const ErrorResponse = require('../../utils/errorhandler')
 const asynchandler = require('../../middleware/asynchandler')
 
 //@desc to like a comment 
@@ -8,70 +8,41 @@ const asynchandler = require('../../middleware/asynchandler')
 
 exports.likeComment = asynchandler(async (req,res,next)=>{
 
-    const data  = await client.comments.findFirst({
-        where:{
-            id:req.params.cid,
-            },
-        select:{
-            liked: {
-                where:{
-                    userid:req.user.id 
-                },
-                select:{
-                    id:true
-                }
-            },
-        },
-    })
-    if(!data){
-        client.comments.update({
-            where:{
-               id:req.params.cid
-            },
-            data:{
-                liked:{
-                   create:{
-                       userid:req.user.id,
-                       type:req.body.type
+      try{
+        if(!req.params.cid) return next(new ErrorResponse('postid field required in body',404))
+        try{ 
+       let data  = await client.commentLike.delete({
+           where:{
+               commentid_userid:{
+                commentid:req.params.cid,
+                userid:req.user.id,
+               }
+           }
+        })
+        return res.status(200).json({status:true,like:false})
+       }catch(error){
+        data = await client.commentLike.create({
+           data:{
+               likedby:{
+                   connect:{ 
+                   id:req.user.id,
                    }
-                }
-            }
+               },
+               commentlike:{
+                   connect:{
+                       id:req.params.cid,
+                   }
+               },
+           }
         })
-        .then(result=> res.status(200).json({liked:true}))
-        .catch(err=> res.status(458).json({status:false})) 
-    }
-    else{
-        console.log(data.liked.length)
-        if (data.liked.length == 0){
-            client.comments.update({
-                where:{
-                   id:req.params.cid
-                },
-                data:{
-                    liked:{
-                       create:{
-                           userid:req.user.id,
-                           type:req.body.type
-                       }
-                    }
-                }
-            })
-            .then(result=> res.status(200).json({liked:true}))
-            .catch(err=> res.status(458).json({status:false,msg:err.message})) 
-                 
-        }
-        else{
-    
-        client.commentLike.delete({
-             where:{
-                id:data.liked[0].id 
-             }
-        })
-        .then(result => res.status(200).json({liked:false}))
-        .catch(err => res.status(451).json({status:false,msg:err.message}))
-    }
-     }
-    
+        if(!data) return next(new ErrorResponse("unable to perform the requested operation",500))
+        res.status(200).json({
+           status:true,
+           like:true
+   
+        })  
+       }
+      }catch(err){return next(new ErrorResponse(err.message,500))}
         
     })
 
@@ -87,17 +58,72 @@ exports.getLike = asynchandler(async (req,res,next)=>{
         },
         include:{
             liked:true,
+            _count:{
+                select:{
+                    liked:true,
+
+                }
+            }
         }
 
     })
     console.log(data)
-    if(!data) return next(new ErrorResponce("Unable to get data check the credentials ",403))
+    if(!data) return next(new ErrorResponse("Unable to get data check the credentials ",403))
     res.status(200).json({
         status:true,
-        like_count:data.liked.length,
         data
     })
 
 })
+
+
+//@desc To like the replay
+//@url  POST api/v1/replay/like/:id
+//@access private 
+
+
+exports.likeReplay  = asynchandler( async (req,res,next)=>{
+
+    try {
+        if(!req.params.id) return next(new ErrorResponse('postid field required in body',404))
+        try{ 
+       let data  = await client.replyLike.delete({
+           where:{
+               replyid_userid:{
+                replyid:req.params.id,
+                userid:req.user.id
+               }
+           }
+        })
+        return res.status(200).json({status:true,like:false})
+       }catch(error){
+        let data = await client.replyLike.create({
+           data:{
+               likedby:{
+                   connect:{ 
+                   id:req.user.id,
+                   }
+               },
+               reply:{
+                   connect:{
+                       id:req.params.id,
+                   }
+               },
+           }
+        })
+        if(!data) return next(new ErrorResponse("unable to perform the requested operation",500))
+        res.status(200).json({
+           status:true,
+           like:true
+   
+        })  
+     } 
+        
+    } catch (err) {
+        return next(new ErrorResponse(err.message,500))
+    }
+
+})
+
 
     

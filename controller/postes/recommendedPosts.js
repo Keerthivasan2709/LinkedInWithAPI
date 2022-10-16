@@ -21,8 +21,8 @@ exports.recommendedPosts = asynchandler(async (req,res,next)=>{
                   include:{
                      userpost:{
                         select:{
-                           profilepic,
-                           firstName
+                           profilepic:true,
+                           firstName:true,
                         }
                      }
                   },

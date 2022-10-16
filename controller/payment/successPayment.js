@@ -41,16 +41,24 @@ exports.successfullPayment = asynchandler( async (req,res,next)=>{
     
     let data = await client.userPlan.create({
         data:{
-            userid:session.metadata.userid,
-            planid:plan.id,
             startedAt: new Date(Date.now()),
-            endsAt:new Date(Date.now()+plan.valdity*24*60*60*1000),
-            planstatus:PlanStatus.ACTIVE
+            endsAt:new Date(Date.now()+plan.validity *24*60*60*1000),
+            planstatus:PlanStatus.ACTIVE,
+            plan:{
+                connect:{
+                    id:plan.id
+                }
+            },
+            user:{
+                connect:{
+                    uid:session.metadata.userid
+                }
+            }
             
         }
     })
     if(!data) return next(new ErrorHandler("plan Update failed",500))
-
+    res.status(200).send("payment success")
     //sending the user about the plan purchase details 
     await send({
         mailid:email,
@@ -64,10 +72,7 @@ exports.successfullPayment = asynchandler( async (req,res,next)=>{
     })
 
 
-    res.status(200).json({
-        status:true,
-        data
-    })
+    
     
 
 

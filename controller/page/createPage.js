@@ -17,22 +17,23 @@ let {
 } = req.body 
  try {
    // creating a page
-   const check = await client.page.findFirst({
+  try{ const check = await client.page.findFirst({
     where:{
       belongsto:req.user.id ,
     }
    })
-  if(check) return next(new ErrorResponse("Cannot create more than one page",402))
+  }
+  catch(err){ return next(new ErrorResponse("Cannot create more than one page",402))}
 
    const data = await client.page.create({
     data:{
         
         title,
         websitelink,
-        logopic,
+        logpic:logopic,
         description,
         pagetype,
-
+        belongsto:req.user.id
 
     }
    })

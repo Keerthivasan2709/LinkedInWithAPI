@@ -20,7 +20,20 @@ exports.getPosts = asynchandler( async (req,res,next)=>{
             userpost:{
                 select:{
                     profilepic:true,
-                    firstName:true
+                    firstName:true,
+                    companys:{
+                        where:{
+                            status:"Working"
+                        },
+                        select:{
+                          company:{
+                            select:{
+                                name:true
+                            }
+                          },
+                          position:true
+                        },
+                    }
                 }
             } , 
             _count:{

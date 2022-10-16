@@ -7,7 +7,8 @@ const user  = require("../controller/user/user")
 routes.route('/register').post(user.register);
 routes.route('/verify').post(user.verifyRegistration)
 routes.route('/forgotpassword').post(user.forgotPass);
-routes.route('/resetpassword/:passcode').post(user.resetPassword)
-routes.route('/').post(user.login);
+routes.route('/resetpassword').post(user.resetPassword)
+routes.route('/login').post(user.login);
+routes.route('/logout').post(user.logOut);
 // exporting the router object 
 module.exports = routes

@@ -1,6 +1,6 @@
 //to perform seach operation for 
 //@desc To search for perticular user, group and post
-//@url  GET api/v1/feed/search 
+//@url  GET api/v1/feed/search/:keyword
 //@access Private 
 
 const asynchandler = require("../../middleware/asynchandler");
@@ -9,40 +9,59 @@ const ErrorResponse  = require('../../utils/errorhandler');
 
 exports.searchForContent  =  asynchandler( async (req,res,next)=>{
   try{
-    const  searchobj = {
-        contains:req.query.key
-    }
+    if(!req.params.keyword) return next(new ErrorResponse("search element not found",402))
+    let search = {search:req.params.keyword}
     let data =  await Promise.allSettled([
      client.profile.findMany({
+        take:3,
         where:{
-            firstName: searchobj,
-            description:searchobj,
-            lastName:searchobj
+         OR:[
+            {firstName:search},
+            {lastName:search},
+            {description:search},
+            {tagDescription:search}
+         ]
         },
+        
         select:{
             id:true,
             profilepic:true,
             firstName:true,
             lastName:true,
             description:true,
-        }
+        },
+        
 
     }),
     client.page.findMany({
-        where:{
-            title:searchobj,
-            description:searchobj
-        },
+        take:3,
         select:{
             id:true,
             title:true,
             description:true,
+        },
+        orderBy:{
+            _relevance:{
+                fields:['title','description'],
+                search: req.params.keyword,
+                sort:'asc'
+            }
         }
     }),
     client.posts.findMany({
+        take:3,
         where:{
-            title:searchobj,
-            description:searchobj,
+            OR:[ {
+            title:{
+                search:req.params.keyword
+            }  
+            },
+            {
+                description:{
+                    search:req.params.keyword
+                }
+            }  
+        ]
         },
         select:{
             id:true,
@@ -59,20 +78,24 @@ exports.searchForContent  =  asynchandler( async (req,res,next)=>{
             },
             
         },
+        orderBy:{
+           createdAt:'asc'
+        }
         
         
         
     })
 
 ])
-
+console.log(data)
+let result = []
 for(let i=0;i<data.length;i++){
-    if(data[i].status=='rejected') data.splice(i,1)
-    data[i] = data[i].value
+    if(data[i].status=='fulfilled') result.push(data[i].value)
+    
 }
 res.status(200).json({
     status:true,
-    data
+    result
     
 })  
   }catch(err) { return next(new ErrorResponse(err.message,500))}

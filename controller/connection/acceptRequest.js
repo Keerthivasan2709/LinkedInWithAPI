@@ -9,7 +9,10 @@ const client  = require("../../utils/database")
 exports.acceptRequest = asynchandler(async(req,res,next)=>{
     client.connection.update({
         where:{
-            senderid:req.params.aid 
+            senderid_receiverid:{
+                senderid:req.params.aid,
+                receiverid:req.user.id,
+            }
         },
         data:{
             ismutual:true
@@ -21,7 +24,7 @@ exports.acceptRequest = asynchandler(async(req,res,next)=>{
     }).end()
     )
     .catch(err=>{ 
-       return next(new ErrorResponce(err.message,453))
+       return next(new ErrorResponce("connection not found",453))
 })
 
 })

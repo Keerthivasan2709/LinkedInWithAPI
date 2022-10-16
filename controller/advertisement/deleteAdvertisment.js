@@ -9,9 +9,16 @@ const ErrorHandler = require("../../utils/errorhandler");
 exports.deleteAds = asynchandler(async(req,res,next)=>{
     try{
     // cascading delete 
-    const data  = await client.advertisement.deleteMany({
-        where:{id:req.params.id},
+    await client.adsControll.delete({
+        where:{
+            id:parseInt(req.params.id)
+        }
     })
+    const data  = await client.advertisement.deleteMany({
+        where:{id:parseInt(req.params.id)},
+        
+    })
+    
     if(!data) return next(new ErrorHandler("unable to delete ",500))
     res.status(200).json({
         status:true,

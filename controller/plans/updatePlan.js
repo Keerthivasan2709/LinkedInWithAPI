@@ -15,8 +15,8 @@ exports.updatePlan = asynchandler(async (req,res,next)=>{
         },
         data:{
             name:req.body.name,
-            price: req.body.price? Decimal(req.body.price):undefined,
-            discount:req.body.discount? Decimal(req.body.discount):undefined,
+            price: req.body.price? req.body.price:undefined,
+            discount:req.body.discount? req.body.discount:undefined,
             valdity:req.body.valdity? parseInt(req.body.valdity):undefined,
         }
     })
