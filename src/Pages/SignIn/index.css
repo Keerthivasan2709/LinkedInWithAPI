@@ -1,6 +1,6 @@
 .boxShadow {
-   dow: 0px 0px 15px -4px gray;
-   border-radius: 5px;
+   box-shadow: 0px 0px 15px -4px gray;
+   border-radius: 15px !important;
 }
 
 .signIn {
@@ -23,7 +23,9 @@
    cursor: pointer;
    white-space: nowrap;
 }
-
+.pointer{
+   cursor: pointer;
+}
 @media screen and (max-width:760px) {
    .fontLink {
       display: none;

@@ -9,7 +9,7 @@ function Dropdown({ setRef, className }) {
     setRef(DropdownMenu)
   }, [])
   return (
-    <div ref={DropdownMenu} className={`${className} card p-2`} style={{ padding: "10px 20px" }}>
+    <div ref={DropdownMenu} className={`${className} card p-2`} style={{ padding: "10px 20px" ,width:"100%"}}>
       <div className='d-flex flex-row gap-5 align-items-center'>
         <img src="https://res.cloudinary.com/dibccigcp/image/upload/v1664264187/man_cpgmaa.png" style={{ maxWidth: "50px" }} />
         <p className='heading2 makeBold'>Keerthivasan B

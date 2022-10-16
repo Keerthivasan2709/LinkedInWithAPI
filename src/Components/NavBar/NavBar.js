@@ -41,17 +41,20 @@ function NavBar() {
             <div className='background'>
                 <div className='headflex navBarContainer'>
                     <div className='headflex d-flex align-items-center'>
-                        <img src="https://res.cloudinary.com/dibccigcp/image/upload/v1664264186/LinkedIn_Icon_naugpk.svg" className='iconImg' />
+                        <img src="https://res.cloudinary.com/dibccigcp/image/upload/v1664264186/LinkedIn_Icon_naugpk.svg" className='iconImg sm-hide' />
+                        <Link to='/profile'>
+                            <img src="https://res.cloudinary.com/dibccigcp/image/upload/v1664264187/man_cpgmaa.png" style={{ maxWidth: "40px" }} className="lg-hide sm-show" />
+                        </Link>
                         <div>
-                            <Input className="w-100 input sm-hide" />
+                            <Input className="w-100 input sm-hide p-7" />
                         </div>
                     </div>
                     <div className='lg-hide sm-show'>
                         <Input className="w-100 input" />
                     </div>
-                    <div className='lg-hide sm-show sm-end'>
-                        <img className="lg-hide sm-show" src="https://res.cloudinary.com/dibccigcp/image/upload/v1664264186/Messaging_qxqkve.svg" />
-                    </div>
+                    <Link to='/messaging' className='lg-hide sm-show sm-end'>
+                        <img className="lg-hide sm-show" src="https://res.cloudinary.com/dibccigcp/image/upload/v1664264186/Messaging_qxqkve.svg" style={{ maxWidth: "40px" }} />
+                    </Link>
                     <div className='d-flex justify-content-between align-items-center sm-hide ' ref={Icon}>
                         {
                             NavBarLinks.map((data, index) => {

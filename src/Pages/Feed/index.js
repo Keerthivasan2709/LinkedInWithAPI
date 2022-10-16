@@ -10,8 +10,9 @@ import '../../Mobile.css'
 import FeedFooter from '../../Components/FeedFooter/FeedFooter'
 import SecondaryNav from '../../Components/SecondaryNav/SecondaryNav'
 import { PostList } from '../../Assets/Link'
+import Upload from './Upload'
 function Feed() {
-  document.title="Feed | LinkedIn"
+  document.title = "Feed | LinkedIn"
   return (
     <div>
       <NavBar />
@@ -21,6 +22,13 @@ function Feed() {
           <Recent />
         </div>
         <div className='d-flex flex-column gap-5'>
+          <Upload />
+          <div className='d-flex align-items-center'>
+            <div className='vr'></div>
+            <div className='smallText grey'>
+                Sort by: Top
+            </div>
+          </div>
           {PostList.map(data => { return <Posts data={data} /> })}
         </div>
         <div className='d-flex flex-column gap-2 sm-hide makeSticky'>

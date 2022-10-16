@@ -4,3 +4,10 @@
     margin-right: 10px;
     color: #5E6262;
 }
+.feedFooter{
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    padding: 10px;
+}

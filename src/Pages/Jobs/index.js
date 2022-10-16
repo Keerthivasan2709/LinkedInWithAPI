@@ -42,7 +42,6 @@ function Jobs() {
                 </div>
             </div>
             <SecondaryNav />
-
         </div>
     )
 }

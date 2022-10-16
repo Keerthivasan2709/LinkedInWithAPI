@@ -6,19 +6,19 @@ import Button from '../Button/Button'
 function Card({ firstLabel, secondLabel, showLink, format, className, setRender, inputValue, render, number, inputType, handleForm, name1, name2, value, type, handleSubmit, inputValue1, inputValue2 }) {
 
     return (
-        <div className={`${className} p-2 my-2 d-flex flex-column align-items-center gap-5 rounded-5`} style={{ maxWidth: "320px" }}>
+        <div className={`p-2 my-2 d-flex flex-column align-items-center gap-5 rounded-5`} style={{ maxWidth: "320px" }}>
             <div className='d-flex flex-column w-100'>
                 <label>{firstLabel}</label>
-                <Input option={false} name={name1} type={inputType} inputValue={inputValue1} handleForm={handleForm} className="InputBox"/>
+                <Input option={false} name={name1} type={inputType} inputValue={inputValue1} handleForm={handleForm}  />
             </div>
             {
                 render == "password" ? <div className='d-flex flex-column w-100'>
                     <label>{secondLabel}</label>
-                    <Input option={true} name={name2} inputValue={inputValue2} type="password" handleForm={handleForm} />
+                    <Input option={true} name={name2} inputValue={inputValue2} type="password" handleForm={handleForm} className="InputBox"/>
                 </div> :
                     <div className='d-flex flex-column w-100'>
                         <label>{secondLabel}</label>
-                        <Input option={false} name={name2} inputValue={inputValue2} type="text" handleForm={handleForm} />
+                        <Input option={false} name={name2} inputValue={inputValue2} type="text" handleForm={handleForm} className="InputBox"/>
                     </div>
             }
             {showLink ? <p className='smallText'>By clicking Agree & Join, you agree to the LinkedIn <a href="#">User Agreement</a>, <a href='#'>Privacy Policy</a>, and <a href="#">Cookie Policy</a>.</p> : <></>}

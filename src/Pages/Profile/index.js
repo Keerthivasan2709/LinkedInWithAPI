@@ -8,12 +8,13 @@ import Button from '../../Components/Button/Button'
 import Card from './Card'
 import '../../Mobile.css'
 import { SkillsList } from '../../Assets/Lists'
+import SecondaryNav from '../../Components/SecondaryNav/SecondaryNav'
 function Profile() {
-  document.title="Keerthivasan B"
+  document.title = "Keerthivasan B"
   return (
     <div>
       <NavBar />
-      <div className='mt-2 headflex profileGrid'>
+      <div className='mt-2 headflex profileGrid' style={{marginBottom:"70px"}}>
         <div>
           <ProfileDetails />
           <Card imgSrc="https://res.cloudinary.com/dibccigcp/image/upload/v1664890021/profile_1_mhhrgo.jpg" title="Experience" role="Web Developer" organization="Codingmart Technologies · InternshipCodingmart Technologies · Internship" date="Jul 2022 - Present · 4 mosJul 2022 - Present · 4 mos" place="Coimbatore, Tamil Nadu, India" showSkill={true} />
@@ -67,6 +68,7 @@ function Profile() {
           </div>
         </div>
       </div>
+      <SecondaryNav />
     </div>
   )
 }

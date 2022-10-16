@@ -19,7 +19,7 @@
     border: 2px solid var(--blue);
     background-color: transparent;
     border-radius: 50px;
-    padding: 10px 25px;
+    padding: 10px 35px;
 }
 .btnBlue:hover{
     background-color: #E2F0FE;

@@ -81,4 +81,16 @@
     .profileGrid{
         grid-template-columns: 1fr !important;
     }
+    .messagingGrid{
+       grid-template-columns: 1fr !important;
+    }
+    .sm-column{
+        flex-direction: column;
+    }
+    .sm-w-100{
+        width: 90% !important;
+    }
+    .jobsGrid{
+        grid-template-columns: 1fr !important;
+    }
 }

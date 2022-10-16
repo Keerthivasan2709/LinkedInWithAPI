@@ -99,3 +99,21 @@
 .likeReaction:hover .reactionList{
     display: flex;
 }
+.hidden{
+    display: none;
+}
+.commentBtn{
+    background-color: blue;
+    outline: none;
+    border: 1px solid blue;
+    color: white;
+    padding: 10px 30px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 900;
+}
+.modalFlex{
+    display: flex;
+    flex-direction: row;
+    gap:10px;
+}

@@ -1,30 +1,30 @@
 export const FooterLink = [
     {
         name: "User Agreement",
-        link: "#"
+        link: "#",
     }, {
         name: "Privacy Policy",
-        link: "#"
+        link: "#",
     },
     {
         name: "Community guidelines",
-        link: "#"
+        link: "#",
     },
     {
         name: "Cookie policy",
-        link: "#"
+        link: "#",
     },
     {
         name: "Copyright policy",
-        link: "#"
+        link: "#",
     },
     {
         name: "Send FeedbacK",
-        link: "#"
+        link: "#",
     },
     {
         name: "Language",
-        link: "#"
+        link: "#",
     }
 ]
 
@@ -104,7 +104,7 @@ export const feedFooterLink = [
         link: "/help",
     },
     {
-        name: "Ad choices",
+        name: `Ad choices`,
         link: "/ad_choices",
     },
     {
@@ -764,7 +764,7 @@ export const profileLinks = [
             {
                 img: "",
                 name: "Setting & Privacy",
-                link: ""
+                link: "/setting"
             },
             {
                 img: "",
@@ -793,58 +793,177 @@ export const profileLinks = [
     }
 ]
 
-export const PostList=[
+export const PostList = [
     {
-        whoLiked:"Arul manikandan",
-        profileImgWhoLike:"https://res.cloudinary.com/dibccigcp/image/upload/v1664264189/profile_w2xjxw.png",
-        profileImg:"https://res.cloudinary.com/dibccigcp/image/upload/v1664264187/man_cpgmaa.png",
-        profileName:"K S Rangasamy College of Technology",
-        followers:12800,
-        daysAgo:"3d",
-        postUrl:"https://res.cloudinary.com/dibccigcp/image/upload/v1664344273/4ezbw852t2wrgf27zl1o1qtu7_e16e84.png"
-    },{
-        whoLiked:"Arul manikandan",
-        profileImgWhoLike:"https://res.cloudinary.com/dibccigcp/image/upload/v1664264189/profile_w2xjxw.png",
-        profileImg:"https://res.cloudinary.com/dibccigcp/image/upload/v1664264187/man_cpgmaa.png",
-        profileName:"K S Rangasamy College of Technology",
-        followers:12800,
-        daysAgo:"3d",
-        postUrl:"https://res.cloudinary.com/dibccigcp/image/upload/v1664344273/4ezbw852t2wrgf27zl1o1qtu7_e16e84.png"
+        whoLiked: "Arul manikandan",
+        profileImgWhoLike: "https://res.cloudinary.com/dibccigcp/image/upload/v1664264189/profile_w2xjxw.png",
+        profileImg: "https://res.cloudinary.com/dibccigcp/image/upload/v1664264187/man_cpgmaa.png",
+        profileName: "K S Rangasamy College of Technology",
+        followers: 12800,
+        daysAgo: "3d",
+        postUrl: "https://res.cloudinary.com/dibccigcp/image/upload/v1664344273/4ezbw852t2wrgf27zl1o1qtu7_e16e84.png",
+        description:
+        {
+            heading: "Vidyanand Sagar",
+            description: "Codingmart Wishing you the best on your birthday 🎂 and everything good in the year ahead. May your birthday be sprinkled with fun and laughter. Have a great day! \n Happy birthday!!!🎂🎂🥳🥳🥳",
+        }
+
+    }, {
+        whoLiked: "Arul manikandan",
+        profileImgWhoLike: "https://res.cloudinary.com/dibccigcp/image/upload/v1664264189/profile_w2xjxw.png",
+        profileImg: "https://res.cloudinary.com/dibccigcp/image/upload/v1664264187/man_cpgmaa.png",
+        profileName: "Codingmart Technologies",
+        followers: 45000,
+        daysAgo: "3d",
+        postUrl: "https://res.cloudinary.com/dibccigcp/image/upload/v1664344273/4ezbw852t2wrgf27zl1o1qtu7_e16e84.png",
+        description:
+        {
+            heading: "Ajay krisnan",
+            description: " Codingmart Wishing you the best on your birthday 🎂 and everything good in the year ahead. May your birthday be sprinkled with fun and laughter. Have a great day! Happy birthday!!!🎂🎂🥳🥳🥳",
+        }
+
+    }, {
+        whoLiked: "Keerthivasan",
+        profileImgWhoLike: "https://res.cloudinary.com/dibccigcp/image/upload/v1664264189/profile_w2xjxw.png",
+        profileImg: "https://res.cloudinary.com/dibccigcp/image/upload/v1664264187/man_cpgmaa.png",
+        profileName: "K S Rangasamy College of Technology",
+        followers: 12800,
+        daysAgo: "3d",
+        postUrl: "https://res.cloudinary.com/dibccigcp/image/upload/v1665823775/1664989816745_dpguwb.jpg",
+        description:
+        {
+            heading: "Vidyanand Sagar",
+            description: " Codingmart Wishing you the best on your birthday 🎂 and everything good in the year ahead. May your birthday be sprinkled with fun and laughter. Have a great day! Happy birthday!!!🎂🎂🥳🥳🥳",
+        }
+
+    }, {
+        whoLiked: "Arul manikandan",
+        profileImgWhoLike: "https://res.cloudinary.com/dibccigcp/image/upload/v1664264189/profile_w2xjxw.png",
+        profileImg: "https://res.cloudinary.com/dibccigcp/image/upload/v1664264187/man_cpgmaa.png",
+        profileName: "K S Rangasamy College of Technology",
+        followers: 12800,
+        daysAgo: "3d",
+        postUrl: "https://res.cloudinary.com/dibccigcp/image/upload/v1664344273/4ezbw852t2wrgf27zl1o1qtu7_e16e84.png",
+        description:
+        {
+            heading: "Vidyanand Sagar",
+            description: " Codingmart Wishing you the best on your birthday 🎂 and everything good in the year ahead. May your birthday be sprinkled with fun and laughter. Have a great day! Happy birthday!!!🎂🎂🥳🥳🥳",
+        }
+
+    }, {
+        whoLiked: "Arul manikandan",
+        profileImgWhoLike: "https://res.cloudinary.com/dibccigcp/image/upload/v1664264189/profile_w2xjxw.png",
+        profileImg: "https://res.cloudinary.com/dibccigcp/image/upload/v1664264187/man_cpgmaa.png",
+        profileName: "K S Rangasamy College of Technology",
+        followers: 12800,
+        daysAgo: "3d",
+        postUrl: "https://res.cloudinary.com/dibccigcp/image/upload/v1664344273/4ezbw852t2wrgf27zl1o1qtu7_e16e84.png",
+        description:
+        {
+            heading: "Vidyanand Sagar",
+            description: " Codingmart Wishing you the best on your birthday 🎂 and everything good in the year ahead. May your birthday be sprinkled with fun and laughter. Have a great day! Happy birthday!!!🎂🎂🥳🥳🥳",
+        }
+
+    }, {
+        whoLiked: "Arul manikandan",
+        profileImgWhoLike: "https://res.cloudinary.com/dibccigcp/image/upload/v1664264189/profile_w2xjxw.png",
+        profileImg: "https://res.cloudinary.com/dibccigcp/image/upload/v1664264187/man_cpgmaa.png",
+        profileName: "K S Rangasamy College of Technology",
+        followers: 12800,
+        daysAgo: "3d",
+        postUrl: "https://res.cloudinary.com/dibccigcp/image/upload/v1664344273/4ezbw852t2wrgf27zl1o1qtu7_e16e84.png",
+        description:
+        {
+            heading: "Vidyanand Sagar",
+            description: " Codingmart Wishing you the best on your birthday 🎂 and everything good in the year ahead. May your birthday be sprinkled with fun and laughter. Have a great day! Happy birthday!!!🎂🎂🥳🥳🥳",
+        }
+
+    }, {
+        whoLiked: "Arul manikandan",
+        profileImgWhoLike: "https://res.cloudinary.com/dibccigcp/image/upload/v1664264189/profile_w2xjxw.png",
+        profileImg: "https://res.cloudinary.com/dibccigcp/image/upload/v1664264187/man_cpgmaa.png",
+        profileName: "K S Rangasamy College of Technology",
+        followers: 12800,
+        daysAgo: "3d",
+        postUrl: "https://res.cloudinary.com/dibccigcp/image/upload/v1664344273/4ezbw852t2wrgf27zl1o1qtu7_e16e84.png",
+        description:
+        {
+            heading: "Vidyanand Sagar",
+            description: " Codingmart Wishing you the best on your birthday 🎂 and everything good in the year ahead. May your birthday be sprinkled with fun and laughter. Have a great day! Happy birthday!!!🎂🎂🥳🥳🥳",
+        }
+
+    }, {
+        whoLiked: "Arul manikandan",
+        profileImgWhoLike: "https://res.cloudinary.com/dibccigcp/image/upload/v1664264189/profile_w2xjxw.png",
+        profileImg: "https://res.cloudinary.com/dibccigcp/image/upload/v1664264187/man_cpgmaa.png",
+        profileName: "K S Rangasamy College of Technology",
+        followers: 12800,
+        daysAgo: "3d",
+        postUrl: "https://res.cloudinary.com/dibccigcp/image/upload/v1664344273/4ezbw852t2wrgf27zl1o1qtu7_e16e84.png",
+        description:
+        {
+            heading: "Vidyanand Sagar",
+            description: " Codingmart Wishing you the best on your birthday 🎂 and everything good in the year ahead. May your birthday be sprinkled with fun and laughter. Have a great day! Happy birthday!!!🎂🎂🥳🥳🥳",
+        }
+
+    }, {
+        whoLiked: "Arul manikandan",
+        profileImgWhoLike: "https://res.cloudinary.com/dibccigcp/image/upload/v1664264189/profile_w2xjxw.png",
+        profileImg: "https://res.cloudinary.com/dibccigcp/image/upload/v1664264187/man_cpgmaa.png",
+        profileName: "K S Rangasamy College of Technology",
+        followers: 12800,
+        daysAgo: "3d",
+        postUrl: "https://res.cloudinary.com/dibccigcp/image/upload/v1664344273/4ezbw852t2wrgf27zl1o1qtu7_e16e84.png",
+        description:
+        {
+            heading: "Vidyanand Sagar",
+            description: " Codingmart Wishing you the best on your birthday 🎂 and everything good in the year ahead. May your birthday be sprinkled with fun and laughter. Have a great day! Happy birthday!!!🎂🎂🥳🥳🥳",
+        }
+
+    }, {
+        whoLiked: "Arul manikandan",
+        profileImgWhoLike: "https://res.cloudinary.com/dibccigcp/image/upload/v1664264189/profile_w2xjxw.png",
+        profileImg: "https://res.cloudinary.com/dibccigcp/image/upload/v1664264187/man_cpgmaa.png",
+        profileName: "K S Rangasamy College of Technology",
+        followers: 12800,
+        daysAgo: "3d",
+        postUrl: "https://res.cloudinary.com/dibccigcp/image/upload/v1664344273/4ezbw852t2wrgf27zl1o1qtu7_e16e84.png",
+        description:
+        {
+            heading: "Vidyanand Sagar",
+            description: " Codingmart Wishing you the best on your birthday 🎂 and everything good in the year ahead. May your birthday be sprinkled with fun and laughter. Have a great day! Happy birthday!!!🎂🎂🥳🥳🥳",
+        }
+
+    }, {
+        whoLiked: "Arul manikandan",
+        profileImgWhoLike: "https://res.cloudinary.com/dibccigcp/image/upload/v1664264189/profile_w2xjxw.png",
+        profileImg: "https://res.cloudinary.com/dibccigcp/image/upload/v1664264187/man_cpgmaa.png",
+        profileName: "K S Rangasamy College of Technology",
+        followers: 12800,
+        daysAgo: "3d",
+        postUrl: "https://res.cloudinary.com/dibccigcp/image/upload/v1664344273/4ezbw852t2wrgf27zl1o1qtu7_e16e84.png",
+        description:
+        {
+            heading: "Vidyanand Sagar",
+            description: " Codingmart Wishing you the best on your birthday 🎂 and everything good in the year ahead. May your birthday be sprinkled with fun and laughter. Have a great day! Happy birthday!!!🎂🎂🥳🥳🥳",
+        }
+
+    }, {
+        whoLiked: "Arul manikandan",
+        profileImgWhoLike: "https://res.cloudinary.com/dibccigcp/image/upload/v1664264189/profile_w2xjxw.png",
+        profileImg: "https://res.cloudinary.com/dibccigcp/image/upload/v1664264187/man_cpgmaa.png",
+        profileName: "K S Rangasamy College of Technology",
+        followers: 12800,
+        daysAgo: "3d",
+        postUrl: "https://res.cloudinary.com/dibccigcp/image/upload/v1664344273/4ezbw852t2wrgf27zl1o1qtu7_e16e84.png",
+        description:
+        {
+            heading: "Vidyanand Sagar",
+            description: " Codingmart Wishing you the best on your birthday 🎂 and everything good in the year ahead. May your birthday be sprinkled with fun and laughter. Have a great day! Happy birthday!!!🎂🎂🥳🥳🥳",
+        }
+
     },
-    {
-        whoLiked:"Arul manikandan",
-        profileImgWhoLike:"https://res.cloudinary.com/dibccigcp/image/upload/v1664264189/profile_w2xjxw.png",
-        profileImg:"https://res.cloudinary.com/dibccigcp/image/upload/v1664264187/man_cpgmaa.png",
-        profileName:"K S Rangasamy College of Technology",
-        followers:12800,
-        daysAgo:"3d",
-        postUrl:"https://res.cloudinary.com/dibccigcp/image/upload/v1664344273/4ezbw852t2wrgf27zl1o1qtu7_e16e84.png"
-    },
-    {
-        whoLiked:"Arul manikandan",
-        profileImgWhoLike:"https://res.cloudinary.com/dibccigcp/image/upload/v1664264189/profile_w2xjxw.png",
-        profileImg:"https://res.cloudinary.com/dibccigcp/image/upload/v1664264187/man_cpgmaa.png",
-        profileName:"K S Rangasamy College of Technology",
-        followers:12800,
-        daysAgo:"3d",
-        postUrl:"https://res.cloudinary.com/dibccigcp/image/upload/v1664344273/4ezbw852t2wrgf27zl1o1qtu7_e16e84.png"
-    },
-    {
-        whoLiked:"Arul manikandan",
-        profileImgWhoLike:"https://res.cloudinary.com/dibccigcp/image/upload/v1664264189/profile_w2xjxw.png",
-        profileImg:"https://res.cloudinary.com/dibccigcp/image/upload/v1664264187/man_cpgmaa.png",
-        profileName:"K S Rangasamy College of Technology",
-        followers:12800,
-        daysAgo:"3d",
-        postUrl:"https://res.cloudinary.com/dibccigcp/image/upload/v1664344273/4ezbw852t2wrgf27zl1o1qtu7_e16e84.png"
-    },
-    {
-        whoLiked:"Arul manikandan",
-        profileImgWhoLike:"https://res.cloudinary.com/dibccigcp/image/upload/v1664264189/profile_w2xjxw.png",
-        profileImg:"https://res.cloudinary.com/dibccigcp/image/upload/v1664264187/man_cpgmaa.png",
-        profileName:"K S Rangasamy College of Technology",
-        followers:12800,
-        daysAgo:"3d",
-        postUrl:"https://res.cloudinary.com/dibccigcp/image/upload/v1664344273/4ezbw852t2wrgf27zl1o1qtu7_e16e84.png"
-    }
+]
+export const tags = [
+    "#codingmart", "#bithdaywishes", "#hapybirthday", "#celeration", "#happiess", "#joy", "#cding", "#developes", "#softwaredvelopment", "#businessanlyst", "#developer", "#oftwaredeveopment", "#kudos", "#codingart", "#emloyeeapprecition", "#coimbatore", "#banglore", "#bengalru", "#fullstakdeveloper", "#productenineer", "#birtdaycelebration", "#brthdayparty", "#develope", "#developers", "#fontenddevelper", "#frontendevelopers", "#fronten", "#birthdaycelebratio", "#chennai", "#hyderabad", "#kokata", "#ahmdabad", "#ngpur", "#ludhina", "#vadodra", "#allahabd", "#nashi", "#agra", "#maurai", "#jaipr", "#visakhaptnam", "#gugaon", "#handigarh", "#rajasthn", "#punjab", "#orisa", "#assam", "#harkhand", "#bhar",
 ]

@@ -1,6 +1,6 @@
 .mynetworkGrid{
     display: grid;
-    grid-template-columns: 0.9fr 1.2fr !important;
+    grid-template-columns: 0.9fr 1.2fr;
     gap: 1%;
 }
 .smallHeading{
@@ -18,7 +18,7 @@
 }
 .gridNetwork{
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
 }
 .description{
     font-size: 15px;

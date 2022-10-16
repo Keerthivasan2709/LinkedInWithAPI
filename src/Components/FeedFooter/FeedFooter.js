@@ -5,17 +5,21 @@ import { feedFooterLink } from '../../Assets/Link'
 function FeedFooter() {
     return (
         <div>
-            <center style={{ padding: "10px" }}>
+            <div style={{ padding: "10px" }} className="feedFooter">
                 {
                     feedFooterLink.map((data) => {
                         return (
-                            <Link to={data.link} className="smallText black footerLink">
+                            <Link to={data.link} style={{marginTop:"10px"}} className="smallText black footerLink p-1">
                                 {data.name}
                             </Link>
                         )
                     })
                 }
-            </center>
+                <div className='d-flex gap-5 mt-2'>
+                    <img src="https://res.cloudinary.com/dibccigcp/image/upload/v1664264184/footer_linkedIn_Icon_nfpaty.svg" />
+                    <div className='smallText grey'>LinkedIn Corporation © 2022</div>
+                </div>
+            </div>
         </div>
     )
 }

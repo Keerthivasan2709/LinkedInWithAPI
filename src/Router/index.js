@@ -10,7 +10,9 @@ import MyNetwork from '../Pages/Mynetwork'
 import Notification from '../Pages/Notification'
 import Profile from '../Pages/Profile'
 import Signin from '../Pages/SignIn'
-import Comments from '../Components/Comments'
+import Settings from '../Pages/Setting'
+import PostModal from '../Pages/Feed/PostModal'
+import IndividualJobs from '../Pages/IndividualJobs'
 function Router() {
     return (
         <>
@@ -24,8 +26,9 @@ function Router() {
                 <Route path='/notification' element={<Notification />} />
                 <Route path='/messaging' element={<Messaging />} />
                 <Route path='/profile' element={<Profile />} />
-                <Route path='/dropDown' element={<Dropdown />} />
-                <Route path='/ReactionList' element={<Comments />} />
+                <Route path='/postModal' element={<PostModal />} />
+                <Route path='/setting' element={<Settings />} />
+                <Route path='/jobs/:id' element={<IndividualJobs />} />
             </Routes>
         </>
     )

@@ -16,7 +16,8 @@ function Network() {
               <div className='list card d-flex flex-column gap-2 justify-content-between' style={{position:"relative"}}>
                 <div className='d-flex mt-2 flex-column align-items-center justify-content-between gap-2 networkDetails'>
                   <img src={data.backgroundpic} style={{ maxWidth: "100%" }} className="sm-hide" />
-                  <img src={data.profilepic} className="rounded" style={{maxWidth:"90px",position:"absolute",top:"15px",right:"85px"}}/>
+                  <img src={data.profilepic} className="rounded sm-hide" style={{maxWidth:"90px",position:"absolute",top:"15px",right:"85px"}}/>
+                  <img src={data.profilepic} className="rounded lg-hide sm-show" style={{maxWidth:"60px"}}/>
                   <div className='d-flex flex-column align-items-center gap-2 mt-4 sm-mt-0 networkProfileDetails'>
                     <div className='makeBold'>{data.name}</div>
                     <center className='description'>{data.description}</center>

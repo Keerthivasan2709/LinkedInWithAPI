@@ -5,7 +5,7 @@ import Button from '../../Components/Button/Button'
 import '../../Mobile.css'
 function Invitation() {
     return (
-        <div className='card mt-2'>
+        <div className='card mt-2' style={{width:"100%"}}>
             <div className='list d-flex align-items-center justify-content-between'>
                 <p className='smallHeading p-2'>Invitation</p>
                 <div className='bold grey'>See All {invitationList.length}</div>

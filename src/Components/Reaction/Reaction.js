@@ -2,7 +2,7 @@ import React from 'react'
 import './Reaction.css'
 function Reaction({ src, name, className }) {
     return (
-        <div className={`${className} d-flex align-items-center button gap-2`}>
+        <div className={`${className} d-flex align-items-center button gap-2 p-0`}>
             <img src={src} />
             <div>{name}</div>
         </div>

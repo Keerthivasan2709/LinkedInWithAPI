@@ -10,7 +10,7 @@ function MyNetwork() {
   return (
     <div>
       <NavBar />
-      <div className='headflex mynetworkGrid align-items-start'>
+      <div className='headflex mynetworkGrid align-items-start' style={{marginBottom:"70px"}}>
         <Manage />
         <div>
           <Invitation/>

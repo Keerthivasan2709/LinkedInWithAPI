@@ -86,44 +86,92 @@ export const NewsList = [
         readers: "56230"
     }
 ]
-export const suggestionList=[
+export const suggestionList = [
     {
-        image:"https://res.cloudinary.com/dibccigcp/image/upload/v1665033764/1554406342596_afmara.jpg",
-        role:"Full stack Developer",
-        roleDescription:"Full creative",
-        place:"Chennai, Erode,TamilNadu",
-        days:"2"
+        image: "https://res.cloudinary.com/dibccigcp/image/upload/v1665033764/1554406342596_afmara.jpg",
+        role: "Full stack Developer",
+        roleDescription: "Full creative",
+        place: "Chennai, Erode,TamilNadu",
+        days: "2"
     },
     {
-        image:"https://res.cloudinary.com/dibccigcp/image/upload/v1665033764/1554406342596_afmara.jpg",
-        role:"Full stack Developer",
-        roleDescription:"Full creative",
-        place:"Chennai, Erode,TamilNadu",
-        days:"2"
+        image: "https://res.cloudinary.com/dibccigcp/image/upload/v1665033764/1554406342596_afmara.jpg",
+        role: "Full stack Developer",
+        roleDescription: "Full creative",
+        place: "Chennai, Erode,TamilNadu",
+        days: "2"
+    }, {
+        image: "https://res.cloudinary.com/dibccigcp/image/upload/v1665033764/1554406342596_afmara.jpg",
+        role: "Full stack Developer",
+        roleDescription: "Full creative",
+        place: "Chennai, Erode,TamilNadu",
+        days: "2"
+    }, {
+        image: "https://res.cloudinary.com/dibccigcp/image/upload/v1665033764/1554406342596_afmara.jpg",
+        role: "Full stack Developer",
+        roleDescription: "Full creative",
+        place: "Chennai, Erode,TamilNadu",
+        days: "2"
+    }, {
+        image: "https://res.cloudinary.com/dibccigcp/image/upload/v1665033764/1554406342596_afmara.jpg",
+        role: "Full stack Developer",
+        roleDescription: "Full creative",
+        place: "Chennai, Erode,TamilNadu",
+        days: "2"
+    }, {
+        image: "https://res.cloudinary.com/dibccigcp/image/upload/v1665033764/1554406342596_afmara.jpg",
+        role: "Full stack Developer",
+        roleDescription: "Full creative",
+        place: "Chennai, Erode,TamilNadu",
+        days: "2"
+    }, {
+        image: "https://res.cloudinary.com/dibccigcp/image/upload/v1665033764/1554406342596_afmara.jpg",
+        role: "Full stack Developer",
+        roleDescription: "Full creative",
+        place: "Chennai, Erode,TamilNadu",
+        days: "2"
+    }, {
+        image: "https://res.cloudinary.com/dibccigcp/image/upload/v1665033764/1554406342596_afmara.jpg",
+        role: "Full stack Developer",
+        roleDescription: "Full creative",
+        place: "Chennai, Erode,TamilNadu",
+        days: "2"
+    }, {
+        image: "https://res.cloudinary.com/dibccigcp/image/upload/v1665033764/1554406342596_afmara.jpg",
+        role: "Full stack Developer",
+        roleDescription: "Full creative",
+        place: "Chennai, Erode,TamilNadu",
+        days: "2"
+    }, {
+        image: "https://res.cloudinary.com/dibccigcp/image/upload/v1665033764/1554406342596_afmara.jpg",
+        role: "Full stack Developer",
+        roleDescription: "Full creative",
+        place: "Chennai, Erode,TamilNadu",
+        days: "2"
     }
 ]
-export const suggestedJobs=[
-    'Web developer','junior web developer','lead web developer','web application developer','web programmer','php developer','php web developer'
+export const suggestedJobs = [
+    'Web developer', 'junior web developer', 'lead web developer', 'web application developer', 'web programmer', 'php developer', 'php web developer'
 ]
-export const SkillsList=[
+export const SkillsList = [
     {
-        name:"Web Development",
-        endorsement:2
+        name: "Web Development",
+        endorsement: 2
     },
     {
-        name:"ReactJS",
-        endorsement:2
+        name: "ReactJS",
+        endorsement: 2
     },
     {
-        name:"Javascript",
-        endorsement:2
+        name: "Javascript",
+        endorsement: 2
     },
     {
-        name:"Java",
-        endorsement:2
+        name: "Java",
+        endorsement: 2
     }
 ]
-export const ReactionList=[
+export const ReactionList = [
     "https://res.cloudinary.com/dibccigcp/image/upload/v1665387894/f4ly07ldn7194ciimghrumv3l_glmtaa.svg",
     "https://res.cloudinary.com/dibccigcp/image/upload/v1665387816/index_hchq4f.svg",
     "https://res.cloudinary.com/dibccigcp/image/upload/v1665387934/9whrgl1hq2kfxjqr9gqwoqrdi_hogkcv.svg",
@@ -131,4 +179,69 @@ export const ReactionList=[
     "https://res.cloudinary.com/dibccigcp/image/upload/v1665387947/asmf650x603bcwgefb4heo6bm_bozthr.svg",
     "https://res.cloudinary.com/dibccigcp/image/upload/v1665387951/39axkb4qe8q95ieljrhqhkxvl_gbuegx.svg",
     "https://res.cloudinary.com/dibccigcp/image/upload/v1665387954/1z80ze8ler6arc76a8rxsgqbh_umfsp7.svg"
+]
+
+export const Pronouns = [
+    "He/Him", "She/Her", "They/Them", 'Custom'
+]
+export const MessagingList = [
+    {
+        img: "https://res.cloudinary.com/dibccigcp/image/upload/v1664332368/Heroimg-2_zkneus.png",
+        name: "Suryakumar A",
+        description: "Suryakumar: Hi",
+        date: "Aug 30"
+    }, {
+        img: "https://res.cloudinary.com/dibccigcp/image/upload/v1664332368/Heroimg-2_zkneus.png",
+        name: "Melissa from LinkedIn",
+        description: "LinkedIn Offer Try premium for free",
+        date: "Sep 21"
+    }, {
+        img: "https://res.cloudinary.com/dibccigcp/image/upload/v1664332368/Heroimg-2_zkneus.png",
+        name: "Suryakumar A",
+        description: "Suryakumar: Hi",
+        date: "Aug 19"
+    }, {
+        img: "https://res.cloudinary.com/dibccigcp/image/upload/v1664332368/Heroimg-2_zkneus.png",
+        name: "Suryakumar A",
+        description: "Suryakumar: Hi",
+        date: "Aug 19"
+    }, {
+        img: "https://res.cloudinary.com/dibccigcp/image/upload/v1664332368/Heroimg-2_zkneus.png",
+        name: "Suryakumar A",
+        description: "Suryakumar: Hi",
+        date: "Aug 19"
+    }, {
+        img: "https://res.cloudinary.com/dibccigcp/image/upload/v1664332368/Heroimg-2_zkneus.png",
+        name: "Suryakumar A",
+        description: "Suryakumar: Hi",
+        date: "Aug 19"
+    }, {
+        img: "https://res.cloudinary.com/dibccigcp/image/upload/v1664332368/Heroimg-2_zkneus.png",
+        name: "Suryakumar A",
+        description: "Suryakumar: Hi",
+        date: "Aug 19"
+    }, {
+        img: "https://res.cloudinary.com/dibccigcp/image/upload/v1664332368/Heroimg-2_zkneus.png",
+        name: "Suryakumar A",
+        description: "Suryakumar: Hi",
+        date: "Aug 19"
+    }
+]
+export const detailsJobs = [
+    {
+        img: "https://res.cloudinary.com/dibccigcp/image/upload/v1664273547/index_pbbnvj.svg",
+        name: "Part-time · Mid-Senior level"
+    },
+    {
+        img: "https://res.cloudinary.com/dibccigcp/image/upload/v1664962104/index_tt2h3s.svg",
+        name: "51-200 employees · Advertising Services"
+    },
+    {
+        img: "https://res.cloudinary.com/dibccigcp/image/upload/v1665847429/index_cuqesm.svg",
+        name: "See how you compare to 10 applicants. Try Premium for free"
+    },
+    {
+        img: "https://res.cloudinary.com/dibccigcp/image/upload/v1665034451/index_famidq.svg",
+        name: "Actively recruiting"
+    }
 ]
