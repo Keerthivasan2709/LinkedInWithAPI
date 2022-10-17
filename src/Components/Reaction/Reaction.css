@@ -2,5 +2,5 @@
     padding: 10px 20px;
 }
 .button:hover{
-    background-color: var(--grey);
+    background-color: transparent;
 }

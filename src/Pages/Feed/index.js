@@ -22,11 +22,13 @@ function Feed() {
           <Recent />
         </div>
         <div className='d-flex flex-column gap-5'>
-          <Upload />
-          <div className='d-flex align-items-center'>
+          <div className='sm-hide'>
+            <Upload />
+          </div>
+          <div className='sm-hide d-flex align-items-center'>
             <div className='vr'></div>
             <div className='smallText grey'>
-                Sort by: Top
+              Sort&nbsp;by:&nbsp;Top
             </div>
           </div>
           {PostList.map(data => { return <Posts data={data} /> })}

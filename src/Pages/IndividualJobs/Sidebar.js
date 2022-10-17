@@ -1,10 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { suggestionList } from '../../Assets/Lists'
-
+import './index.css'
 function Sidebar() {
     return (
-        <div className='sm-hide' style={{height:"90vh",overflow:"scroll"}}>
+        <div className='sm-hide enableScrollbar' style={{height:"90vh",overflow:"scroll"}}>
             <div className='bgBlue p-2' style={{position:"sticky",top:"0px"}}>Jobs based on your project</div>
             <div className='d-flex flex-column'>
                 {suggestionList.map(data => {

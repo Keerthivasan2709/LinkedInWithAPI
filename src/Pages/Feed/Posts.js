@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { Collage1, Collage2, Collage3, Collage4 } from '../../Components/Collage'
 import Comments from '../../Components/Comments'
 import PostComment from '../../Components/PostComment/PostComment'
 import Reaction from '../../Components/Reaction/Reaction'
@@ -8,19 +9,19 @@ import PostModal from './PostModal'
 function Posts({ data }) {
     const [show, setShow] = useState(false);
     const [commentBoxRef, setCommentBoxRef] = useState();
-    const [postRef,setPostRef]=useState(null);
+    const [postRef, setPostRef] = useState(null);
     const setRef = (e) => {
         setCommentBoxRef(e.current);
     }
-    const setPersonalPostRef=(e)=>{
+    const setPersonalPostRef = (e) => {
         console.log(e.current)
-       setPostRef(e.current)  
+        setPostRef(e.current)
     }
     return (
         <>
             <div className='card d-flex flex-column individualPost mt-2  gap-2 p-2 bg-white w-100' >
                 <div className='d-flex flex-row align-items-center gap-5'>
-                    <img src={data.profileImgWhoLike} className='image rounded profilePic' style={{maxWidth:"30px"}} />
+                    <img src={data.profileImgWhoLike} className='image rounded profilePic' style={{ maxWidth: "30px" }} />
                     <p className='smallText'>
                         <b className='name'>{data.whoLiked}</b> likes this
                     </p>
@@ -44,8 +45,8 @@ function Posts({ data }) {
                         <div>Follow</div>
                     </a>
                 </div>
-                <div onClick={()=>{postRef.style.display="block"}}>
-                    <img src={data.postUrl} className='post w-100' />
+                <div onClick={() => { postRef.style.display = "block" }}>
+                    {data.postUrl.length === 1 ? <Collage1 data={data.postUrl} /> : data.postUrl.length === 2 ? <Collage2 data={data.postUrl} /> : data.postUrl.length === 3 ? <Collage3 data={data.postUrl} /> : data.postUrl.length === 4 ? <Collage4 data={data.postUrl} /> : <></>}
                 </div>
                 <div>
                     <PostComment />
@@ -65,7 +66,7 @@ function Posts({ data }) {
                     <Comments getRef={setRef} />
                 </div>
             </div >
-            <PostModal setPersonalPostRef={setPersonalPostRef} data={data}/>
+            <PostModal setPersonalPostRef={setPersonalPostRef} data={data} />
         </>
     )
 

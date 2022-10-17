@@ -11,14 +11,19 @@ body {
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: Arial,sans-serif;
 }
 
 .bgBlue {
   background-color: #0A66C2;
   color: white;
   border-radius: 5px 0px 0px 0px;
+}
+.pointer{
+  cursor: pointer;
+}
+.p-10{
+  padding: 10px;
 }
 
 body {

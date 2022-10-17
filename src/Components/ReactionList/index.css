@@ -15,3 +15,6 @@
 .like:hover .reactionList{
     display: flex;
 }
+.like:hover{
+    background: transparent !important;
+}
