@@ -87,9 +87,9 @@ exports.verifyRegistration = asynchandler(async (req, res, next) => {
       catch(err){ return next(new ErrorResponse(err.message,405))}
       addressid = await client.address.create({
         data:{
-          city,
-          state,
-          country
+          city:city.toLowerCase().trime(),
+          state:state.toLowerCase().trime(),
+          country:country.toLowerCase().trime(),
         }
       })
     }

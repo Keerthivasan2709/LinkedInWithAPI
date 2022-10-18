@@ -12,6 +12,7 @@ exports.getMyPosts = asynchandler( async (req,res,next) => {
             profileid: req.user.id
         },
         include:{
+            data:true,
             _count:{
                 select:{
                     likes:true

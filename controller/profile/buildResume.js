@@ -79,12 +79,16 @@ exports.resumeBuilder = asynchandler(async (req,res,next)=>{
       htmldata.gitHub = "github.com/oliwil"
       htmldata.firstName = data.firstName
       htmldata.lastName = data.lastName
+       data.usereducation.forEach(ele=>{
+        ele.startDate = new Date(ele.startDate).getFullYear()
+        ele.endDate = new Date(ele.endDate).getFullYear()
+      })
       htmldata.usereducation = data.usereducation
       // [
       //   {startDate:"2019",endDate:"2023",course:"BE CSE",student:{name:"PEC"}},
       //   {startDate:"2017",endDate:"2019",course:"12th",student:{name:"KVS"}},
       // ]
-       htmldata.companys = data.companys[0]
+       htmldata.companys = data.companys
        //[{startDate:"2019",endDate:"2022",description:`Utilized PySpark to distribute data processing on large streaming datasets to improve ingestion and processing speed
       // Build basic ETL that ingested transactional and event data from a web app`,position:"Accounts Genral",company:{name:"ZOHO"}},
       // {startDate:"2019",endDate:"2022",description:"user company description",position:"Accounts Genral",company:{name:"ZOHO"}}]

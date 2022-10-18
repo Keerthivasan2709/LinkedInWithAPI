@@ -129,7 +129,7 @@ model Company {
   description    String?         @default("add description")
   addressid      String?         @default("address")
   pageid         String?         @default("create page")
-  type           String?         @default("unknone ")
+  type           String?         @default("unknown ")
   company        UserCompany[]
   advertisements advertisement[]
 }
@@ -141,6 +141,8 @@ model Skill {
   certificate String? @default("add Certificate")
   description String?
   userskill   Profile @relation(fields: [userid], references: [id])
+
+  @@unique([name, userid])
 }
 
 model connection {
@@ -157,15 +159,21 @@ model Posts {
   profileid   String
   description String?    @default("no description")
   title       String?    @default("no title")
-  data        String?    @default("no the post data")
   createdAt   DateTime   @default(now())
   updatedAt   DateTime   @updatedAt
   userpost    Profile    @relation(fields: [profileid], references: [id])
   comments    Comments[]
   likes       Like[]
   hashtag     Hashtag[]
+  data        postData[]
 
   @@index([description, title])
+}
+
+model postData {
+  id   String  @id @default(uuid())
+  data String  @unique
+  post Posts[]
 }
 
 model pagePost {
@@ -369,6 +377,8 @@ model Address {
   city    String
   state   String
   country String
+
+  @@unique([city, state, country])
 }
 
 model Page {
@@ -426,9 +436,9 @@ model Plans {
   name      String     @unique
   price     Decimal
   discount  Decimal?   @default(0)
-  validity   Int        @default(30)
   createdAt DateTime   @default(now())
   updatedAt DateTime   @updatedAt
+  validity  Int        @default(30)
   users     UserPlan[]
 }
 

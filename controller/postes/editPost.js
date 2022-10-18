@@ -13,15 +13,41 @@ exports.editPost = asynchandler( async (req,res,next)=>{
 
         const data = await client.posts.updateMany({
             where:{
-                id:req.body.postid,
+                id:req.body?.postid,
                 profileid:req.user.id
             },
             data:{
-                description:req.body.description,
-                title:req.body.title,
-                data:req.body.data,
+                description:req.body?.description,
+                title:req.body?.title,
+                
             }
         })
+        if(req.body.data){
+            for await (let image of req.body.data){
+                await client.postData.upsert({
+                    where:{
+                        data:image,
+
+                    },
+                    update:{
+                        post:{
+                            connect:{
+                                id:req.body.postid
+                            }
+                        }
+                    },
+                    create:{
+                        data:image ,
+                        post:{
+                            connect:{
+                                id:req.body.postid
+                            }
+                        }
+
+                    }
+                })
+            }
+        }
         if(!data) return next(new ErrorHandler("update failed",500))
         res.status(200).json({
             status:true,

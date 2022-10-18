@@ -21,28 +21,10 @@ exports.createPagePosts = asynchandler(async (req,res,next)=>{
         data,
         }     = req.body
         //checking the user 
-      const check = await client.page.findFirst({
-        where:{id,
-               belongsto:req.user.id,
-        },
       
-    }) 
-    if(!check) throw new ErrorResponse("Not autherized to Post")
     //create the post 
-    const post = await client.page.update({
-        where:{ id},
-        data:{
-          posts:{
-            create:{
-                description,
-                title,
-                data,
-                profileid:req.user.id            
-            },
-         } ,
-        },
-
-        
+    const post = await client.pagePost.create({
+      
     })
     res.status(200).json({status:true,data:post})
 

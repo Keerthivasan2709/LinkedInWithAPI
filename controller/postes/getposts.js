@@ -7,24 +7,24 @@ const ErrorResponse = require("../../utils/errorhandler")
 //@access Private 
 exports.getPosts = asynchandler( async (req,res,next)=>{
     try{
+        console.log("routes working")
     const data = await client.posts.findMany({
-        take:7,
+        
         skip:1,
+        take:7,
         where:{
             profileid:{
                 not: req.user.id
             },
-
         },
+        
         include:{
+            data:true,
             userpost:{
                 select:{
                     profilepic:true,
                     firstName:true,
                     companys:{
-                        where:{
-                            status:"Working"
-                        },
                         select:{
                           company:{
                             select:{
@@ -32,24 +32,41 @@ exports.getPosts = asynchandler( async (req,res,next)=>{
                             }
                           },
                           position:true
+                          
                         },
+                        
                     }
-                }
+                },
+                
+                
             } , 
             _count:{
                 select:{
              likes:true,
              comments:true,
+             
                 }
             }
         },
         orderBy:{
-            createdAt:'desc',
+            createdAt:'asc',
         }
         
         
     })
-      
+    console.log(req)  
+    for await (let ele of data){
+         let following  = await client.peopleFollowed.count({
+            where:{
+               followed:ele.profileid 
+            }
+            
+         })
+         ele.followers = following
+         
+        
+    } 
+        
         res.status(200).json({
         count: data.length ,
         data
