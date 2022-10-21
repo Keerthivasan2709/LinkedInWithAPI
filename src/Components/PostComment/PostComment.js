@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './PostComment.css'
-function PostComment() {
+function PostComment({data}) {
+    console.log(data)
     return (
+        
         <div className='d-flex justify-content-between'>
             <div className='d-flex'>
                 <div>
@@ -13,10 +15,10 @@ function PostComment() {
                     <p className='smallText grey'>Kirubakaran S and 1800 others</p>
                 </div>
             </div>
-            <div className='d-flex comment smallText'>
-                <div>110Comments</div>
+            <div className='d-flex comment smallText grey'>
+                <div>{data.comments} Comments</div>
                 &bull;
-                <div>46shares</div>
+                <div>{data.likes} likes</div>
             </div>
         </div>
     )

@@ -9,10 +9,13 @@ import Ads from '../../Components/Ads/Ads'
 import '../../Mobile.css'
 import FeedFooter from '../../Components/FeedFooter/FeedFooter'
 import SecondaryNav from '../../Components/SecondaryNav/SecondaryNav'
-import { PostList } from '../../Assets/Link'
 import Upload from './Upload'
+import axios from 'axios'
+import { PostList } from '../../Assets/Link'
+import Loader from '../../Components/Loader'
 function Feed() {
   document.title = "Feed | LinkedIn"
+
   return (
     <div>
       <NavBar />
@@ -31,7 +34,14 @@ function Feed() {
               Sort&nbsp;by:&nbsp;Top
             </div>
           </div>
-          {PostList.map(data => { return <Posts data={data} /> })}
+          {
+            PostList.length >= 1 ?
+              PostList.map(data => {
+                return (<Posts data={data} />)
+              })
+              :
+              <Loader />
+          }
         </div>
         <div className='d-flex flex-column gap-2 sm-hide makeSticky'>
           <News />

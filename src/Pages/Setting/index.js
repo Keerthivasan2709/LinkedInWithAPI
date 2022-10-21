@@ -1,26 +1,20 @@
-import React from 'react'
-import './index.css'
-function Settings() {
-    return (
-        <div>
-            <div className='navBar'>
-                <img src="https://res.cloudinary.com/dibccigcp/image/upload/v1664264184/footer_linkedIn_Icon_nfpaty.svg" style={{width:"120px"}}/>
-            </div>
-            <div className='settingsGrid mt-2'>
-                <div className='p-5 card noBorder' style={{height:"100vh"}}>
-                    <div className='d-flex align-items-center mb-2'>
-                        <img src="https://res.cloudinary.com/dibccigcp/image/upload/v1664264187/man_cpgmaa.png" style={{maxWidth:"50px"}}/>
-                        <p className='heading1'>Settings</p>
-                    </div>
-                    <div className='d-flex align-items-center'>
-                        <img src="https://res.cloudinary.com/dibccigcp/image/upload/v1664264187/MyNetwork_tkdbzr.svg"/>
-                        <h1>Preference</h1>
-                    </div>
+import React, { Component } from 'react'
+import SettingOptions from './SettingOptions';
+import SettingTitle from './SettingTitle';
+class Setting extends Component {
+    render() {
+        document.title = "Account Preferences"
+        return (
+            <>
+                <div className='bg-white' >
+                    <img src="https://res.cloudinary.com/dibccigcp/image/upload/v1664264186/LinkedIn_Icon_naugpk.svg" style={{ width: "40px" }} className="p-2" />
                 </div>
-                <div>Right</div>
-            </div>
-        </div>
-    )
+                <div style={{ display: 'grid', gridTemplateColumns: "0.3fr 1fr" }}>
+                    <SettingTitle />
+                    <SettingOptions />
+                </div>
+            </>
+        )
+    }
 }
-
-export default Settings
+export default Setting;

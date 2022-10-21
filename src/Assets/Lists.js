@@ -172,13 +172,29 @@ export const SkillsList = [
     }
 ]
 export const ReactionList = [
-    "https://res.cloudinary.com/dibccigcp/image/upload/v1665387894/f4ly07ldn7194ciimghrumv3l_glmtaa.svg",
-    "https://res.cloudinary.com/dibccigcp/image/upload/v1665387816/index_hchq4f.svg",
-    "https://res.cloudinary.com/dibccigcp/image/upload/v1665387934/9whrgl1hq2kfxjqr9gqwoqrdi_hogkcv.svg",
-    "https://res.cloudinary.com/dibccigcp/image/upload/v1665387942/ktcgulanbxpl0foz1uckibdl_z9jryh.svg",
-    "https://res.cloudinary.com/dibccigcp/image/upload/v1665387947/asmf650x603bcwgefb4heo6bm_bozthr.svg",
-    "https://res.cloudinary.com/dibccigcp/image/upload/v1665387951/39axkb4qe8q95ieljrhqhkxvl_gbuegx.svg",
-    "https://res.cloudinary.com/dibccigcp/image/upload/v1665387954/1z80ze8ler6arc76a8rxsgqbh_umfsp7.svg"
+    {
+        img: "https://res.cloudinary.com/dibccigcp/image/upload/v1665387894/f4ly07ldn7194ciimghrumv3l_glmtaa.svg",
+        type: "Like"
+    }, {
+        img: "https://res.cloudinary.com/dibccigcp/image/upload/v1665387816/index_hchq4f.svg",
+        type: "Clap"
+    }, {
+        img: "https://res.cloudinary.com/dibccigcp/image/upload/v1665387934/9whrgl1hq2kfxjqr9gqwoqrdi_hogkcv.svg",
+        type: "Thanks"
+    }, {
+        img: "https://res.cloudinary.com/dibccigcp/image/upload/v1665387942/ktcgulanbxpl0foz1uckibdl_z9jryh.svg",
+        type: "Smile"
+    }, {
+        img: "https://res.cloudinary.com/dibccigcp/image/upload/v1665387947/asmf650x603bcwgefb4heo6bm_bozthr.svg",
+        type: "Heart"
+    }, {
+        img: "https://res.cloudinary.com/dibccigcp/image/upload/v1665387951/39axkb4qe8q95ieljrhqhkxvl_gbuegx.svg",
+        type: "Idea"
+    },
+    {
+        img: "https://res.cloudinary.com/dibccigcp/image/upload/v1665387954/1z80ze8ler6arc76a8rxsgqbh_umfsp7.svg",
+        type: "Thought"
+    }
 ]
 
 export const Pronouns = [

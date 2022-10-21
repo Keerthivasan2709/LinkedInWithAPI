@@ -1,37 +1,51 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './index.css'
 import Button from '../../Components/Button/Button';
 import Footer from '../../Components/Footer/Footer';
 import Card from '../../Components/Card/Card';
 import { Login } from '../../Assets/Url';
 import { validateEmail, validatePassword, validatePhone, validateUserName } from '../../Utils/Regex';
+import { Navigate, Redirect } from 'react-router-dom';
 function Signin() {
     const [form, setForm] = useState({ email: "", password: "" })
+    const [login, setLogin] = useState(false);
     const handleChange = (e) => {
         const { name, value } = e.target;
         setForm({ ...form, [name]: value })
     }
-    // const validate = (value) => {
-    //     if (validateEmail(value.email) || validatePhone(value.email)) {
-    //         if (validatePassword(value.password)) {
-    //             return true;
-    //         }
-    //         else {
-    //             return false;
-    //         }
-    //     }
-    //     return false;
-    // }
+    const validate = (value) => {
+        if (validateEmail(value.email) || validatePhone(value.email)) {
+            if (validatePassword(value.password)) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+        return false;
+    }
     const handleSubmitOfDetails = (e) => {
-        fetch(`${Login}`, {
+        fetch(`${process.env.REACT_APP_API_KEY}/user/login`, {
             method: "POST",
             body: JSON.stringify(form),
             headers: { 'Content-Type': 'application/json' }
         })
             .then(res => res.json())
-            .then(res => { console.log(res); })
-
+            .then(res => {
+                if (res.token === undefined) {
+                    alert("Incorrect Credientials")
+                    setLogin(false)
+                } else {
+                    localStorage.setItem('token', res.token);
+                    setLogin(true)
+                }
+            })
     }
+    useEffect(() => {
+        if(localStorage.getItem('token')){
+            setLogin(true)
+        }
+    }, [])
     return (
         <div className="headflex mt-2 wholeSignin ">
             <img src="https://res.cloudinary.com/dibccigcp/image/upload/v1664272534/Linkedin_wqneqw.svg" style={{ maxWidth: "100px" }} />
@@ -45,6 +59,7 @@ function Signin() {
                 </div>
                 <Footer />
             </div>
+            {login ? <Navigate to='/feed' /> : <></>}
         </div >
     )
 }
