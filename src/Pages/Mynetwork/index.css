@@ -1,29 +1,33 @@
-.mynetworkGrid{
-    display: grid;
-    grid-template-columns: 0.9fr 1.2fr;
-    gap: 1%;
+.mynetworkGrid {
+  display: grid;
+  grid-template-columns: 0.9fr 1.2fr;
+  gap: 1%;
 }
-.smallHeading{
-    font-size: 16px;
-    font-weight: 400;
+.smallHeading {
+  font-size: 16px;
+  font-weight: 400;
 }
-.manageLinks:hover{
-    background-color: var(--border);
+.manageLinks:hover {
+  background-color: var(--grey);
 }
-.makeCenter{
-    text-align: center;
+.btnBlue:hover {
+  background-color: #0a66c245;
 }
-.profilePic{
-    width: 60px;
+
+.makeCenter {
+  text-align: center;
 }
-.gridNetwork{
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+.profilePic {
+  width: 60px;
 }
-.description{
-    font-size: 15px;
-    color: #5E6262;
+.gridNetwork {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
 }
-.mt-4{
-    margin-top: 40px;
+.description {
+  font-size: 15px;
+  color: #5e6262;
+}
+.mt-4 {
+  margin-top: 40px;
 }

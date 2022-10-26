@@ -14,6 +14,7 @@ import Settings from "../Pages/Setting";
 import PostModal from "../Pages/Feed/PostModal";
 import IndividualJobs from "../Pages/IndividualJobs";
 import SkeletonLoader from "../Components/SkeletonLoader";
+import LoadingAnimation from "../Components/LoadingAnimation";
 function Router() {
   return (
     <>
@@ -33,7 +34,7 @@ function Router() {
           <Route path="" element={<Settings />} />
         </Route>
         <Route path="/jobs/:id" element={<IndividualJobs />} />
-        <Route path="/loader" element={<SkeletonLoader />} />
+        <Route path="/loader" element={<LoadingAnimation />} />
       </Routes>
     </>
   );

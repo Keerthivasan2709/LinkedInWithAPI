@@ -1,43 +1,45 @@
-.iconImg{
-    width: 40px;
+.iconImg {
+  width: 41px;
 }
-.navBarIcons{
-    max-width: 24px;
+.navBarIcons {
+  width: 1.4rem;
 }
-.navBarContainer{
-    display: grid;
-    grid-template-columns: 0.8fr 1fr;
-    padding: 5px 0px;
-    position: sticky;
-    top: 0px;
-    align-self: flex-start;
+.searchBar:focus {
+  outline: none;
 }
-.premiumLink{
-    font-size: 0.7rem;
-    width: 80px;
-    color: var(--brown);
-    font-weight: normal;
-    text-decoration: underline;
-    text-align: center;
-
+.navBarContainer {
+  display: grid;
+  grid-template-columns: 0.8fr 1fr;
+  padding: 5px 0px;
+  position: sticky;
+  top: 0px;
+  align-self: flex-start;
 }
-.verticalLine{
-   border-left: 1px solid rgba(0, 0, 0, 0.129);
-   height: 100%;
+.premiumLink {
+  font-size: 0.7rem;
+  width: 80px;
+  color: var(--brown);
+  font-weight: normal;
+  text-decoration: underline;
+  text-align: center;
 }
-.navBarLink{
-    font-weight: 400;
-    color: black;
+.verticalLine {
+  border-left: 1px solid rgba(0, 0, 0, 0.129);
+  height: 100%;
 }
-.underline{
-    text-decoration: underline;
+.navBarLink {
+  font-weight: 400;
+  color: black;
 }
-.profileTooltip{
-    position: relative;
-    display: inline-block; 
+.underline {
+  text-decoration: underline;
 }
-.tooltiptext{
-    position:absolute;
-    top:50px;
-    visibility:hidden;
+.profileTooltip {
+  position: relative;
+  display: inline-block;
+}
+.tooltiptext {
+  position: absolute;
+  top: 50px;
+  visibility: hidden;
 }

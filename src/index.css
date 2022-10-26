@@ -5,17 +5,19 @@
 
 body {
   margin: 0;
-  font-family: 'Noto Sans Georgian', sans-serif;
+  font-family: "Noto Sans Georgian", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
 code {
   font-family: Arial, sans-serif;
 }
-
+.hoverLine:hover {
+  text-decoration: underline;
+  transition: all 1000ms ease;
+}
 .bgBlue {
-  background-color: #0A66C2;
+  background-color: #0a66c2;
   color: white;
   border-radius: 5px 0px 0px 0px;
 }
@@ -35,11 +37,11 @@ body {
 :root {
   --grey: #f3f2ef;
   --white: #fff;
-  --brown: #6C4411;
+  --brown: #6c4411;
   --black: #000;
   --text: rgba(0, 0, 0, 0.6);
   --border: rgba(0, 0, 0, 0.2);
-  --blue: #0A66C2;
+  --blue: #0a66c2;
 }
 
 .d-flex {
@@ -171,7 +173,7 @@ body {
 .vr {
   width: 100%;
   height: 1px;
-  background-color: var(--border)
+  background-color: var(--border);
 }
 
 .w-25 {
@@ -315,7 +317,7 @@ button:disabled {
   font-weight: 700;
   background-color: transparent;
   border: 1px solid var(--blue);
-  padding: 3px 25px;
+  padding: 3px 25px !important;
   width: auto !important;
 }
 

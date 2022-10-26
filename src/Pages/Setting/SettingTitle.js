@@ -22,11 +22,26 @@ class SettingTitle extends Component {
   };
   render() {
     return (
-      <div className="bg-white mt-1 " style={{ height: "100vh" }}>
+      <div
+        className="bg-white mt-1 "
+        style={{
+          height: "100vh",
+          position: "sticky",
+          top: "0px",
+          alignSelf: "flex-start",
+        }}
+      >
         <div
           className="d-flex flex-column justify-content-between"
           style={{ height: "50%" }}
         >
+          <div className="d-flex align-items-center gap-5">
+            <img
+              src="https://res.cloudinary.com/dibccigcp/image/upload/v1664264189/profile_w2xjxw.png"
+              style={{ width: "50px" }}
+            />
+            <h1>Settings</h1>
+          </div>
           {SettingLinks.map((d) => {
             return (
               <Link
@@ -37,7 +52,7 @@ class SettingTitle extends Component {
               >
                 <div className="d-flex align-items-center gap-5">
                   <span style={{ width: "30px" }}>{d.img}</span>
-                  <h4>{d.name}</h4>
+                  <h3>{d.name}</h3>
                 </div>
               </Link>
             );
