@@ -1402,3 +1402,64 @@ export const SettingLinks = [
     id: "s006",
   },
 ];
+export const Languages = ["English", "தமிழ்", "español", "广州话 [廣州話] "];
+export const list = [
+  {
+    img: "https://res.cloudinary.com/dibccigcp/image/upload/v1666796187/index_tggdub.svg",
+    title: "Creator Mode",
+    badge: true,
+    badgeValue: "Off",
+    description:
+      "Get discovered, showcase content on your profile, and get access to creator tools",
+  },
+
+  {
+    img: "https://res.cloudinary.com/dibccigcp/image/upload/v1664963003/index_t6htx7.svg",
+    title: "My Network",
+    badge: false,
+    badgeValue: "",
+    description: "See and manage your connections and interests.",
+  },
+  {
+    img: "https://res.cloudinary.com/dibccigcp/image/upload/v1666796458/index_zsi6mp.svg",
+    title: "Personal demographic information",
+    badge: false,
+    badgeValue: "",
+    description: "Add or manage your information.",
+  },
+  {
+    img: "https://res.cloudinary.com/dibccigcp/image/upload/v1664962593/index_giysj0.svg",
+    title: "Activity",
+    badge: false,
+    badgeValue: "",
+    description:
+      "See what you've shared with your network, such as posts, articles, and comments.",
+  },
+  {
+    img: "https://res.cloudinary.com/dibccigcp/image/upload/v1664264182/Bookmark_rjju4f.svg",
+    title: "My items",
+    badge: false,
+    badgeValue: "",
+    description: "Keep track of your jobs, courses, and articles.",
+  },
+];
+export const AnalyticsList = [
+  {
+    img: "https://res.cloudinary.com/dibccigcp/image/upload/v1664963003/index_t6htx7.svg",
+    profileviews: 39,
+    description: "profile views",
+    subDescription: "Discover who's viewed your profile.",
+  },
+  {
+    img: "https://res.cloudinary.com/dibccigcp/image/upload/v1666783696/index_yvnqnk.svg",
+    profileviews: 24,
+    description: "post impression",
+    subDescription: "Check out who's engaging with your posts.",
+  },
+  {
+    img: "https://res.cloudinary.com/dibccigcp/image/upload/v1666496387/index_zez2kr.svg",
+    profileviews: 14,
+    description: "search appearances",
+    subDescription: "see how often you appear in a week",
+  },
+];

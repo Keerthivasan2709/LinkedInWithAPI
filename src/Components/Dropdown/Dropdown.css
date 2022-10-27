@@ -1,4 +1,8 @@
-select{
-    padding: 10px 30px;
-    width: 100%;
+select {
+  padding: 10px 30px;
+  width: 100%;
+}
+.languagesDropDown {
+  border-radius: 10px !important;
+  padding: 0px !important;
 }

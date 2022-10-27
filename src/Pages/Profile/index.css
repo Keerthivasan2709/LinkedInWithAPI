@@ -1,23 +1,28 @@
-.profileGrid{
-    display: grid;
-    grid-template-columns: 1fr 0.3fr;
-    gap: 1%;
-    align-items: flex-start;
+.profileGrid {
+  display: grid;
+  grid-template-columns: 1fr 0.3fr;
+  gap: 1%;
+  align-items: flex-start;
 }
-.profilePicture{
-    max-width:120px;
-    position:relative;
-    bottom:70px;
-    left: 20px;
+.profilePicture {
+  max-width: 120px;
+  position: relative;
+  bottom: 70px;
+  left: 20px;
 }
-.details{
-    padding: 0px 40px;
+.details {
+  padding: 0px 40px;
 }
-.w-auto{
-    width: auto !important;
+.w-auto {
+  width: auto !important;
 }
-.msgBtn{
-    padding: 4px 0px;
-    width: 70%;
-    background: transparent;
+.makeBlueLine:hover {
+  color: var(--blue);
+  text-decoration: underline;
+  cursor: pointer;
+}
+.msgBtn {
+  padding: 4px 0px;
+  width: 70%;
+  background: transparent;
 }
