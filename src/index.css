@@ -2,7 +2,9 @@
   margin: 0;
   padding: 0;
 }
-
+:root {
+  --Internaldark: (rgb(118, 118, 118), rgb(133, 133, 133));
+}
 body {
   margin: 0;
   font-family: "Noto Sans Georgian", sans-serif;
@@ -72,39 +74,29 @@ body {
 
 .title {
   width: 100%;
-  height: 20px;
-  animation: loader 3s infinite ease-in-out;
-  -webkit-animation: loader 3s infinite ease-in-out;
+  height: 15px;
+  display: block;
+  background: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0),
+      rgba(255, 255, 255, 0.5) 50%,
+      rgba(255, 255, 255, 0) 80%
+    ),
+    lightgray;
+  background-repeat: repeat-y;
+  background-size: 50px 500px;
+  background-position: 0 0;
+  animation: shine 1s infinite;
 }
 
-@keyframes loader {
-  0% {
-    background-color: rgba(165, 165, 165, 0.1);
-  }
-
-  50% {
-    background-color: rgba(165, 165, 165, 0.3);
-  }
-
-  100% {
-    background-color: rgba(165, 165, 165, 0.1);
+@keyframes shine {
+  to {
+    background-position: 100% 0, /* move highlight to right */ 0 0;
   }
 }
-
-@-webkit-keyframes loader {
-  0% {
-    background-color: rgba(165, 165, 165, 0.1);
-  }
-
-  50% {
-    background-color: rgba(165, 165, 165, 0.3);
-  }
-
-  100% {
-    background-color: rgba(165, 165, 165, 0.1);
-  }
+textarea {
+  resize: none;
 }
-
 .rounded {
   border-radius: 50%;
 }
@@ -338,4 +330,11 @@ button:disabled {
 
 .p-7 {
   padding: 7px !important;
+}
+
+.px-1 {
+  padding: 10px 20px 10px 20px !important;
+}
+.w-fit {
+  width: fit-content;
 }

@@ -1,25 +1,38 @@
-import React from 'react'
-import NavBar from '../../Components/NavBar/NavBar'
-import SecondaryNav from '../../Components/SecondaryNav/SecondaryNav';
-import './index.css';
-import Invitation from './Invitation';
-import Manage from './Manage';
-import Network from './Network';
+import React, { useState } from "react";
+import NavBar from "../../Components/NavBar/NavBar";
+import SecondaryNav from "../../Components/SecondaryNav/SecondaryNav";
+import SideBar from "../../Components/SideBar";
+import "./index.css";
+import Invitation from "./Invitation";
+import Manage from "./Manage";
+import Network from "./Network";
 
 function MyNetwork() {
+  const [workRef, setWorkRef] = useState();
+  const [state, setState] = useState(true);
+  function renderWorkSection() {
+    setState(!state);
+    state
+      ? (workRef.current.style.display = "block")
+      : (workRef.current.style.display = "none");
+  }
   return (
     <div>
-      <NavBar />
-      <div className='headflex mynetworkGrid align-items-start' style={{marginBottom:"70px"}}>
+      <NavBar onClick={renderWorkSection} />
+      <div
+        className="headflex mynetworkGrid align-items-start"
+        style={{ marginBottom: "70px" }}
+      >
         <Manage />
         <div>
-          <Invitation/>
+          <Invitation />
           <Network />
         </div>
       </div>
-      <SecondaryNav/>
+      <SecondaryNav />
+      <SideBar setWorkRef={setWorkRef} />
     </div>
-  )
+  );
 }
 
-export default MyNetwork
+export default MyNetwork;

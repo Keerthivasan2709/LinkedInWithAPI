@@ -5,7 +5,7 @@ import { NavBarLinks } from "../../Assets/Link";
 import { Link } from "react-router-dom";
 import Dropdown from "../../Pages/Dropdown";
 
-function NavBar() {
+function NavBar({ onClick }) {
   const [dropDown, setDropdown] = useState();
   const Icon = useRef();
 
@@ -88,6 +88,17 @@ function NavBar() {
             {NavBarLinks.map((data, index) => {
               return data.name == "vr" ? (
                 <div key={data.name} className="verticalLine"></div>
+              ) : index === 7 ? (
+                <div
+                  className="d-flex flex-column align-items-center pointer"
+                  onClick={onClick}
+                >
+                  <img src={data.img} className="navBarIcons" />
+                  <div className="d-flex align-items-center sm-hide">
+                    <div className="smallText">{data.name}</div>
+                    <img src={data.dropDownImg} />
+                  </div>
+                </div>
               ) : (
                 <Link key={data.name} to={data.link} className="navBarLink">
                   <div className="d-flex flex-column align-items-center">

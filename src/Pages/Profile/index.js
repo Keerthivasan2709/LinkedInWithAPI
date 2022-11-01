@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import NavBar from "../../Components/NavBar/NavBar";
 import ProfileDetails from "./ProfileDetails";
 import "./index.css";
@@ -12,11 +12,41 @@ import SecondaryNav from "../../Components/SecondaryNav/SecondaryNav";
 import Analytics from "./Analytics";
 import Resources from "./Resources";
 import GlobalFooter from "../../Components/GlobalFooter";
+import SideBar from "../../Components/SideBar";
+import ProfileModal from "../../Components/ProfileModal";
+import { useParams } from "react-router-dom";
+import { useEffect } from "react";
+import EducationalModal from "../../Components/EducationalModal";
+import ExperienceModal from "../../Components/ExperienceModal";
 function Profile() {
   document.title = "Keerthivasan B";
+  const [workRef, setWorkRef] = useState();
+  const { params } = useParams();
+  const [state, setState] = useState(true);
+  const [renderProfileModal, setRenderProfileModal] = useState(false);
+  let obj = {
+    editIntro: <ProfileModal state={true} />,
+    editEducation: <EducationalModal />,
+    editExperience: <ExperienceModal />,
+  };
+  function renderWorkSection() {
+    setState(!state);
+    state
+      ? (workRef.current.style.display = "block")
+      : (workRef.current.style.display = "none");
+  }
+  useEffect(() => {
+    console.log(params);
+    params === "editIntro"
+      ? setRenderProfileModal(true)
+      : setRenderProfileModal(false);
+  }, [params]);
+  function renderModal() {
+    return obj[params];
+  }
   return (
     <div>
-      <NavBar />
+      <NavBar onClick={renderWorkSection} />
       <div
         className="mt-2 headflex profileGrid"
         style={{ marginBottom: "70px" }}
@@ -31,6 +61,7 @@ function Profile() {
             date="Jul 2022 - Present · 4 mosJul 2022 - Present · 4 mos"
             place="Coimbatore, Tamil Nadu, India"
             showSkill={true}
+            link="./editExperience"
           />
           <Card
             imgSrc="https://res.cloudinary.com/dibccigcp/image/upload/v1665059590/1659541201558_pb42vz.jpg"
@@ -40,6 +71,7 @@ function Profile() {
             date="2019"
             place=""
             showSkill={false}
+            link="./editEducation"
           />
           <Analytics />
           <Resources />
@@ -104,6 +136,8 @@ function Profile() {
       </div>
       <GlobalFooter />
       <SecondaryNav />
+      <SideBar setWorkRef={setWorkRef} />
+      {renderModal()}
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { JobsAssets } from "../../Assets/Link";
 import { suggestedJobs, suggestionList } from "../../Assets/Lists";
 import AdvancedCard from "../../Components/AdvancedCard";
@@ -9,11 +9,20 @@ import "./index.css";
 import Resume from "./Resume";
 import SecondaryNav from "../../Components/SecondaryNav/SecondaryNav";
 import FeedFooter from "../../Components/FeedFooter/FeedFooter";
+import SideBar from "../../Components/SideBar";
 function Jobs() {
   document.title = "Jobs | LinkedIn";
+  const [workRef, setWorkRef] = useState();
+  const [state, setState] = useState(true);
+  function renderWorkSection() {
+    setState(!state);
+    state
+      ? (workRef.current.style.display = "block")
+      : (workRef.current.style.display = "none");
+  }
   return (
     <div>
-      <NavBar />
+      <NavBar onClick={renderWorkSection} />
       <div className="headflex sm-head-flex mt-2 JobsGrid">
         <div className="sm-hide makeSticky">
           <div className="list card">
@@ -62,6 +71,7 @@ function Jobs() {
         </div>
       </div>
       <SecondaryNav />
+      <SideBar setWorkRef={setWorkRef} />
     </div>
   );
 }

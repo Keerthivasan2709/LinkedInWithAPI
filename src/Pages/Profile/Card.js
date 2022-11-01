@@ -1,6 +1,16 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-function Card({ title, role, organization, date, place, showSkill, imgSrc }) {
+function Card({
+  title,
+  role,
+  organization,
+  date,
+  place,
+  showSkill,
+  imgSrc,
+  link,
+}) {
   return (
     <div className="card mt-2 p-5 d-flex justify-content-between align-items-start">
       <div>
@@ -34,10 +44,12 @@ function Card({ title, role, organization, date, place, showSkill, imgSrc }) {
           src="https://res.cloudinary.com/dibccigcp/image/upload/v1665071913/index_x0on0i.svg"
           style={{ maxWidth: "40px" }}
         />
-        <img
-          src="https://res.cloudinary.com/dibccigcp/image/upload/v1665071974/index_gbgfvp.svg"
-          style={{ maxWidth: "40px" }}
-        />
+        <Link to={link}>
+          <img
+            src="https://res.cloudinary.com/dibccigcp/image/upload/v1665071974/index_gbgfvp.svg"
+            style={{ maxWidth: "40px" }}
+          />
+        </Link>
       </div>
     </div>
   );

@@ -13,9 +13,13 @@ import Signin from "../Pages/SignIn";
 import Settings from "../Pages/Setting";
 import PostModal from "../Pages/Feed/PostModal";
 import IndividualJobs from "../Pages/IndividualJobs";
-import SkeletonLoader from "../Components/SkeletonLoader";
 import LoadingAnimation from "../Components/LoadingAnimation";
 import ResourcePage from "../Pages/ResourcePage";
+import SideBar from "../Components/SideBar";
+import SkeletonLoader from "../Components/SkeletonLoader";
+import ProfileModal from "../Components/ProfileModal";
+import EducationalModal from "../Components/EducationalModal";
+import Premium from "../Pages/Premium";
 function Router() {
   return (
     <>
@@ -28,7 +32,9 @@ function Router() {
         <Route path="/jobs" element={<Jobs />} />
         <Route path="/notification" element={<Notification />} />
         <Route path="/messaging" element={<Messaging />} />
-        <Route path="/profile" element={<Profile />} />
+        <Route path="/profile/" element={<Profile />}>
+          <Route path=":params" element={<Profile />} />
+        </Route>
         <Route path="/postModal" element={<PostModal />} />
         <Route path="/setting/">
           <Route path=":settingName" element={<Settings />} />
@@ -37,6 +43,9 @@ function Router() {
         <Route path="/jobs/:id" element={<IndividualJobs />} />
         <Route path="/loader" element={<LoadingAnimation />} />
         <Route path="profile/details/resources/" element={<ResourcePage />} />
+        <Route path="/sideBar" element={<SideBar />} />
+        <Route path="/educationalModal" element={<EducationalModal />} />
+        <Route path="/premium" element={<Premium />} />
       </Routes>
     </>
   );

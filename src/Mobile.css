@@ -1,96 +1,97 @@
-@media screen and (max-width:1000px) {
-    .headflex{
-        width: 98%;
-    }
+@media screen and (max-width: 1000px) {
+  .headflex {
+    width: 98%;
+  }
 }
-@media screen and (max-width:968px) {
-    .sm-hide{
-        display: none;
-    }
-    .sm-show{
-        display: flex;
-    }
-    .navBarContainer{
-        display: grid;
-        grid-template-columns: 0.2fr 1fr 0.2fr;
-    }
-    .sm-end{
-        justify-content: end;
-    }
-    .feedGrid{
-        grid-template-columns: 1fr;
-    }
-    .mynetworkGrid{
-        grid-template-columns: 1fr !important;
-    }
-    .invitationList{
-        flex-direction: column;
-    }
-    .sm-w-20{
-        width: 20%;
-    }
-    .sm-mt-2{
-        margin-top: 20px;
-    }
-    .gridNetwork{
-        grid-template-columns: 1fr !important;
-    }
-    .networkDetails{
-        flex-direction: row;
-        justify-content: start;
-        align-items: center;
-    }
-    .profilePicture{
-        max-width: 60px !important;
-        position: relative !important;
-    }
-    .networkProfileDetails{
-        display: flex;
-        align-items: flex-start;
-        gap: 1px;
-        justify-content: flex-start;
-    }
-    .sm-mt-0{
-        margin: 0px !important;
-    }
-    .sm-btnBlue{
-        background: var(--blue);
-        color: white;
-    }
-    .JobsGrid{
-        grid-template-columns: 1fr !important;
-    }
-    .suggestedJobs{
-        display: flex;
-        flex-direction: column;
-    }
-    .sm-scroll{
-        height: 40px;
-        overflow-x: scroll;
-        overflow-y: hidden;
-    }
-    .sm-head-flex{
-        width: 100%;
-    }
-    .sm-card{
-        padding: 0px;
-    }
-    .notificationGrid{
-        grid-template-columns: 1fr !important;
-    }
-    .profileGrid{
-        grid-template-columns: 1fr !important;
-    }
-    .messagingGrid{
-       grid-template-columns: 1fr !important;
-    }
-    .sm-column{
-        flex-direction: column;
-    }
-    .sm-w-100{
-        width: 90% !important;
-    }
-    .jobsGrid{
-        grid-template-columns: 1fr !important;
-    }
+@media screen and (max-width: 968px) {
+  .sm-hide {
+    display: none;
+  }
+  .sm-show {
+    display: flex;
+  }
+  .navBarContainer {
+    display: grid;
+    grid-template-columns: 0.2fr 1fr 0.2fr;
+  }
+  .sm-end {
+    justify-content: end;
+  }
+  .feedGrid {
+    grid-template-columns: 1fr;
+  }
+  .mynetworkGrid {
+    grid-template-columns: 1fr !important;
+  }
+  .invitationList {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .sm-w-20 {
+    width: 20%;
+  }
+  .sm-mt-2 {
+    margin-top: 20px;
+  }
+  .gridNetwork {
+    grid-template-columns: 1fr !important;
+  }
+  .networkDetails {
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+  }
+  .profilePicture {
+    max-width: 60px !important;
+    position: relative !important;
+  }
+  .networkProfileDetails {
+    display: flex;
+    align-items: flex-start;
+    gap: 1px;
+    justify-content: flex-start;
+  }
+  .sm-mt-0 {
+    margin: 0px !important;
+  }
+  .sm-btnBlue {
+    background: var(--blue);
+    color: white;
+  }
+  .JobsGrid {
+    grid-template-columns: 1fr !important;
+  }
+  .suggestedJobs {
+    display: flex;
+    flex-direction: column;
+  }
+  .sm-scroll {
+    height: 40px;
+    overflow-x: scroll;
+    overflow-y: hidden;
+  }
+  .sm-head-flex {
+    width: 100%;
+  }
+  .sm-card {
+    padding: 0px;
+  }
+  .notificationGrid {
+    grid-template-columns: 1fr !important;
+  }
+  .profileGrid {
+    grid-template-columns: 1fr !important;
+  }
+  .messagingGrid {
+    grid-template-columns: 1fr !important;
+  }
+  .sm-column {
+    flex-direction: column;
+  }
+  .sm-w-100 {
+    width: 90% !important;
+  }
+  .jobsGrid {
+    grid-template-columns: 1fr !important;
+  }
 }

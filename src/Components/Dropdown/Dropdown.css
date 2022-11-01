@@ -6,3 +6,6 @@ select {
   border-radius: 10px !important;
   padding: 0px !important;
 }
+select::placeholder {
+  color: red;
+}

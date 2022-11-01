@@ -4,9 +4,7 @@ import Button from "../../Components/Button/Button";
 import ProfileModal from "../../Components/ProfileModal";
 function ProfileDetails() {
   const [modalReference, setModalReference] = useState();
-  const modalRef = (e) => {
-    setModalReference(e.current);
-  };
+
   return (
     <>
       <div className="card" style={{ position: "relative" }}>
@@ -16,18 +14,17 @@ function ProfileDetails() {
             src="https://res.cloudinary.com/dibccigcp/image/upload/v1664264187/man_cpgmaa.png"
             className="profilePicture"
           />
-          <img
-            style={{
-              maxWidth: "30px",
-              position: "absolute",
-              right: "70px",
-              marginTop: "20px",
-            }}
-            onClick={() => {
-              modalReference.style.display = "block";
-            }}
-            src="https://res.cloudinary.com/dibccigcp/image/upload/v1665071974/index_gbgfvp.svg"
-          />
+          <Link to="./editIntro">
+            <img
+              style={{
+                maxWidth: "30px",
+                position: "absolute",
+                right: "70px",
+                marginTop: "20px",
+              }}
+              src="https://res.cloudinary.com/dibccigcp/image/upload/v1665071974/index_gbgfvp.svg"
+            />
+          </Link>
         </div>
         <div className="details d-flex flex-row justify-content-between sm-column">
           <div className="d-flex flex-column gap-2">
@@ -67,7 +64,6 @@ function ProfileDetails() {
           <Button name="More" className="btnSecondary makeBold w-auto" />
         </div>
       </div>
-      <ProfileModal modalRef={modalRef} />
     </>
   );
 }

@@ -1,14 +1,11 @@
-import React from 'react'
+import React from "react";
 
-function SkeletonLoader() {
-    return (
-        <div className='card p-5'>
-             {
-                
-             }
-            <div className='title'></div>
-        </div>
-    )
+function SkeletonLoader({ className }) {
+  return (
+    <>
+      <div className={`${className} title`}></div>
+    </>
+  );
 }
 
-export default SkeletonLoader
+export default SkeletonLoader;

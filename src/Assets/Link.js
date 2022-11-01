@@ -1463,3 +1463,102 @@ export const AnalyticsList = [
     subDescription: "see how often you appear in a week",
   },
 ];
+export const products = [
+  {
+    name: "Learning",
+    link: "#",
+    img: "https://res.cloudinary.com/dibccigcp/image/upload/v1667050632/Products/Learning_w6uq97.svg",
+  },
+  {
+    name: "Insights",
+    link: "#",
+    img: "https://res.cloudinary.com/dibccigcp/image/upload/v1667050679/Products/Learning_b3jabb.svg",
+  },
+  {
+    name: "Post a job",
+    link: "#",
+    img: "https://res.cloudinary.com/dibccigcp/image/upload/v1667050742/Products/Learning_nelgpl.svg",
+  },
+  {
+    name: "Advertise",
+    link: "#",
+    img: "https://res.cloudinary.com/dibccigcp/image/upload/v1667050777/Products/Learning_lyjpaw.svg",
+  },
+  {
+    name: "Find leads",
+    link: "#",
+    img: "https://res.cloudinary.com/dibccigcp/image/upload/v1667050821/Products/Learning_mgcoem.svg",
+  },
+  {
+    name: "Groups",
+    link: "#",
+    img: "https://res.cloudinary.com/dibccigcp/image/upload/v1667050862/Products/Learning_rgfsjd.svg",
+  },
+  {
+    name: "Service MarketPlace",
+    link: "#",
+    img: "https://res.cloudinary.com/dibccigcp/image/upload/v1667050939/Products/Learning_sadcln.svg",
+  },
+  {
+    name: "Salary",
+    link: "#",
+    img: "https://res.cloudinary.com/dibccigcp/image/upload/v1667051056/Products/Learning_tx179y.svg",
+  },
+];
+
+export const BusinessService = [
+  {
+    name: "Talent solutions",
+    description: "Find,attract and recruit talent",
+    link: "#",
+  },
+  {
+    name: "Talent solutions",
+    description: "Find,attract and recruit talent",
+    link: "#",
+  },
+  {
+    name: "Sales solutions",
+    description: "Unlock sales opportunities",
+    link: "#",
+  },
+  {
+    name: "Post a job for free",
+    description: "Get your job in front of quality candidates",
+    link: "#",
+  },
+  {
+    name: "Marketing solutions",
+    description: "Acquire customers and grow your business",
+    link: "#",
+  },
+  {
+    name: "Learning solutions",
+    description: "Develop talent across your organization",
+    link: "#",
+  },
+];
+export const month = [
+  "January",
+  "Febuary",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
+export const year = [];
+export const employeeType = [
+  "Select",
+  "Full-time",
+  "part-time",
+  "self-employed",
+  "freelance",
+  "Internship",
+  "trainee",
+];
