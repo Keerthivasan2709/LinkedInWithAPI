@@ -25,7 +25,23 @@ exports.viewPage = asynchandler(async (req,res,next)=>{
                 id:req.params.pageid,
             },
             include:{
-                posts:true,
+                posts:{
+                    include:{
+                        _count:{
+                            select:{
+                                comments:true,
+                                likes:true,
+                                
+                            }
+                        },
+                    userpost:{
+                        select:{
+                            firstName:true,
+                            lastName:true,
+                        }
+                    }
+                    }
+                },
                 followers:{
                   select:{
                     profilepic:true,

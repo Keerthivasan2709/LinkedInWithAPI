@@ -12,7 +12,17 @@ exports.getMyPosts = asynchandler( async (req,res,next) => {
             profileid: req.user.id
         },
         include:{
-            data:true,
+            hashtag:{
+                select:{
+                    tag:true
+                }
+            },
+            data:{
+                select:{
+                    data:true,
+                    type:true,
+                }
+            },
             _count:{
                 select:{
                     likes:true
@@ -30,7 +40,7 @@ exports.getMyPosts = asynchandler( async (req,res,next) => {
             
         })
     if(!data) return next(new ErrorResponse("there is no posts",423))
-   
+    // data.forEach(ele=> ele.data.forEach(ele=> ele.contentType = ele.type))
     res.status(200).json({
         count: data.length ,
         data

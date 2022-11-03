@@ -16,7 +16,8 @@ try {
     }) 
     if(check) {
         req.page = { role:"admin" }
-        next()
+        return next()
+        
     } 
     const data = await client.pageAccess.findFirst({
         where:{
@@ -29,8 +30,10 @@ try {
     })
     if(!data) return next(new ErrorResponse("Not Authorized to perform this opertaion",420))
     req.page = data
-    next()
+     return next()
+    
 } catch (error) {
+    console.log(error)
     return next(new ErrorResponse("Not Authorized to perform this page opertaion",420))
 }
 })

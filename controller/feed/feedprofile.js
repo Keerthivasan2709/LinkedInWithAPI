@@ -40,7 +40,7 @@ exports.feedProfile  = asynchandler(async (req,res,next)=>{
     const data = await Promise.all([profileinfo,connectionCount])
     const feeddata = {
         profile: data[0],
-        Permium:req.user.premium,
+        Premium:req.user.premium,
         connection:data[1]
     }
     res.status(200).json({

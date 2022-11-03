@@ -28,7 +28,16 @@ exports.resentActivity = asynchandler(async (req,res,next)=>{
 
     res.status(200).json({
         status:true,
-        data
+        data:{
+            recent:[
+                {title:"Python Web Development"},
+                {title:"JavaScripe NodeJS"}
+            ],
+            group:[
+                { name:"Python Web Development"},
+                {name:"JavaScripe NodeJS"},
+            ],
+        }
     })
   
 

@@ -87,9 +87,9 @@ exports.verifyRegistration = asynchandler(async (req, res, next) => {
       catch(err){ return next(new ErrorResponse(err.message,405))}
       addressid = await client.address.create({
         data:{
-          city:city.toLowerCase().trime(),
-          state:state.toLowerCase().trime(),
-          country:country.toLowerCase().trime(),
+          city:city.toLowerCase(),
+          state:state.toLowerCase(),
+          country:country.toLowerCase(),
         }
       })
     }
@@ -117,7 +117,7 @@ exports.verifyRegistration = asynchandler(async (req, res, next) => {
     //generate json token for authentication
     const { token, options } = generateTokenResponce({
       id: data.uid,
-      type: data.type,
+      type: data.type?data.type:"user",
       email: data.email,
     });
 

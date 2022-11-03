@@ -27,6 +27,7 @@ exports.getRandomAds = asynchandler(async (req,res,next)=>{
                     title:true,
                     type:true,
                     about:true,
+                    advertisemenLogo:true,
                     company:{
                         select:{
                             name:true,

@@ -48,6 +48,31 @@ exports.editPost = asynchandler( async (req,res,next)=>{
                 })
             }
         }
+        if(req.body.hashtag){
+            //data sent ["iot","python","java","c++"]
+            for await (let hash of req.body.hashtag){
+              await client.hashtag.upsert({
+                  where:{
+                      tag:hash
+                  },
+                  update:{
+                      posts:{
+                          connect:{
+                              id:post.id,
+                          }
+                      }
+                  },
+                  create:{
+                     tag:hash,
+                     posts:{
+                      connect:{
+                          id:post.id,
+                      }
+                     } 
+                  }
+              })
+            }
+        }
         if(!data) return next(new ErrorHandler("update failed",500))
         res.status(200).json({
             status:true,

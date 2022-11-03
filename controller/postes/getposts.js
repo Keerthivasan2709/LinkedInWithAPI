@@ -19,7 +19,28 @@ exports.getPosts = asynchandler( async (req,res,next)=>{
         },
         
         include:{
-            data:true,
+            likes:{
+                select:{
+                    likedby:{
+                        select:{
+                            firstName:true,
+                            profilepic:true,
+                        }
+                    }
+                }
+            },
+            hashtag:{
+                select:{
+                    tag:true
+                }
+            },
+            data:{
+                select:{
+                    data:true,
+                    type:true,
+                    
+                }
+            },
             userpost:{
                 select:{
                     profilepic:true,
@@ -60,18 +81,33 @@ exports.getPosts = asynchandler( async (req,res,next)=>{
             where:{
                followed:ele.profileid 
             }
-            
+        
          })
          ele.followers = following
+        //  ele.date  = dateformate(ele.createdAt,ele.updatedAt)
          
         
     } 
-        
+        data.forEach(ele => ele.data.forEach(ele=>ele.ContentType = ele.type))
         res.status(200).json({
-        count: data.length ,
         data
     })
 }
 catch(err) { return next(new ErrorResponse(err.message,402))}
 
 })
+
+// additional utility function
+
+// function dateformate(start,end){
+//         if(end != null) start = end  
+//         let temp = Date.now() - new Date(start).getTime()
+//         temp = (temp/1000).toFixed(0) ; 
+//         if(temp/1000 < 59 ) return temp.toString() + "s" 
+//         temp = (temp/60).toFixed(0) ; 
+//         if(temp/60 < 60) return temp.toString() + "m";
+//         temp = (temp/60).toFixed(0) ;
+        
+
+    
+//     }

@@ -18,6 +18,6 @@ routes.route('/:profileid').get(protect,profile.getProfile);
 
 routes.route('/').post(protect,profile.followPeople)
 
-
+https://res.cloudinary.com/dibccigcp/image/upload/v1665988319/Post/Profile/1655705378954_e4yrfq.jpg
 //exporting the routes 
 module.exports = routes

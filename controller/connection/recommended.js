@@ -7,6 +7,7 @@
 const asynchandler = require("../../middleware/asynchandler");
 const client = require("../../utils/database");
 const ErrorHandler = require("../../utils/errorhandler");
+const { mutualConnection } = require("../../utils/mutualConnection");
 const {filterUsers} = require("../../utils/utilityfuc")
 exports.recommendConnection  = asynchandler(async (req,res,next)=>{
    try{
@@ -57,6 +58,50 @@ exports.recommendConnection  = asynchandler(async (req,res,next)=>{
             }
    
         })
+    // data2 = data2[0].following.followers
+    data2 = data2[0].following[0].followers
+    if(data2.length<=0){
+        data2 = await client.profile.findMany({
+            take:10,
+            skip:1,
+            where:{
+                id:{
+                    not:req.user.id,
+                }
+                
+            },
+            select:{
+                id:true,
+                firstName:true,
+                lastName:true,
+                profilepic:true,
+                backgroundpic:true,
+                tagDescription:true,
+                companys:{
+                    select:{
+                        position:true,
+                        company:{
+                            select:{
+                                name:true,
+                            }
+                        }
+                    }
+                }
+
+            },
+            orderBy:{
+                viewed:{
+                    _count:"asc",
+                }
+                }
+            
+            
+
+        })
+        for await (let ele of data2){
+            ele.mutualconnection = await mutualConnection(req.user.id,ele.id)
+        }
+    }
         
     res.status(200).json({
         status:true,

@@ -38,6 +38,7 @@ exports.createPost = asynchandler( async (req,res,next) => {
             },
             create:{
                 data,
+                type:"unknown",
                 post:{
                     connect:{
                         id:post.id

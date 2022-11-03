@@ -19,7 +19,8 @@ const page  = require("./routes/page")
 const data  = require("./routes/data")
 const advertisement  = require("./routes/advertisement") 
 const hashtag = require('./routes/hashtag')
-
+const helmet  = require('helmet')
+const xss  = require('xss-clean')
 //imorting the middleware functions
 const errorhandler = require('./middleware/error')
 
@@ -41,9 +42,18 @@ app.use(express.json())
 //setting the cookie parser
 app.use(cookieParser())
 
+//setting the protect headers 
+app.use(helmet())
+
+//to prevent xss injection 
+app.use(xss());
+
 //using the static resourse
 app.use('/api/v1/data',express.static(path.resolve('resourse')))
-
+app.use('/',(req,res,next)=>{
+    console.log(req);
+    next()
+})
 //setting the routes for the app 
 app.use('/api/v1/user',user)
 app.use('/api/v1/profile',profile)

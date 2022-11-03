@@ -20,9 +20,34 @@ exports.getMyProfile = asynchandler( async (req,res,next) => {
             
         //  },
          include:{
-            posts:true,
-            usereducation:true,
-            companys:true,
+        
+            usereducation:{
+                select:{
+                    course:true,
+                    startDate:true,
+                    endDate:true,
+                    student:{
+                        select:{
+                            name:true,
+                            description:true
+                        }
+                    }
+                }
+            },
+            companys:{
+                select:{
+                    position:true,
+                    startDate:true,
+                    endDate:true,
+                    status:true,
+                    company:{
+                        select:{
+                            name:true,
+                            description:true
+                        }
+                    }
+                }
+            },
             activity:true,
             skills:true,
             following:true
@@ -30,8 +55,42 @@ exports.getMyProfile = asynchandler( async (req,res,next) => {
          }
          
     })
-    // desturing the object
+    // getting the address details
+    //destructuring the array 
+    //doing for the education
+    data.usereducation.forEach((ele,index) => {
+        const obj = {
+            course:ele.course,
+            startDate:ele.startDate,
+            endDate:ele.endDate,
+            organization:ele.student
+
+        } 
+        data.usereducation[index] = obj
+
+    }
+    )
+    //doing for company
+    data.companys.forEach((ele,index) => {
+        const obj = {
+            course:ele.position,
+            startDate:ele.startDate,
+            endDate:ele.endDate,
+            organization:ele.company,
+            status:ele.status
+
+        } 
+        data.companys[index] = obj
+
+    }
+    )
     
+    const address  = await client.address.findUnique({
+        where:{
+            id:data.addressid
+        }
+    })
+    data.address = address
     data.email = req.user.email
     res.status(200).json(data).end()
 })

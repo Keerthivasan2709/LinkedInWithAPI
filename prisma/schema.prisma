@@ -44,16 +44,7 @@ model Profile {
   viewer              Viewer[]              @relation("viewer")
   viewed              Viewer[]              @relation("viewed")
   commentliked        commentLike[]
-  newspostcomment     newsPostComments[]
-  newspostliked       newsPostLike[]
-  newspostreplyLike   newsReplyLike[]
-  newspostreply       newspostReply[]
-  newspostcommentlike newspostcommentLike[]
-  pagepostcomment     pagePostComments[]
-  pagepostliked       pagePostLike[]
-  pagepostreplylike   pageReplyLike[]
-  pagepostreply       pagepostReply[]
-  pagepostcommentlike pagepostcommentLike[]
+ 
   hashtags            Hashtag[]
   following           Page[]
   followedAds         advertisement[]
@@ -96,6 +87,7 @@ model UserEducation {
 }
 
 model Institution {
+  logo        String      
   id          String          @id @unique @default(uuid())
   name        String
   createdAt   DateTime        @default(now())
@@ -107,6 +99,7 @@ model Institution {
 }
 
 model UserCompany {
+  
   profileid   String
   position    String
   companyid   String
@@ -122,6 +115,7 @@ model UserCompany {
 }
 
 model Company {
+  logo           String
   id             String          @id @unique @default(uuid())
   name           String
   createdAt      DateTime        @default(now())
@@ -165,7 +159,9 @@ model Posts {
   comments    Comments[]
   likes       Like[]
   hashtag     Hashtag[]
+  pages       Page[]
   data        postData[]
+  news        News[]
 
   @@index([description, title])
 }
@@ -173,37 +169,8 @@ model Posts {
 model postData {
   id   String  @id @default(uuid())
   data String  @unique
+  type String
   post Posts[]
-}
-
-model pagePost {
-  id          String             @id @unique @default(uuid())
-  profileid   String
-  description String?            @default("no description")
-  title       String?            @default("no title")
-  data        String?            @default("no the post data")
-  createdAt   DateTime           @default(now())
-  updatedAt   DateTime           @updatedAt
-  pageid      String
-  pagePost    Page               @relation(fields: [pageid], references: [id])
-  comments    pagePostComments[]
-  like        pagePostLike[]
-  hashtag     Hashtag[]
-}
-
-model newsPost {
-  id          String             @id @unique @default(uuid())
-  profileid   String
-  description String?            @default("no description")
-  title       String?            @default("no title")
-  data        String?            @default("no the post data")
-  createdAt   DateTime           @default(now())
-  updatedAt   DateTime           @updatedAt
-  newsid      Int
-  newspost    News               @relation(fields: [newsid], references: [id])
-  comments    newsPostComments[]
-  like        newsPostLike[]
-  hashtag     Hashtag[]
 }
 
 model Like {
@@ -212,26 +179,6 @@ model Like {
   type    String? @default("tumbsup")
   likedby Profile @relation(fields: [userid], references: [id])
   like    Posts   @relation(fields: [postid], references: [id], map: "post")
-
-  @@id([postid, userid])
-}
-
-model pagePostLike {
-  postid  String
-  userid  String
-  type    String?  @default("tumbsup")
-  likedby Profile  @relation(fields: [userid], references: [id])
-  like    pagePost @relation(fields: [postid], references: [id], map: "post")
-
-  @@id([postid, userid])
-}
-
-model newsPostLike {
-  postid  String
-  userid  String
-  type    String?  @default("tumbsup")
-  likedby Profile  @relation(fields: [userid], references: [id])
-  like    newsPost @relation(fields: [postid], references: [id], map: "post")
 
   @@id([postid, userid])
 }
@@ -248,56 +195,12 @@ model Comments {
   liked       commentLike[]
 }
 
-model pagePostComments {
-  id          String                @id @unique @default(uuid())
-  postid      String
-  userid      String
-  description String
-  createdAt   DateTime              @default(now())
-  comment     pagePost              @relation(fields: [postid], references: [id])
-  usercomment Profile               @relation(fields: [userid], references: [id])
-  replays     pagepostReply[]
-  liked       pagepostcommentLike[]
-}
-
-model newsPostComments {
-  id          String                @id @unique @default(uuid())
-  postid      String
-  userid      String
-  description String
-  createdAt   DateTime              @default(now())
-  comment     newsPost              @relation(fields: [postid], references: [id])
-  usercomment Profile               @relation(fields: [userid], references: [id])
-  replays     newspostReply[]
-  liked       newspostcommentLike[]
-}
-
 model commentLike {
   commentid   String
   userid      String
   type        String?  @default("tumbsup")
   commentlike Comments @relation(fields: [commentid], references: [id])
   likedby     Profile  @relation(fields: [userid], references: [id])
-
-  @@id([commentid, userid])
-}
-
-model pagepostcommentLike {
-  commentid   String
-  userid      String
-  type        String?          @default("tumbsup")
-  commentlike pagePostComments @relation(fields: [commentid], references: [id])
-  likedby     Profile          @relation(fields: [userid], references: [id])
-
-  @@id([commentid, userid])
-}
-
-model newspostcommentLike {
-  commentid   String
-  userid      String
-  type        String?          @default("tumbsup")
-  commentlike newsPostComments @relation(fields: [commentid], references: [id])
-  likedby     Profile          @relation(fields: [userid], references: [id])
 
   @@id([commentid, userid])
 }
@@ -313,54 +216,12 @@ model Reply {
   liked       ReplyLike[]
 }
 
-model newspostReply {
-  id          String           @id @unique @default(uuid())
-  commentid   String
-  description String
-  userid      String
-  createdAt   DateTime         @default(now())
-  replay      newsPostComments @relation(fields: [commentid], references: [id])
-  userreply   Profile          @relation(fields: [userid], references: [id])
-  liked       newsReplyLike[]
-}
-
-model pagepostReply {
-  id          String           @id @unique @default(uuid())
-  commentid   String
-  description String
-  userid      String
-  createdAt   DateTime         @default(now())
-  replay      pagePostComments @relation(fields: [commentid], references: [id])
-  userreply   Profile          @relation(fields: [userid], references: [id])
-  liked       pageReplyLike[]
-}
-
 model ReplyLike {
   replyid String
   type    String? @default("thumsup")
   userid  String
   reply   Reply   @relation(fields: [replyid], references: [id])
   likedby Profile @relation(fields: [userid], references: [id])
-
-  @@id([replyid, userid])
-}
-
-model pageReplyLike {
-  replyid String
-  type    String?       @default("thumsup")
-  userid  String
-  reply   pagepostReply @relation(fields: [replyid], references: [id])
-  likedby Profile       @relation(fields: [userid], references: [id])
-
-  @@id([replyid, userid])
-}
-
-model newsReplyLike {
-  replyid String
-  type    String?       @default("thumsup")
-  userid  String
-  reply   newspostReply @relation(fields: [replyid], references: [id])
-  likedby Profile       @relation(fields: [userid], references: [id])
 
   @@id([replyid, userid])
 }
@@ -392,7 +253,7 @@ model Page {
   createdAt   DateTime     @default(now())
   viewed      Int          @default(1)
   pageAccess  PageAccess[]
-  posts       pagePost[]
+  posts       Posts[]
   followers   Profile[]
 
   @@index([title, description])
@@ -471,7 +332,7 @@ model News {
   createdAt  DateTime   @default(now())
   updateAt   DateTime   @updatedAt
   readers    Int        @default(0)
-  posts      newsPost[]
+  newsPost   Posts[]
 }
 
 model Hashtag {
@@ -481,8 +342,7 @@ model Hashtag {
   upadateAt DateTime   @updatedAt
   posts     Posts[]
   following Profile[]
-  newspost  newsPost[]
-  pageposts pagePost[]
+  
 }
 
 model advertisement {
@@ -505,6 +365,8 @@ model adsControll {
   updatedAt      DateTime      @updatedAt
   advertismentId advertisement @relation(fields: [id], references: [id])
 }
+
+
 
 enum PlanStatus {
   ACTIVE
