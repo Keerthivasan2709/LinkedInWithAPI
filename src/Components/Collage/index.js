@@ -1,9 +1,10 @@
 import React from "react";
 
 export function Collage1(props) {
+  const extension = findExtension(props.data[0].data);
   return (
     <>
-      {props.data[0].type == "video" ? (
+      {extension === "mp4" || extension === "mov" || extension === "mkv" ? (
         <video
           src={props.data[0].data}
           className="post w-100"
@@ -11,16 +12,18 @@ export function Collage1(props) {
           autoPlay
           controls
         />
+      ) : extension === "jpeg" ||
+        extension === "jpg" ||
+        extension === "png" ||
+        extension === "svg" ||
+        extension === "webp" ? (
+        <img
+          src={props.data[0].data}
+          className="post w-100"
+          style={{ objectFit: "contain" }}
+        />
       ) : (
-        (props.data[0].type = "image" ? (
-          <img
-            src={props.data[0].data}
-            className="post w-100"
-            style={{ objectFit: "contain" }}
-          />
-        ) : (
-          <></>
-        ))
+        <></>
       )}
     </>
   );
@@ -57,7 +60,6 @@ export function Collage2(props) {
 }
 
 export function Collage3(props) {
-  console.log(props);
   return (
     <div
       className="d-flex flex-column justify-content-between"
@@ -117,4 +119,9 @@ export function Collage3(props) {
       </div>
     </div>
   );
+}
+
+function findExtension(url) {
+  let extension = url.substring(url.lastIndexOf(".") + 1);
+  return extension;
 }

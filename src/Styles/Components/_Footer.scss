@@ -1,0 +1,18 @@
+.footerLink {
+  font-weight: 400;
+  flex-wrap: nowrap;
+  margin-right: 10px;
+  color: #5e6262;
+}
+.feedFooter {
+  justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  padding: 10px;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0px;
+}

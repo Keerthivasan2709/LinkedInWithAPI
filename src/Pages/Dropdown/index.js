@@ -1,5 +1,4 @@
 import React, { useEffect, useRef } from "react";
-import "./index.css";
 import Button from "../../Components/Button/Button";
 import { profileLinks } from "../../Assets/Link";
 import { Link } from "react-router-dom";

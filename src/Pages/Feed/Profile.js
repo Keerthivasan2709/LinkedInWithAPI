@@ -1,11 +1,14 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import SkeletonLoader from "../../Components/SkeletonLoader";
+import { setPremium } from "../../Reducers/Premium";
 
 function Profile() {
   const [state, setState] = useState({});
   const [render, setRender] = useState(false);
+  const dispatch = useDispatch();
   const [readyForRender, setReadyForRender] = useState(false);
   useEffect(() => {
     axios
@@ -17,6 +20,7 @@ function Profile() {
         setReadyForRender(true);
       });
   }, []);
+  dispatch(setPremium(state.Premium));
   return (
     <div className="d-flex card flex-column gap-5">
       <div
@@ -62,20 +66,20 @@ function Profile() {
           <div className="vr"></div>
           <div className="d-flex flex-column gap-5">
             <div
-              className="d-flex justify-content-between align-items-center"
+              className="d-flex justify-content-between align-items-center pointer"
               style={{ padding: "0px 5px" }}
             >
-              <div className="hoverBackground pointer">
+              <div>
                 <div className="smallText makeBold grey">Connections</div>
                 <div className="smallText makeBold">Grow your network</div>
               </div>
               <div className="smallText blue makeBold">{state.connection}</div>
             </div>
             <div
-              className="d-flex justify-content-between align-items-center hoverBackground"
+              className="d-flex justify-content-between align-items-center pointer"
               style={{ padding: "0px 5px" }}
             >
-              <div className="smallText makeBold grey p-1 pointer">
+              <div className="smallText makeBold grey p-1">
                 Who's viewed your profile
               </div>
               <div className="smallText makeBold blue">

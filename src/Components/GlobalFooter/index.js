@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Languages } from "../../Assets/Link";
 import Dropdown from "../Dropdown/Dropdown";
-import "./index.css";
 function GlobalFooter() {
   const footerLinks = [
     [

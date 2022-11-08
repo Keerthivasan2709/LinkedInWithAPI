@@ -1,29 +1,48 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useReducer, useRef, useState } from "react";
 import { findDays } from "../../Utils/Helpers";
-import { Link } from "react-router-dom";
-import {
-  Collage1,
-  Collage2,
-  Collage3,
-  Collage4,
-} from "../../Components/Collage";
+import { Collage1, Collage2, Collage3 } from "../../Components/Collage";
 import Comments from "../../Components/Comments";
 import Reaction from "../../Components/Reaction/Reaction";
 import LikeReaction from "../../Components/ReactionList";
 import PostModal from "./PostModal";
 import { Like } from "../../Assets/Images/Images";
 import PostComment from "../../Components/PostComment/PostComment";
+import axios from "axios";
 function Posts(props) {
   const [show, setShow] = useState(false);
   const [commentBoxRef, setCommentBoxRef] = useState();
   const [postRef, setPostRef] = useState(null);
   const [count, setCount] = useState(props.data._count);
+  const [likeChange, setLikeChange] = useReducer((s) => !s, false);
+  let [followed, setFollowed] = useState(props.data.isFollowed);
+  console.log(props.data.isFollowed);
   const setRef = (e) => {
     setCommentBoxRef(e.current);
   };
   const setPersonalPostRef = (e) => {
     setPostRef(e.current);
   };
+  const handleFollow = (e) => {
+    setFollowed(!followed);
+    axios
+      .post(
+        `process.env.REACT_APP_API_KEY/profile?follow=${!followed}&&notify=${!followed}`,
+        {
+          id: e,
+        },
+        {
+          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+        }
+      )
+      .then((res) => {
+        console.log(res);
+      });
+  };
+
+  useEffect(() => {
+    console.log(followed);
+  });
+
   return (
     <>
       <div
@@ -37,10 +56,10 @@ function Posts(props) {
           </p>
         </div>
         <div className="hr"></div>
-        <div className="d-flex justify-content-between">
+        <div className="d-flex justify-content-between align-items-center">
           <div className="d-flex flex-row align-items-center gap-2">
             <img
-              className="profilePic profileImg"
+              className="profilePic profileImg rounded"
               src={props.data.userpost.profilepic}
             />
             <div className="profileDetails d-flex flex-column">
@@ -71,14 +90,36 @@ function Posts(props) {
               </div>
             </div>
           </div>
-          <a className="d-flex align-items-center gap-1">
-            <img src="https://res.cloudinary.com/dibccigcp/image/upload/v1664264181/Add_mh0lce.svg" />
-            <div>Follow</div>
-          </a>
+          <div className="pointer">
+            {followed ? (
+              <a
+                className="d-flex align-items-center gap-1"
+                onClick={() => {
+                  handleFollow(props.data.profileid);
+                }}
+                style={{ color: "rgba(0,0,0,0.6)", fontSize: "14px" }}
+              >
+                <img src="https://res.cloudinary.com/dibccigcp/image/upload/v1667825381/index_oyxwh5.svg" />
+                <div>Following</div>
+              </a>
+            ) : (
+              <>
+                <a
+                  className="d-flex align-items-center gap-1"
+                  onClick={() => {
+                    handleFollow(props.data.id);
+                  }}
+                >
+                  <img src="https://res.cloudinary.com/dibccigcp/image/upload/v1664264181/Add_mh0lce.svg" />
+                  <div>Follow</div>
+                </a>
+              </>
+            )}
+          </div>
         </div>
         <div
           className="d-flex justify-content-center"
-          style={{ height: "70vh" }}
+          style={{ height: "60vh" }}
           onClick={() => {
             postRef.style.display = "block";
           }}
@@ -100,10 +141,41 @@ function Posts(props) {
               postId={props.data.id}
               setCount={setCount}
               data={count}
+              setLikeChange={setLikeChange}
             />
-            <div className="d-flex flex-row">
-              <Like />
-              <p>Like</p>
+            <div className="d-flex flex-row align-items-center pointer">
+              {likeChange ? (
+                <>
+                  <img src="https://res.cloudinary.com/dibccigcp/image/upload/v1667467453/5zhd32fqi5pxwzsz78iui643e_kyjgaw.svg" />
+                  <p
+                    style={{
+                      color: "#0a66c2",
+                      fontWeight: 900,
+                      fontSize: "12px",
+                    }}
+                  >
+                    Like
+                  </p>
+                </>
+              ) : props.data.isLiked ? (
+                <>
+                  <img src="https://res.cloudinary.com/dibccigcp/image/upload/v1667467453/5zhd32fqi5pxwzsz78iui643e_kyjgaw.svg" />
+                  <p
+                    style={{
+                      color: "#0a66c2",
+                      fontWeight: 900,
+                      fontSize: "12px",
+                    }}
+                  >
+                    Like
+                  </p>
+                </>
+              ) : (
+                <>
+                  <Like />
+                  <p style={{ fontWeight: 900, fontSize: "12px" }}>Like</p>
+                </>
+              )}
             </div>
           </div>
           <div
@@ -130,7 +202,7 @@ function Posts(props) {
           />
         </div>
         <div className={show ? "show" : "hidden"}>
-          <Comments getRef={setRef} />
+          <Comments getRef={setRef} postId={props.data.id} />
         </div>
       </div>
       <PostModal setPersonalPostRef={setPersonalPostRef} data={props} />

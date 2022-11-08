@@ -1,5 +1,4 @@
 import React from "react";
-import "./Dropdown.css";
 function Dropdown({ name, list, handleForm, className }) {
   return (
     <div

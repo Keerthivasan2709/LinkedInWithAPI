@@ -5,7 +5,6 @@ import AdvancedCard from "../../Components/AdvancedCard";
 import Button from "../../Components/Button/Button";
 import CardList from "../../Components/CardList";
 import NavBar from "../../Components/NavBar/NavBar";
-import "./index.css";
 import Resume from "./Resume";
 import SecondaryNav from "../../Components/SecondaryNav/SecondaryNav";
 import FeedFooter from "../../Components/FeedFooter/FeedFooter";

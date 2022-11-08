@@ -1,12 +1,13 @@
-import React from 'react'
-import './Reaction.css'
+import React from "react";
 function Reaction({ src, name, className }) {
-    return (
-        <div className={`${className} d-flex align-items-center button gap-2 p-0`}>
-            <img src={src} />
-            <div>{name}</div>
-        </div>
-    )
+  return (
+    <div
+      className={`${className} pointer d-flex align-items-center button gap-2 p-0`}
+    >
+      <img src={src} />
+      <div style={{ fontWeight: 900, fontSize: "12px" }}>{name}</div>
+    </div>
+  );
 }
 
-export default Reaction
+export default Reaction;

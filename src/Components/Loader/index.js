@@ -1,25 +1,24 @@
-import React from 'react'
-import './index.css'
+import React from "react";
 function Loader() {
-    return (
-        <section className='load'>
-            <div className="lds-spinner">
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-            </div>
-        </section>
-    )
+  return (
+    <section className="load">
+      <div className="lds-spinner">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </section>
+  );
 }
 
-export default Loader
+export default Loader;

@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import NavBar from "../../Components/NavBar/NavBar";
-import "./index.css";
-import "../../Mobile.css";
 import { Link } from "react-router-dom";
 import Ads from "../../Components/Ads/Ads";
 import FeedFooter from "../../Components/FeedFooter/FeedFooter";

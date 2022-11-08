@@ -1,0 +1,14 @@
+$Internaldark: rgb(118, 118, 118), rgb(133, 133, 133);
+$grey: #f3f2ef;
+$white: #fff;
+$brown: #6c4411;
+$black: #000;
+$text: rgba(0, 0, 0, 0.6);
+$border: rgba(0, 0, 0, 0.2);
+$blue: #0a66c2;
+$green: green;
+
+@import "./Global";
+@import "./Mobile";
+@import "./Pages/index";
+@import "./Components/index";

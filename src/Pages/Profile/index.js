@@ -1,12 +1,10 @@
 import React, { useState } from "react";
 import NavBar from "../../Components/NavBar/NavBar";
 import ProfileDetails from "./ProfileDetails";
-import "./index.css";
 import Ads from "../../Components/Ads/Ads";
 import { connectedPeople } from "../../Assets/Link";
 import Button from "../../Components/Button/Button";
 import Card from "./Card";
-import "../../Mobile.css";
 import { SkillsList } from "../../Assets/Lists";
 import SecondaryNav from "../../Components/SecondaryNav/SecondaryNav";
 import Analytics from "./Analytics";
@@ -15,32 +13,31 @@ import GlobalFooter from "../../Components/GlobalFooter";
 import SideBar from "../../Components/SideBar";
 import ProfileModal from "../../Components/ProfileModal";
 import { useParams } from "react-router-dom";
-import { useEffect } from "react";
 import EducationalModal from "../../Components/EducationalModal";
 import ExperienceModal from "../../Components/ExperienceModal";
+import { useSelector } from "react-redux";
+
 function Profile() {
   document.title = "Keerthivasan B";
   const [workRef, setWorkRef] = useState();
   const { params } = useParams();
   const [state, setState] = useState(true);
-  const [renderProfileModal, setRenderProfileModal] = useState(false);
+  let data = useSelector((state) => state.profile.data);
+
+  console.log(data);
   let obj = {
     editIntro: <ProfileModal state={true} />,
     editEducation: <EducationalModal />,
     editExperience: <ExperienceModal />,
   };
+
   function renderWorkSection() {
     setState(!state);
     state
       ? (workRef.current.style.display = "block")
       : (workRef.current.style.display = "none");
   }
-  useEffect(() => {
-    console.log(params);
-    params === "editIntro"
-      ? setRenderProfileModal(true)
-      : setRenderProfileModal(false);
-  }, [params]);
+
   function renderModal() {
     return obj[params];
   }
@@ -53,26 +50,30 @@ function Profile() {
       >
         <div>
           <ProfileDetails />
-          <Card
-            imgSrc="https://res.cloudinary.com/dibccigcp/image/upload/v1664890021/profile_1_mhhrgo.jpg"
-            title="Experience"
-            role="Web Developer"
-            organization="Codingmart Technologies · InternshipCodingmart Technologies · Internship"
-            date="Jul 2022 - Present · 4 mosJul 2022 - Present · 4 mos"
-            place="Coimbatore, Tamil Nadu, India"
-            showSkill={true}
-            link="./editExperience"
-          />
-          <Card
-            imgSrc="https://res.cloudinary.com/dibccigcp/image/upload/v1665059590/1659541201558_pb42vz.jpg"
-            title="Education"
-            role="K S Rangasamy College of Technology"
-            organization="Bachelor of Engineering-BE, Computer Science"
-            date="2019"
-            place=""
-            showSkill={false}
-            link="./editEducation"
-          />
+          {data ? (
+            <Card
+              imgSrc="https://res.cloudinary.com/dibccigcp/image/upload/v1664890021/profile_1_mhhrgo.jpg"
+              title="Experience"
+              data={data.companys}
+              showSkill={true}
+              skill={data.skills}
+              link="./editExperience"
+            />
+          ) : (
+            <>hello</>
+          )}
+          {data ? (
+            <Card
+              imgSrc="https://res.cloudinary.com/dibccigcp/image/upload/v1665059590/1659541201558_pb42vz.jpg"
+              title="Education"
+              data={data.usereducation}
+              showSkill={false}
+              link="./editEducation"
+            />
+          ) : (
+            <></>
+          )}
+
           <Analytics />
           <Resources />
           <div className="card mt-2 p-5">

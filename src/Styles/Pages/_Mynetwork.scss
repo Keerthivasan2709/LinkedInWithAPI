@@ -1,0 +1,48 @@
+.mynetworkGrid {
+  display: grid;
+  grid-template-columns: 0.4fr 1.2fr;
+  gap: 1%;
+}
+.smallHeading {
+  font-size: 16px;
+  font-weight: 400;
+}
+.manageLinks:hover {
+  background-color: $green;
+}
+.btnBlue:hover {
+  background-color: #0a66c245;
+}
+
+.makeCenter {
+  text-align: center;
+}
+.profilePic {
+  width: 60px;
+}
+.gridNetwork {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+.description {
+  font-size: 15px;
+  color: #5e6262;
+}
+.mt-4 {
+  margin-top: 40px;
+}
+
+@keyframes fallAway {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+.displayNone {
+  display: none;
+}
+.displayBlock {
+  display: block;
+}

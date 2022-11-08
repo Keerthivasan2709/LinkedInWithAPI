@@ -4,7 +4,6 @@ import { useState } from "react";
 import { useEffect } from "react";
 import Loader from "../../Components/Loader";
 import SkeletonLoader from "../../Components/SkeletonLoader";
-import "./index.css";
 function NetworkList({ data }) {
   const suggestionRef = useRef();
   const [state, setState] = useState("initial");

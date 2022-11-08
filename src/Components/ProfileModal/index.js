@@ -1,6 +1,5 @@
 import React, { useEffect, useRef } from "react";
 import Input from "../Input/Input";
-import "./index.css";
 import Dropdown from "../Dropdown/Dropdown";
 import { Pronouns } from "../../Assets/Lists";
 import { Link } from "react-router-dom";

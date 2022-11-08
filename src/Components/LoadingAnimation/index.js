@@ -1,5 +1,4 @@
 import React from "react";
-import "./index.css";
 function LoadingAnimation() {
   return (
     <div class="loading-screen">

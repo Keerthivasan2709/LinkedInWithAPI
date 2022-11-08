@@ -1,5 +1,4 @@
 export const Account = (props) => {
-  console.log(props);
   return (
     <svg
       ariaHidden="true"

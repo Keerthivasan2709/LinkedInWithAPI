@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import "./index.css";
 import Button from "../../Components/Button/Button";
 import Footer from "../../Components/Footer/Footer";
 import Card from "../../Components/Card/Card";

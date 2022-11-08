@@ -762,3 +762,24 @@ export const AdvertisingData = [
     ],
   ],
 ];
+
+export const organizationSize = [
+  "0-1 employee",
+  "2-10 employee",
+  "10-50 employee",
+  "50-100 employee",
+  "100-200employee",
+  "200-300 employee",
+  "300-500 employee",
+  "500-1000 employee",
+  "1000-2000 employee",
+  "Above 2000 employee",
+];
+
+export const organisationType = [
+  "Public company",
+  "Private company",
+  "Sel-employed",
+  "Internship",
+  "Traning",
+];

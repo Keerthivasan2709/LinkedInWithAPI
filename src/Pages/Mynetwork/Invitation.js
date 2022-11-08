@@ -4,7 +4,6 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { invitationList } from "../../Assets/Link";
 import Button from "../../Components/Button/Button";
-import "../../Mobile.css";
 import InvitationList from "./InvitationList";
 function Invitation() {
   const [invitation, setInvitation] = useState([]);

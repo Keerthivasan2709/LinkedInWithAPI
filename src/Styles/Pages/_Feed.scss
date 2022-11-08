@@ -1,0 +1,221 @@
+.image {
+  width: 30px;
+}
+
+.postDate {
+  width: 20px;
+}
+
+.profileName {
+  font-size: 1rem;
+}
+
+.profileImg {
+  width: 45px;
+}
+
+.feedGrid {
+  display: grid;
+  grid-template-columns: 0.6fr 1.6fr 0.8fr;
+  gap: 1%;
+  align-items: flex-start;
+}
+
+.profileImage {
+  width: 50px;
+  height: 50px;
+  position: relative;
+  top: 20px;
+  left: 40%;
+}
+
+.profileBackground {
+  height: 15%;
+  background-size: cover;
+  width: 100%;
+  padding: 0.1%;
+  border-radius: 10px 10px 0px 0px;
+}
+.welcomeMsg {
+  font-size: 16px;
+  text-align: center;
+  margin-top: 5%;
+  font-weight: 600;
+}
+.addAProfile {
+  font-size: 14px;
+  font-weight: 400;
+  text-align: center;
+}
+.list {
+  padding: 0px 10px;
+}
+.makeBold {
+  font-weight: 600;
+}
+.blue {
+  color: $blue;
+}
+.grey {
+  color: #5e6262;
+}
+.premium {
+  margin-top: 6px;
+}
+.black {
+  color: black;
+}
+.mb-2 {
+  margin-bottom: 20px;
+}
+.mt-2 {
+  margin-top: 20px;
+}
+.mt-1 {
+  margin-top: 10px;
+}
+.mb-1 {
+  margin-bottom: 10px;
+}
+.discover {
+  font-size: 14px;
+  font-weight: 500;
+  color: black;
+  text-align: center;
+  padding: 10px 0px;
+}
+.bullet {
+  font-size: 21px;
+  color: #888c7b;
+}
+.newsHeading {
+  font-size: 14px;
+  font-weight: 700;
+}
+.newsDetails {
+  font-size: 12px;
+  font-weight: 400;
+}
+.likeReaction:hover .reactionList {
+  display: flex;
+}
+.hidden {
+  display: none;
+}
+.commentBtn {
+  background-color: blue;
+  outline: none;
+  border: 1px solid blue;
+  color: white;
+  padding: 10px 30px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 900;
+}
+.hoverBackground:hover {
+  background: $grey;
+  width: 100%;
+}
+.modalFlex {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.loader {
+  align-self: center;
+  border: 10px solid white;
+  border-radius: 50%;
+  border-top: 10px solid #0a66c2;
+  width: 30px;
+  height: 30px;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(359deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+.w-50 {
+  width: 50%;
+}
+.w-60 {
+  width: 60%;
+}
+.w-70 {
+  width: 70%;
+}
+.w-80 {
+  width: 80%;
+}
+.w-90 {
+  width: 90%;
+}
+.w-100 {
+  width: 100%;
+}
+.rounded-1 {
+  border-radius: 5px !important;
+}
+.center {
+  margin: 0 auto;
+}
+.h-1 {
+  height: 1rem;
+}
+.h-05 {
+  height: 0.8rem;
+}
+.ms-1 {
+  margin-left: 0.5rem;
+}
+.mb-02 {
+  margin-bottom: 0.2rem;
+}
+.mb-05 {
+  margin-bottom: 0.5rem;
+}
+
+.w-30 {
+  width: 30%;
+}
+.h-3 {
+  height: 3rem;
+}
+.image {
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  top: 35px;
+}
+.sm-image {
+  width: 60px;
+  height: 60px;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+}
+.w-220px {
+  width: 220px;
+}
+.w-150px {
+  width: 150px;
+}

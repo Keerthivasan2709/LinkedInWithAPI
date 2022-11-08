@@ -3,7 +3,6 @@ import { useEffect } from "react";
 import { useRef } from "react";
 import { Link } from "react-router-dom";
 import { BusinessService, products } from "../../Assets/Link";
-import "./index.css";
 function SideBar({ setWorkRef }) {
   const modalRef = useRef();
   useEffect(() => {
@@ -88,7 +87,9 @@ function SideBar({ setWorkRef }) {
               })}
             </div>
             <div className="vr"></div>
-            <h3 style={{ padding: "10px 20px" }}>Create a company page +</h3>
+            <Link to="/company/setup/new/">
+              <h3 style={{ padding: "10px 20px" }}>Create a company page +</h3>
+            </Link>
           </div>
         </div>
       </div>

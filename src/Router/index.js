@@ -20,6 +20,8 @@ import SkeletonLoader from "../Components/SkeletonLoader";
 import ProfileModal from "../Components/ProfileModal";
 import EducationalModal from "../Components/EducationalModal";
 import Premium from "../Pages/Premium";
+import Company from "../Pages/Company";
+import CompanyPage from "../Pages/Company/Company";
 function Router() {
   return (
     <>
@@ -46,6 +48,7 @@ function Router() {
         <Route path="/sideBar" element={<SideBar />} />
         <Route path="/educationalModal" element={<EducationalModal />} />
         <Route path="/premium" element={<Premium />} />
+        <Route path="/company/setup/new" element={<Company />} />
       </Routes>
     </>
   );

@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import NavBar from "../../Components/NavBar/NavBar";
 import MessageSection from "./MessageSection";
-import "./index.css";
 import FeedFooter from "../../Components/FeedFooter/FeedFooter";
 import SecondaryNav from "../../Components/SecondaryNav/SecondaryNav";
 import SideBar from "../../Components/SideBar";

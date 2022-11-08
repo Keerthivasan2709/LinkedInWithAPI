@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
-import "./Ads.css";
 import Button from "../Button/Button";
 import axios from "axios";
 import SkeletonLoader from "../SkeletonLoader";
+import { useSelector } from "react-redux";
 function Ads({ className }) {
   const [state, setState] = useState([]);
   const [readyForRender, setReadyForRender] = useState(false);
+  const data = useSelector((state) => state.profile.data);
+
   useEffect(() => {
     axios
       .get(`${process.env.REACT_APP_API_KEY}/feed/ads`, {
@@ -15,6 +17,7 @@ function Ads({ className }) {
         setState(res.data.data);
       });
   }, []);
+
   useEffect(() => {
     if (state.length != 0) {
       setReadyForRender(true);
@@ -39,19 +42,17 @@ function Ads({ className }) {
         ) : (
           <SkeletonLoader className="adsLogo center mt-2" />
         )}
-        <div className="adDescription grey">
-          {readyForRender ? (
-            state.advertismentId.about
-          ) : (
-            <SkeletonLoader className="w-70 center h-1 rounded-1" />
-          )}
-        </div>
-        <div className="adDescription grey">
-          {readyForRender ? (
-            `${state.advertismentId.company.description} of ${state.advertismentId.company.name}`
-          ) : (
-            <SkeletonLoader className="w-50 rounded-1" />
-          )}
+        <div>
+          <div className="adDescription grey">
+            {readyForRender ? (
+              `${data.firstName}, ${state.advertismentId.about} ${state.advertismentId.company.description} of ${state.advertismentId.company.name}`
+            ) : (
+              <div>
+                <SkeletonLoader className="w-70 center h-1 rounded-1" />
+                <SkeletonLoader className="w-50 center h-1 rounded-1" />
+              </div>
+            )}
+          </div>
         </div>
         <div className="mb-2">
           {readyForRender ? (

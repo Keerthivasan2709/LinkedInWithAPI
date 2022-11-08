@@ -3,8 +3,6 @@ import { useParams } from "react-router-dom";
 import NavBar from "../../Components/NavBar/NavBar";
 import Details from "./Details";
 import Sidebar from "./Sidebar";
-import "../../Mobile.css";
-import "./index.css";
 import SecondaryNav from "../../Components/SecondaryNav/SecondaryNav";
 import SideBar from "../../Components/SideBar";
 function IndividualJobs() {

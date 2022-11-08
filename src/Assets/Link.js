@@ -1562,3 +1562,159 @@ export const employeeType = [
   "Internship",
   "trainee",
 ];
+
+export const pageBuilder = {
+  Company: {
+    data: [
+      {
+        name: "Name*",
+        type: "text",
+        placeholder: "Add your organisation's name",
+      },
+      {
+        renderType: "text",
+        name: "Learn more about the Page Public URL",
+      },
+      {
+        name: "linkedin.com/school/*",
+        type: "text",
+        placeholder: "Add your unique Linkedin address",
+      },
+      {
+        name: "Website",
+        type: "text",
+        placeholder: "Begin with http://, https://, or www",
+      },
+      {
+        name: "Industry*",
+        type: "text",
+        placeholder: "ex: Information service",
+      },
+      {
+        name: "Organization size *",
+        type: "dropdown",
+        value: "",
+      },
+      {
+        name: "Organization type*",
+        type: "dropdown",
+        value: [],
+      },
+      {
+        name: "Logo",
+        type: "file",
+      },
+      {
+        renderType: "paragraph",
+        name: "Tagline",
+        type: "text",
+        placeholder:
+          "ex: An information service firm helping small business record",
+      },
+    ],
+    name: "Company",
+    img: "https://res.cloudinary.com/dibccigcp/image/upload/v1667721478/8j7g1qg4ygqnysr4hplvebpx7_iykgan.svg",
+  },
+  "Showcase pages": {
+    data: [
+      {
+        name: "Name*",
+        type: "text",
+        placeholder: "Add your organisation's name",
+      },
+      {
+        renderType: "text",
+        name: "Learn more about the Page Public URL",
+      },
+      {
+        name: "linkedin.com/school/*",
+        type: "text",
+        placeholder: "Add your unique Linkedin address",
+      },
+      {
+        name: "Website",
+        type: "text",
+        placeholder: "Begin with http://, https://, or www",
+      },
+      {
+        name: "Industry*",
+        type: "text",
+        placeholder: "ex: Information service",
+      },
+      {
+        name: "Organization size *",
+        type: "dropdown",
+        value: "",
+      },
+      {
+        name: "Organization type*",
+        type: "dropdown",
+        value: [],
+      },
+      {
+        name: "Logo",
+        type: "file",
+      },
+      {
+        renderType: "paragraph",
+        name: "Tagline",
+        type: "text",
+        placeholder:
+          "ex: An information service firm helping small business record",
+      },
+    ],
+    name: "Showcase pages",
+    img: "https://res.cloudinary.com/dibccigcp/image/upload/v1667722067/2nozouqfl4dxqy8iv6mergx0v_px03qr.svg",
+  },
+  "Educational institution": {
+    data: [
+      {
+        name: "Name*",
+        type: "text",
+        placeholder: "Add your organisation's name",
+      },
+      {
+        renderType: "text",
+        name: "Learn more about the Page Public URL",
+      },
+      {
+        name: "linkedin.com/school/*",
+        type: "text",
+        placeholder: "Add your unique Linkedin address",
+      },
+      {
+        name: "Website",
+        type: "text",
+        placeholder: "Begin with http://, https://, or www",
+      },
+      {
+        name: "Industry*",
+        type: "text",
+        placeholder: "ex: Information service",
+      },
+      {
+        name: "Organization size *",
+        type: "dropdown",
+        value: "",
+      },
+      {
+        name: "Organization type*",
+        type: "dropdown",
+        value: [],
+      },
+      {
+        name: "Logo",
+        type: "file",
+      },
+      {
+        renderType: "paragraph",
+        name: "Tagline",
+        type: "text",
+        placeholder:
+          "ex: An information service firm helping small business record",
+      },
+    ],
+    name: "Education Instution",
+    img: "https://res.cloudinary.com/dibccigcp/image/upload/v1667722110/5c9e0v28ilvp9ocpnqbfm7ll2_y9uqqt.svg",
+  },
+};

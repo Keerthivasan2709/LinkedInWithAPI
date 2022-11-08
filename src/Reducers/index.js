@@ -1,8 +1,14 @@
 import { configureStore } from "@reduxjs/toolkit";
-import Auth from "./Auth";
+import Premium from "./Premium";
+import Theme from "./Theme";
+import Profile from "./Profile";
+import JoinNow from "./JoinNow";
 
 export default configureStore({
   reducer: {
-    auth: Auth,
+    profile: Profile,
+    theme: Theme,
+    premium: Premium,
+    joinNow: JoinNow,
   },
 });

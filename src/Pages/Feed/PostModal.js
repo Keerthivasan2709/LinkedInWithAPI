@@ -10,10 +10,8 @@ import PostComment from "../../Components/PostComment/PostComment";
 import Reaction from "../../Components/Reaction/Reaction";
 import LikeReaction from "../../Components/ReactionList";
 import { findDays } from "../../Utils/Helpers";
-import "./index.css";
 function PostModal(props) {
   const modalRef = useRef();
-  console.log(props.data.data._count);
   useEffect(() => {
     props.setPersonalPostRef(modalRef);
   });
@@ -35,14 +33,14 @@ function PostModal(props) {
         style={{ height: "70%" }}
       >
         {props.data.data.data.length === 1 ? (
-          (props.data.data.data[0].type = "image" ? (
+          props.data.data.data[0].type === "image" ? (
             <img
               src={props.data.data.data[0].data}
               style={{ width: "50%", objectFit: "contain" }}
             />
           ) : (
             <video src={props.data.data.data[0].data} />
-          ))
+          )
         ) : (
           <Carousel dataSlider={props.data.data.data} />
         )}

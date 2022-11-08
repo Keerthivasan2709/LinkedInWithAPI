@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./index.css";
 function AdvancedCard({ heading, subHeading, list }) {
   return (
     <div className="list card">

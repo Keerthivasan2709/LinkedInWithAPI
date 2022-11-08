@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from "react";
-import "./NavBar.css";
 import Input from "../Input/Input";
 import { NavBarLinks } from "../../Assets/Link";
 import { Link } from "react-router-dom";
@@ -31,14 +30,23 @@ function NavBar({ onClick }) {
     else return 5;
   };
   return (
-    <div style={{ position: "sticky", top: "0", zIndex: "3" }}>
+    <div
+      style={{
+        position: "sticky",
+        top: "0",
+        zIndex: "3",
+        borderBottom: "1px solid rgba(0,0,0,0.08)",
+      }}
+    >
       <div className="background">
         <div className="headflex navBarContainer">
           <div className="headflex d-flex align-items-center">
-            <img
-              src="https://res.cloudinary.com/dibccigcp/image/upload/v1664264186/LinkedIn_Icon_naugpk.svg"
-              className="iconImg sm-hide"
-            />
+            <Link to="/feed">
+              <img
+                src="https://res.cloudinary.com/dibccigcp/image/upload/v1664264186/LinkedIn_Icon_naugpk.svg"
+                className="iconImg sm-hide"
+              />
+            </Link>
             <Link to="/profile">
               <img
                 src="https://res.cloudinary.com/dibccigcp/image/upload/v1664264187/man_cpgmaa.png"
@@ -71,9 +79,7 @@ function NavBar({ onClick }) {
               />
             </div>
           </div>
-          <div className="lg-hide sm-show">
-            <Input className="w-100 input" />
-          </div>
+
           <Link to="/messaging" className="lg-hide sm-show sm-end">
             <img
               className="lg-hide sm-show"
