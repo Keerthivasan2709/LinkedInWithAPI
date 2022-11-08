@@ -3,14 +3,17 @@ const client = require("../../utils/database")
 const ErrorResponse = require("../../utils/errorhandler")
 
 //@desc Gets the post from the global and community
-//@url GET api/v1/post/
+//@url GET api/v1/post?page=1
 //@access Private 
 exports.getPosts = asynchandler( async (req,res,next)=>{
     try{
         console.log("routes working")
+        let page = 0 ;
+        if(req.query.page) page = req.query.page
+
     const data = await client.posts.findMany({
         
-        skip:1,
+        skip:(page)*7,
         take:7,
         where:{
             profileid:{
@@ -84,10 +87,26 @@ exports.getPosts = asynchandler( async (req,res,next)=>{
         
          })
          ele.followers = following
+         const check = await client.like.count({
+            where:{ postid:ele.id,
+                    userid:req.user.id}
+         })
+         ele.isLiked = true;
+         if(!check || check==0) ele.isLiked = false;
+         const check2  = await client.peopleFollowed.count({
+            where:{
+                followed:ele.profileid,
+                follower:req.user.id,
+            }
+         })
+         
+         ele.isFollowed = true 
+         if(!check2 || check2==0) ele.isFollowed = false
         //  ele.date  = dateformate(ele.createdAt,ele.updatedAt)
          
         
     } 
+        
         data.forEach(ele => ele.data.forEach(ele=>ele.ContentType = ele.type))
         res.status(200).json({
         data

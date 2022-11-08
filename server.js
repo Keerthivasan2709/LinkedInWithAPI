@@ -54,6 +54,7 @@ app.use('/',(req,res,next)=>{
     console.log(req);
     next()
 })
+app
 //setting the routes for the app 
 app.use('/api/v1/user',user)
 app.use('/api/v1/profile',profile)

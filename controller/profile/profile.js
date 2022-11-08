@@ -7,6 +7,7 @@ const {followPeople} = require('./followPeople')
 const {updateUserEducation} = require('./updateEducation')
 const {updateUserCompany} = require('./updateUserCompany')
 const {viwedProfile} = require('./getViwedProfile')
+const {getFollowers} = require('./getFollowers')
 
 const object  = {
     getMyProfile,
@@ -16,7 +17,8 @@ const object  = {
     followPeople,
     updateUserCompany,
     updateUserEducation,
-    viwedProfile
+    viwedProfile,
+    getFollowers
 
 } 
 

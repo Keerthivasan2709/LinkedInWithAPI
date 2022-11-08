@@ -41,6 +41,30 @@ exports.getReply = asynchandler(async (req,res,next)=>{
         }
     })
     if(!data) return next(new ErrorResponse("Unable to get data check the credentials ",403))
+    for await (ele of data.replays){
+        const profile  = await client.profile.findFirst({
+            where:{
+                id:ele.userid
+            },
+            select:{
+                profilepic:true,
+                firstName:true,
+                lastName:true,
+                companys:{
+                    where:{
+                        status:"working",
+                    },
+                    select:{
+                        position:true
+                    }
+                },
+
+            }
+            
+
+        })
+        ele.profile = profile
+    }
     res.status(200).json({
         status:true,
         replay_count:data.replays.count,

@@ -20,7 +20,13 @@ exports.getMyProfile = asynchandler( async (req,res,next) => {
             
         //  },
          include:{
-        
+            activity:true,
+            skills:{
+                select:{
+                    name:true,
+                }
+            },
+            following:true,
             usereducation:{
                 select:{
                     course:true,
@@ -48,9 +54,7 @@ exports.getMyProfile = asynchandler( async (req,res,next) => {
                     }
                 }
             },
-            activity:true,
-            skills:true,
-            following:true
+            
 
          }
          

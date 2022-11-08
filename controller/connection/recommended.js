@@ -59,8 +59,9 @@ exports.recommendConnection  = asynchandler(async (req,res,next)=>{
    
         })
     // data2 = data2[0].following.followers
-    data2 = data2[0].following[0].followers
-    if(data2.length<=0){
+    data2 = data2[0]?.following[0]?.followers
+    if(data2 == undefined || data2?.length<=0){
+        
         data2 = await client.profile.findMany({
             take:10,
             skip:1,

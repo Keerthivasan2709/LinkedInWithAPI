@@ -3,6 +3,7 @@ const client = require('../../utils/database')
 const ErrorResponse = require('../../utils/errorhandler')
 const asynchandler = require('../../middleware/asynchandler')
 const { activityUpdate } = require('../../utils/activityManager')
+const e = require('express')
 
 
 //@desc to update the comment 
@@ -38,10 +39,47 @@ exports.getComments = asynchandler(async (req,res,next)=>{
         },
         include:{
             comments:true,
+            
         },
     });
     
     if(!data) return next(new ErrorResponse("Unable to get data check the credentials ",403))
+    if(data.comments.length>0){
+        for await(let ele of data.comments){
+        const count  = await client.comments.findFirst({
+            where:{
+                id:ele.id,
+            },
+            include:{
+                _count:{
+                    select:{
+                        liked:true,
+                        replays:true
+                    }
+                }
+            }
+        })
+        const profile  = await client.profile.findFirst({
+            where:{id:ele.userid},
+            select:{
+                profilepic:true,
+                firstName:true,
+                lastName:true,
+                companys:{
+                    where:{
+                        status:"working",
+                    },
+                    select:{
+                        position:true
+                    }
+                }
+            }
+        })
+        ele.profile = profile;
+        ele.replys = count._count.replays
+        ele.likes  = count._count.liked
+    }  
+    } 
     res.status(200).json({
         status:true,
         count:data.length,
@@ -95,7 +133,7 @@ exports.deleteComment = asynchandler(async (req,res,next)=>{
 
 
 //@desc to add comment to the post 
-//@url  POST api/v1/post/comment/:postid
+//@url  POST api/v1/post/comment
 //@access Private 
 
 exports.setComment  = asynchandler(async (req,res,next)=>{
@@ -106,7 +144,7 @@ exports.setComment  = asynchandler(async (req,res,next)=>{
             description:req.body.description,
             comment:{
                 connect:{
-                    id:req.params.postid
+                    id:req.body.id
             },
         },
             usercomment:{

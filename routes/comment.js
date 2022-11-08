@@ -12,7 +12,9 @@ routes.route('/like/:cid').get(protect,comment.getLike).post(protect,comment.lik
 routes.route('/delete/:cid').delete(protect,comment.deleteComment)
 routes.route('/reply/delete/:rid').delete(protect,comment.deleteReply)
 routes.route('/reply/update/:rid').patch(protect,comment.updateReply)
-routes.route('/:postid').get(protect,comment.getComments).post(protect,comment.setComment);
+
 routes.route('/reply/like/:id').post(protect,comment.likeReplay)
+routes.route('/:postid').get(protect,comment.getComments)
+routes.route('/').post(protect,comment.setComment);
 //exporting the route module
 module.exports = routes
