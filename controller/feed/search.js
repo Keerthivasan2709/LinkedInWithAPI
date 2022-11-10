@@ -10,7 +10,7 @@ const ErrorResponse  = require('../../utils/errorhandler');
 exports.searchForContent  =  asynchandler( async (req,res,next)=>{
   try{
     if(!req.params.keyword) return next(new ErrorResponse("search element not found",402))
-    let search = {search:req.params.keyword}
+    let search = {contains:req.params.keyword}
     let data =  await Promise.allSettled([
      client.profile.findMany({
         take:3,
@@ -22,6 +22,7 @@ exports.searchForContent  =  asynchandler( async (req,res,next)=>{
             {tagDescription:search}
          ]
         },
+        
         
         select:{
             id:true,
@@ -39,29 +40,22 @@ exports.searchForContent  =  asynchandler( async (req,res,next)=>{
             id:true,
             title:true,
             description:true,
+            logpic:true,
         },
-        orderBy:{
-            _relevance:{
-                fields:['title','description'],
-                search: req.params.keyword,
-                sort:'asc'
-            }
-        }
+        where:{
+           OR:[
+            {title:search},
+            {description:search},
+
+           ]
+        },
     }),
     client.posts.findMany({
         take:3,
         where:{
-            OR:[ {
-            title:{
-                search:req.params.keyword
-            }  
-            },
-            {
-                description:{
-                    search:req.params.keyword
-                }
-            }  
-        ]
+            OR:[ {title:search},
+            {description:search},
+            ]  
         },
         select:{
             id:true,
@@ -85,15 +79,46 @@ exports.searchForContent  =  asynchandler( async (req,res,next)=>{
         
         
     }),
-    
+    client.hashtag.findMany({
+        where:{
+            OR:[
+                {tag:search}
+            ]
+        }
+    })
 
 
 ])
 console.log(data)
 let result = []
-for(let i=0;i<data.length;i++){
-    if(data[i].status=='fulfilled') result.push(data[i].value)
+let temp = []
+if(data[0].status=='fulfilled') result.push(data[0].value);
+if(data[1].status=='fulfilled') {
+    data[1].value.forEach(ele=>{
+        let obj = {} 
+        obj.id = ele.id
+        obj.description = ele.description
+        obj.profilepic = ele.logpic 
+        obj.firstName  = ele.title 
+        obj.lastName = ""
+        temp.push(obj)
+
+    })
+    result.push([...temp])
+}
+if(data[2].status=='fulfilled'){
+    temp = []
     
+    data[2].value.forEach(ele=>{
+        let obj ={} 
+        obj.id = ele.id
+        obj.description = ele.title
+        obj.profilepic = ele.userpost.profilepic 
+        obj.firstName  = ele.userpost.firstName
+        obj.lastName = ""
+        temp.push(obj) 
+    })
+    result.push([...temp])
 }
 res.status(200).json({
     status:true,

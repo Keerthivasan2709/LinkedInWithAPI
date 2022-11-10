@@ -5,6 +5,8 @@ const ErrorResponse = require("../../utils/errorhandler");
 const { generateTokenResponce } = require("../../utils/generateToken");
 const {User,Profile,Address} = require('../../utils/validation');
 
+
+
 //@desc  To verify the user througth
 //@url   POST api/v1/user/verify/
 //@access Public
@@ -133,7 +135,64 @@ exports.verifyRegistration = asynchandler(async (req, res, next) => {
     } catch (err) {
       return next(new c("Unable to set token", 406));
     }
-   
+    if("student" == role.toLowerCase()){
+      let organ = await client.institution.findFirst({
+        where:{
+          name:{
+            contains:organization,
+            mode:'insensitive'
+          }
+        
+        }
+      })
+      await client.userEducation.create({
+        data:{
+          startDate: new Date(startDate),
+          endDate:new Date(endDate),
+          course:course,
+          student:{
+            connect:{
+              id:organ.id
+            }
+          },
+          useredu:{
+            connect:{
+              id:data2.id,
+            }
+          }
+        }
+      })
+    }
+    else{
+      let organ = await client.company.findFirst({
+        where:{
+          name:{
+            contains:organization,
+            mode:'insensitive'
+          }
+        
+        }
+      })
+      await client.userCompany.create({
+        data:{
+          startDate:new Date(startDate),
+          endDate:new Date(endDate),
+          position:course,
+          company:{
+            connect:{
+              id:organ.id,
+            }
+           
+          },
+          usercompany:{
+            connect:{
+              id:data2.id,
+            }
+          }
+        }
+      })
+    }
+    
     // // creating the role data 
     // if ("student" == role.toLowerCase()) {
     //   // console.log("student entry")
@@ -201,7 +260,9 @@ exports.verifyRegistration = asynchandler(async (req, res, next) => {
       .json({ status: true, token })
       .end();
   } catch (err) {
-    
+    // await client.users.delete({
+    //   where:{}
+    // })
     return next(new ErrorResponse(err.message, 401));
   }
 });

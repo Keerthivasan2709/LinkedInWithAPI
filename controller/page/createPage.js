@@ -7,11 +7,12 @@ const asynchandler = require("../../middleware/asynchandler");
 const ErrorResponse = require('../../utils/errorhandler') ;
 const {activityUpdate} = require('../../utils/activityManager'); 
 const client = require("../../utils/database");
+const { uploads } = require("../../utils/cloudnary");
+const fs = require('fs')
 exports.createPage = asynchandler( async (req,res,next)=>{
 let {
     title,
     websitelink,
-    logopic,
     description,
     pagetype,
 } = req.body 
@@ -24,13 +25,16 @@ let {
    })
   }
   catch(err){ return next(new ErrorResponse("Cannot create more than one page",402))}
+   const {path} = req.files[0]
+   const url = await uploads(path)
+   fs.unlinkSync(path)
 
    const data = await client.page.create({
     data:{
         
         title,
         websitelink,
-        logpic:logopic,
+        logpic:url,
         description,
         pagetype,
         belongsto:req.user.id

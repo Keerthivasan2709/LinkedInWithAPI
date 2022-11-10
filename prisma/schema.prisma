@@ -21,33 +21,32 @@ model Users {
 }
 
 model Profile {
-  id                  String                @id @unique @default(uuid())
-  firstName           String?               @default("add a firstname")
-  lastName            String?               @default("add a lastname")
-  userid              String                @unique
-  profilepic          String                @default("file/defaultImage.jpg")
-  mobileNumber        String?               @unique
-  description         String?               @default("provide description")
-  tagDescription      String?               @default("provide short description")
-  addressid           String
-  backgroundpic       String                @default("file/defaultBackgorund.jpg")
-  premium             Boolean               @default(false)
-  activity            Activity[]
-  usercomments        Comments[]
-  postliked           Like[]
-  posts               Posts[]
-  userreply           Reply[]
-  replyliked          ReplyLike[]
-  skills              Skill[]
-  companys            UserCompany[]
-  usereducation       UserEducation[]
-  viewer              Viewer[]              @relation("viewer")
-  viewed              Viewer[]              @relation("viewed")
-  commentliked        commentLike[]
- 
-  hashtags            Hashtag[]
-  following           Page[]
-  followedAds         advertisement[]
+  id             String          @id @unique @default(uuid())
+  firstName      String?         @default("add a firstname")
+  lastName       String?         @default("add a lastname")
+  userid         String          @unique
+  profilepic     String          @default("file/defaultImage.jpg")
+  mobileNumber   String?         @unique
+  description    String?         @default("provide description")
+  tagDescription String?         @default("provide short description")
+  addressid      String
+  backgroundpic  String          @default("file/defaultBackgorund.jpg")
+  premium        Boolean         @default(false)
+  activity       Activity[]
+  usercomments   Comments[]
+  postliked      Like[]
+  posts          Posts[]
+  userreply      Reply[]
+  replyliked     ReplyLike[]
+  skills         Skill[]
+  companys       UserCompany[]
+  usereducation  UserEducation[]
+  viewer         Viewer[]        @relation("viewer")
+  viewed         Viewer[]        @relation("viewed")
+  commentliked   commentLike[]
+  hashtags       Hashtag[]
+  following      Page[]
+  followedAds    advertisement[]
 
   @@index([firstName, lastName, description, tagDescription])
 }
@@ -87,7 +86,7 @@ model UserEducation {
 }
 
 model Institution {
-  logo        String      
+  logo        String
   id          String          @id @unique @default(uuid())
   name        String
   createdAt   DateTime        @default(now())
@@ -99,7 +98,6 @@ model Institution {
 }
 
 model UserCompany {
-  
   profileid   String
   position    String
   companyid   String
@@ -159,9 +157,9 @@ model Posts {
   comments    Comments[]
   likes       Like[]
   hashtag     Hashtag[]
+  news        News[]
   pages       Page[]
   data        postData[]
-  news        News[]
 
   @@index([description, title])
 }
@@ -325,24 +323,23 @@ model transaction {
 }
 
 model News {
-  id         Int        @id @default(autoincrement())
+  id         Int      @id @default(autoincrement())
   title      String
   doneBy     String
-  newsDetail String     @db.VarChar(500)
-  createdAt  DateTime   @default(now())
-  updateAt   DateTime   @updatedAt
-  readers    Int        @default(0)
+  newsDetail String   @db.VarChar(500)
+  createdAt  DateTime @default(now())
+  updateAt   DateTime @updatedAt
+  readers    Int      @default(0)
   newsPost   Posts[]
 }
 
 model Hashtag {
-  id        Int        @id @default(autoincrement())
-  tag       String     @unique
-  createdAt DateTime   @default(now())
-  upadateAt DateTime   @updatedAt
+  id        Int       @id @default(autoincrement())
+  tag       String    @unique
+  createdAt DateTime  @default(now())
+  upadateAt DateTime  @updatedAt
   posts     Posts[]
   following Profile[]
-  
 }
 
 model advertisement {
@@ -366,7 +363,21 @@ model adsControll {
   advertismentId advertisement @relation(fields: [id], references: [id])
 }
 
-
+model Administrator {
+  id               String   @id @default(uuid())
+  name             String
+  position         String
+  profilepicture   String   @db.Text
+  username         String   @unique
+  password         String
+  email            String   @unique
+  token            String?
+  forgotpasstocken String?
+  verified         Boolean  @default(false)
+  createdat        DateTime @default(now())
+  Updatedat        DateTime @updatedAt
+  phonenumber      String   @db.VarChar(10)
+}
 
 enum PlanStatus {
   ACTIVE

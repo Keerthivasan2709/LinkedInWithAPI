@@ -9,7 +9,9 @@ const asynchandler = require('../../middleware/asynchandler')
 exports.listdata = asynchandler(async (req,res,next)=>{
        if(!req.query) return next(new ErrorResponse("invaild query parameter",500))
        let data;
-       if(req.query == "college"){
+       console.log("college".localeCompare(req.query.type) )
+       if("college".localeCompare(req.query.type)==0){
+        console.log('in')
         data = await client.institution.findMany({
             select:{
                 instituteId:true,
@@ -25,6 +27,11 @@ exports.listdata = asynchandler(async (req,res,next)=>{
                 name:true
             }
         })
+       }
+       for await(let ele of data){
+          if(ele.companyid) ele.id = ele.companyid;
+          else ele.id = ele.instituteId ; 
+           
        }
        if(!data) return next(new ErrorResponse('invaild query parameter',404))
        res.status(200).json({
