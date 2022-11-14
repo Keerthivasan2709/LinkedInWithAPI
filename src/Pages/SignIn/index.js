@@ -2,12 +2,10 @@ import React, { useEffect, useState } from "react";
 import Button from "../../Components/Button/Button";
 import Footer from "../../Components/Footer/Footer";
 import Card from "../../Components/Card/Card";
-import { Login } from "../../Assets/Url";
 import {
   validateEmail,
   validatePassword,
   validatePhone,
-  validateUserName,
 } from "../../Utils/Regex";
 import { Navigate, Redirect } from "react-router-dom";
 function Signin() {

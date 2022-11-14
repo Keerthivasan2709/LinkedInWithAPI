@@ -7,7 +7,7 @@ function AdvancedCard({ heading, subHeading, list }) {
       <p className="smallText grey mb-1">{subHeading}</p>
       {list.map((data) => {
         return (
-          <div className="jobsHover">
+          <div className="jobsHover" key={data.role}>
             <Link to="/jobs/123">
               <div className="d-flex mt-2 justify-content-between align-items-start">
                 <div className="mt-2 mb-2 d-flex flex-row align-items-start gap-2">

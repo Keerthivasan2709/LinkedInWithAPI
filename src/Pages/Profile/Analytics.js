@@ -5,7 +5,7 @@ export default class Analytics extends Component {
   render() {
     return (
       <div className="card mt-2 p-5">
-        <p className="heading2 makeBold mb-2" style={{ marginBottom: "1px" }}>
+        <p className="heading2 makeBold mb-2" style={{ marginBottom: "4px" }}>
           Analytics
         </p>
         <div className="d-flex flex-row gap-2">
@@ -14,9 +14,9 @@ export default class Analytics extends Component {
         </div>
 
         <div className=" mt-3 d-flex flex-row gap-5">
-          {AnalyticsList.map((d) => {
+          {AnalyticsList.map((d, index) => {
             return (
-              <div className="d-flex gap-5 align-items-start">
+              <div className="d-flex gap-5 align-items-start" key={index}>
                 <img src={d.img} />
                 <div className="d-flex flex-column">
                   <div className="d-flex makeBold gap-1 makeBlueLine">

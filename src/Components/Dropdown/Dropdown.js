@@ -1,20 +1,16 @@
 import React from "react";
 function Dropdown({ name, list, handleForm, className }) {
+  console.log(list);
   return (
-    <div
-      className={`${className} rounded-5`}
-      style={{
-        border: "1px solid rgb(133, 133, 133)",
-      }}
-    >
+    <div className={`${className} rounded-5`}>
       <select
         onChange={handleForm}
         name={name}
-        className="inputBox noBorder"
+        className="inputBox"
         style={{ padding: "8px" }}
       >
-        {list.map((data) => {
-          return <option key={data}>{data}</option>;
+        {list?.map((data) => {
+          return <option key={data.id}>{data.name}</option>;
         })}
       </select>
     </div>

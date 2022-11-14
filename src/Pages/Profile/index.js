@@ -95,7 +95,7 @@ function Profile() {
             </div>
             {SkillsList.map((data) => {
               return (
-                <div>
+                <div key={data.name}>
                   <p className="makeBold mt-1 mb-1">{data.name}</p>
                   <div className="d-flex mb-1 align-items-center gap-5">
                     <img src="https://res.cloudinary.com/dibccigcp/image/upload/v1664963003/index_t6htx7.svg" />
@@ -112,7 +112,7 @@ function Profile() {
           <div className="card">
             {connectedPeople.map((data) => {
               return (
-                <div>
+                <div key={data.name}>
                   <div className="list d-flex flex-row gap-1 mt-1 mb-1 align-items-start">
                     <img
                       src={data.profilepic}

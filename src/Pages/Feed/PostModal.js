@@ -82,7 +82,7 @@ function PostModal(props) {
                 </p>
               </div>
             </div>
-            <Link to="" className="d-flex" style={{ marginRight: "10px" }}>
+            <Link to="" className="d-flex" style={{ marginRight: "8px" }}>
               <img src="https://res.cloudinary.com/dibccigcp/image/upload/v1664264181/Add_mh0lce.svg" />
               <div>Follow</div>
             </Link>
@@ -93,23 +93,23 @@ function PostModal(props) {
           </div>
           <div
             className="tags d-flex flex-row gap-1"
-            style={{ flexWrap: "wrap", marginTop: "30px" }}
+            style={{ flexWrap: "wrap", marginTop: "32px" }}
           >
             {props.data.data.hashtag.map((e) => {
               return (
-                <Link to="/" style={{ marginLeft: "10px" }}>
+                <Link to="/" style={{ marginLeft: "8px" }} key={e.tag}>
                   #{e.tag}
                 </Link>
               );
             })}
           </div>
-          <div className="comments" style={{ margin: "20px 10px" }}>
+          <div className="comments" style={{ margin: "16px 8px" }}>
             <PostComment data={count} />
           </div>
           <div className="vr"></div>
           <div
             className="d-flex justify-content-between p-2"
-            style={{ margin: "10px" }}
+            style={{ margin: "8px" }}
           >
             <div style={{ position: "relative" }} className="likeReaction">
               <LikeReaction postId={props.data.data.id} setCount={setCount} />
@@ -141,7 +141,7 @@ function PostModal(props) {
               className="sm-hide send"
             />
           </div>
-          <div className="show" style={{ margin: "15px" }}>
+          <div className="show" style={{ margin: "16px" }}>
             <Comments getRef={setRef} />
           </div>
         </div>

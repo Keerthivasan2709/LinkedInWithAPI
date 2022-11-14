@@ -1,56 +1,144 @@
 export const Country = [
-  "India",
-  "Australia",
-  "China",
-  "Sri Lanka",
-  "US",
-  "Russia",
-  "Canada",
+  {
+    id: "id002",
+    name: "India",
+  },
+  {
+    id: "id003",
+    name: "Australia",
+  },
+  {
+    id: "id004",
+    name: "China",
+  },
+  {
+    id: "id005",
+    name: "Srilanka",
+  },
+  {
+    id: "id006",
+    name: "US",
+  },
+  {
+    id: "id007",
+    name: "Russia",
+  },
+  {
+    id: "id008",
+    name: "Canada",
+  },
 ];
 export const State = [
-  "Kerala",
-  "TamilNadu",
-  "Madhya Pradesh",
-  "Andhra Pradesh",
-  "Khyber Pakhtunkhwa	",
-  "Sindh",
-  "Peshawar",
-  "Lahore",
+  {
+    id: "id001",
+    name: "TamilNadu",
+  },
+  {
+    id: "id002",
+    name: "Kerala",
+  },
+  {
+    id: "id003",
+    name: "Madhya pradesh",
+  },
+  {
+    id: "id004",
+    name: "Andhra pradesh",
+  },
+  {
+    id: "id005",
+    name: "Sindh",
+  },
+  {
+    id: "id006",
+    name: "Peshawar",
+  },
+  {
+    id: "id007",
+    name: "Lahore",
+  },
+  {
+    id: "id008",
+    name: "Khyber Pakhtunkhwa",
+  },
 ];
-export const Organisation = [
-  "Codingmart Technologies",
-  "Wipro Limited",
-  "Zoho Corporation",
-  "Google",
-  "Netflix",
-  "Amazon",
-  "Microsoft",
-  "Quinbay",
-];
+
 export const role = [
-  "Web Developer",
-  "FrontEnd Developer",
-  "DevOps",
-  "Backend Developer",
-  "App Developer",
-  "BA",
-  "Trainer",
-  "Tester",
-  "CA",
+  {
+    id: "id001",
+    name: "Web developer",
+  },
+  {
+    id: "id002",
+    name: "Frontend Developer",
+  },
+  {
+    id: "id003",
+    name: "Devops",
+  },
+  {
+    id: "id004",
+    name: "Backend Developer",
+  },
+  {
+    id: "id005",
+    name: "App Developer",
+  },
+  {
+    id: "id006",
+    name: "QA",
+  },
+  {
+    id: "id007",
+    name: "Trainer",
+  },
+  {
+    id: "id008",
+    name: "Tester",
+  },
+  {
+    id: "id009",
+    name: "Business Analyst",
+  },
 ];
-export const college = [
-  "K.S.Rangasamy College of Technology",
-  "K.S.Rangasamy College of Engineering",
-  "Karpagam College of Technology",
-  "SRM College of Engineering",
-];
+
 export const Degree = [
-  "BE Computer Science and Engineering",
-  "BE Mechnical Engineering",
-  "BE Electrical and Electronic Engineering",
-  "BE Chemical Engineering",
-  "BE Elctronic and Communication Engineering",
-  "BE Information Technology",
+  {
+    id: "id001",
+    name: "BE Computer Science and Engineering",
+  },
+  {
+    id: "id001",
+    name: "BE Mechnical Engineering",
+  },
+  {
+    id: "id001",
+    name: "BE Electrical and Electronic Engineering",
+  },
+  {
+    id: "id001",
+    name: "BE Chemical Engineering",
+  },
+  {
+    id: "id001",
+    name: "BE Elctronic and Communication Engineering",
+  },
+  {
+    id: "id001",
+    name: "BE Information Technology",
+  },
+  {
+    id: "id001",
+    name: "US",
+  },
+  {
+    id: "id001",
+    name: "US",
+  },
+  {
+    id: "id001",
+    name: "US",
+  },
 ];
 export const countryCode = ["+1", "+44", "+91", "+86", "+61"];
 
@@ -764,22 +852,68 @@ export const AdvertisingData = [
 ];
 
 export const organizationSize = [
-  "0-1 employee",
-  "2-10 employee",
-  "10-50 employee",
-  "50-100 employee",
-  "100-200employee",
-  "200-300 employee",
-  "300-500 employee",
-  "500-1000 employee",
-  "1000-2000 employee",
-  "Above 2000 employee",
+  {
+    id: "id001",
+    name: "0-1 employee",
+  },
+  {
+    id: "id001",
+    name: "2-10 employee",
+  },
+  {
+    id: "id001",
+    name: "10-50 employee",
+  },
+  {
+    id: "id001",
+    name: "50-100 employee",
+  },
+  {
+    id: "id001",
+    name: "100-200employee",
+  },
+  {
+    id: "id001",
+    name: "200-300 employee",
+  },
+  {
+    id: "id001",
+    name: "300-500 employee",
+  },
+  {
+    id: "id001",
+    name: "500-1000 employee",
+  },
+  {
+    id: "id001",
+    name: "1000-2000 employee",
+  },
+  {
+    id: "id001",
+    name: "Above 2000 employee",
+  },
 ];
 
 export const organisationType = [
-  "Public company",
-  "Private company",
-  "Sel-employed",
-  "Internship",
-  "Traning",
+  {
+    id: "id001",
+    name: "Public company",
+  },
+  {
+    id: "id001",
+    name: "Private company",
+  },
+  {
+    id: "id001",
+    name: "Self-employed",
+  },
+  {
+    id: "id001",
+    name: "Internship",
+  },
+
+  {
+    id: "id001",
+    name: "Trainig",
+  },
 ];

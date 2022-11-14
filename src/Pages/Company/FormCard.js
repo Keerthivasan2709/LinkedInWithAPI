@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useState } from "react";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
@@ -5,10 +6,30 @@ import { organisationType, organizationSize } from "../../Assets/Lists";
 import Dropdown from "../../Components/Dropdown/Dropdown";
 
 function FormCard({ data }) {
+  console.log(data.link);
+  let formData = new FormData();
   const [state, setState] = useState();
+  const [image, setImage] = useState();
   useEffect(() => {
     console.log(state);
   }, [state]);
+  const handleSubmit = () => {
+    for (let key in state) {
+      formData.append(`${key}`, state[key]);
+    }
+    console.log(`${process.env.REACT_APP_API_KEY}${data.link}`);
+    formData.append("photourl", image);
+    data.link ? (
+      axios
+        .post(`${process.env.REACT_APP_API_KEY}${data.link}`, formData, {
+          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+        })
+        .then((res) => console.log(res.data))
+        .catch((err) => console.log(err))
+    ) : (
+      <></>
+    );
+  };
   return (
     <div className="headflex mt-2">
       <p className="smallText grey mb-1">*indicates required</p>
@@ -25,25 +46,28 @@ function FormCard({ data }) {
             className="card p-2 d-flex flex-column gap-2"
             style={{ padding: "30px 20px" }}
           >
-            {data.data.map((d) => {
+            {data.data.map((d, index) => {
               return d.renderType === "text" ? (
-                <Link to="">{d.name}</Link>
+                <Link to="" key={index}>
+                  {d.name}
+                </Link>
               ) : d.renderType === "paragraph" ? (
-                <>
+                <div key={index}>
                   <label>{d.name}</label>
                   <textarea
                     rows="5"
                     className="rounded-5px"
+                    name={d.label}
                     onChange={(e) =>
                       setState({
                         ...state,
-                        [d.name]: e.target.value,
+                        [d.label]: e.target.value,
                       })
                     }
                   ></textarea>
-                </>
+                </div>
               ) : (
-                <div className="d-flex flex-column">
+                <div className="d-flex flex-column" key={index}>
                   <label>{d.name}</label>
                   {d.type === "text" ? (
                     <input
@@ -53,10 +77,11 @@ function FormCard({ data }) {
                         padding: "8px",
                         border: "1px solid rgb(133, 133, 133)",
                       }}
+                      name={d.label}
                       onChange={(e) =>
                         setState({
                           ...state,
-                          [d.name]: e.target.value,
+                          [d.label]: e.target.value,
                         })
                       }
                     />
@@ -65,7 +90,7 @@ function FormCard({ data }) {
                       handleForm={(e) =>
                         setState({
                           ...state,
-                          [d.name]: e.target.value,
+                          [d.label]: e.target.value,
                         })
                       }
                       list={
@@ -78,6 +103,9 @@ function FormCard({ data }) {
                   ) : (
                     <input
                       type="file"
+                      onChange={(e) => {
+                        setImage(e.target.files[0]);
+                      }}
                       className="rounded-5px bg-transparent mb-1"
                       style={{
                         padding: "8px",
@@ -96,7 +124,7 @@ function FormCard({ data }) {
               <input
                 type="checkbox"
                 id="verification"
-                style={{ marginRight: "10px" }}
+                style={{ marginRight: "16px" }}
               />
               <label for="verification" className="grey">
                 I verify that I am an authorized representative of this
@@ -112,6 +140,7 @@ function FormCard({ data }) {
           <button
             style={{ width: "auto", float: "right" }}
             className="btn btnPrimary mt-2"
+            onClick={handleSubmit}
           >
             Create Page
           </button>

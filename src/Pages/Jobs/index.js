@@ -42,13 +42,15 @@ function Jobs() {
               className="list w-100 d-flex suggestedJobs flex-wrap gap-2 sm-scroll"
               style={{ padding: "10px" }}
             >
-              {suggestedJobs.map((data) => {
+              {suggestedJobs.map((data, index) => {
                 return (
-                  <Button
-                    name={data}
-                    imgSrc="https://res.cloudinary.com/dibccigcp/image/upload/v1665039528/index_iy3rs9.svg"
-                    className="searchBtn pointer btnBlue"
-                  />
+                  <div key={index}>
+                    <Button
+                      name={data}
+                      imgSrc="https://res.cloudinary.com/dibccigcp/image/upload/v1665039528/index_iy3rs9.svg"
+                      className="searchBtn pointer btnBlue"
+                    />
+                  </div>
                 );
               })}
             </div>

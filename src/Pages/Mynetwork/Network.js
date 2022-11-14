@@ -34,7 +34,7 @@ function Network() {
         <p className="smallHeading p-2">People you may follow</p>
         <div className="bold grey">See All</div>
       </div>
-      <div className="gridNetwork gap-2 list" style={{ margin: "20px 0px" }}>
+      <div className="gridNetwork gap-2 list" style={{ margin: "16px 0px" }}>
         {recommendation.map((data) => {
           return <NetworkList data={data} />;
         })}

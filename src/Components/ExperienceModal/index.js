@@ -9,9 +9,9 @@ import Toggle from "../Toggle";
 function ExperienceModal() {
   return (
     <div>
-      <div id="myModal" class="modal" style={{ display: "block" }}>
+      <div id="myModal" className="modal" style={{ display: "block" }}>
         <div
-          class="modal-content sm-w-100"
+          className="modal-content sm-w-100"
           style={{ overflowY: "scroll", height: "85vh", maxWidth: "700px" }}
         >
           <div
@@ -25,7 +25,7 @@ function ExperienceModal() {
             <div className="d-flex flex-row justify-content-between align-items-center">
               <p>Edit Experience</p>
               <Link to="/profile">
-                <span class="close">&times;</span>
+                <span className="close">&times;</span>
               </Link>
             </div>
             <div className="hr"></div>

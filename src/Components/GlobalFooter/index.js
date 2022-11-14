@@ -73,9 +73,9 @@ function GlobalFooter() {
         {footerLinks.map((d) => {
           return (
             <div className="d-flex flex-column gap-2">
-              {d.map((data) => {
+              {d.map((data, index) => {
                 return (
-                  <Link to={data.link} className="grey smallText">
+                  <Link to={data.link} key={index} className="grey smallText">
                     {data.name}
                   </Link>
                 );

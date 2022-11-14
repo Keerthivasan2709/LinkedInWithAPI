@@ -3,15 +3,21 @@ import { Country, State } from "../../../Assets/Lists";
 import Button from "../../../Components/Button/Button";
 import Input from "../../../Components/Input/Input";
 import Dropdown from "../../../Components/Dropdown/Dropdown";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { joinDetails } from "../../../Reducers/JoinNow";
 
-function Location() {
+function Location({ setRender }) {
   const data = useSelector((state) => state.joinNow);
-  const handleForm = () => {
-    joinDetails();
+  const dispatch = useDispatch();
+  const handleForm = (e) => {
+    var { name, value } = e.target;
+    let obj = [];
+    obj[name] = value;
+    dispatch(joinDetails(obj));
   };
-  const handleSubmit = () => {};
+  const handleSubmit = () => {
+    setRender(3);
+  };
   return (
     <div
       className={`gap-5 p-2 my-2 d-flex flex-column justify-content-between`}

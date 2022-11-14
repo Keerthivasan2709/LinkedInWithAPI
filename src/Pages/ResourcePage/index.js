@@ -24,7 +24,7 @@ function ResourcePage() {
             <div className=" p-5">
               <div
                 className="d-flex align-items-center gap-5"
-                style={{ marginBottom: "30px" }}
+                style={{ marginBottom: "32px" }}
               >
                 <Link to="/profile">
                   <img src="https://res.cloudinary.com/dibccigcp/image/upload/v1666798040/index_tbcogy.svg" />
@@ -36,7 +36,7 @@ function ResourcePage() {
               {list.map((d, index) => {
                 return (
                   <>
-                    <div className="mt-2 d-flex gap-5">
+                    <div className="mt-2 d-flex gap-5" key={index}>
                       <img src={d.img} />
                       <div>
                         <p className="makeBold">{d.title}</p>

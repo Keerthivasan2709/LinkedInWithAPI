@@ -1,11 +1,13 @@
 import axios from "axios";
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import Button from "../../../Components/Button/Button";
-import Card from "../../../Components/Card/Card";
 import Input from "../../../Components/Input/Input";
+import { joinDetails } from "../../../Reducers/JoinNow";
 
 function Email({ setRender }) {
   const [form, setForm] = useState({ email: "", password: "" });
+  const dispatch = useDispatch();
   const handleForm = (e) => {
     const { name, value } = e.target;
     const obj = {};
@@ -18,14 +20,17 @@ function Email({ setRender }) {
         email: form.email,
       })
       .then((res) => {
-        res.status === 200 ? setRender(1) : alert("User existing");
+        if (res.status === 200) {
+          dispatch(joinDetails({ email: form.email, password: form.password }));
+          setRender(1);
+        }
       })
       .catch((err) => alert("User existing"));
   };
   return (
     <div
       className={`p-2 my-2 d-flex flex-column align-items-center gap-5 rounded-5`}
-      style={{ maxWidth: "320px" }}
+      style={{ width: "30%" }}
     >
       <div className="d-flex flex-column w-100">
         <label>Email</label>

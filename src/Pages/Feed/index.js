@@ -14,6 +14,7 @@ import SideBar from "../../Components/SideBar";
 import LoadingAnimation from "../../Components/LoadingAnimation";
 import { useDispatch } from "react-redux";
 import { addDetails } from "../../Reducers/Profile";
+import Suggestion from "../../Components/Suggestion";
 export const PostContext = createContext();
 function Feed() {
   document.title = "Feed | LinkedIn";

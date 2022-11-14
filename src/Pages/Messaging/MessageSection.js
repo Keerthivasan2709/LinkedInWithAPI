@@ -21,10 +21,11 @@ function MessageSection() {
         </div>
         <div className="vr"></div>
         <div className="d-flex flex-column">
-          {MessagingList.map((data) => {
+          {MessagingList.map((data, index) => {
             return (
               <>
                 <Link
+                  key={index}
                   to=""
                   style={{ padding: "10px", color: "black", fontWeight: "400" }}
                   className="hoverBackground"
@@ -67,7 +68,7 @@ function MessageSection() {
             </div>
           </div>
           <div className="vr"></div>
-          <div style={{ margin: "15px" }} className="d-flex flex-column gap-2">
+          <div style={{ margin: "16px" }} className="d-flex flex-column gap-2">
             <img
               src={messageDetails.img}
               className="rounded"
@@ -86,7 +87,7 @@ function MessageSection() {
           </div>
           <div
             className="messagingSection d-flex flex-row align-items-center gap-5"
-            style={{ margin: "15px" }}
+            style={{ margin: "16px" }}
           >
             <img
               style={{ alignSelf: "flex-start", maxWidth: "40px" }}

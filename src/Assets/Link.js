@@ -1567,6 +1567,7 @@ export const pageBuilder = {
   Company: {
     data: [
       {
+        label: "title",
         name: "Name*",
         type: "text",
         placeholder: "Add your organisation's name",
@@ -1576,35 +1577,42 @@ export const pageBuilder = {
         name: "Learn more about the Page Public URL",
       },
       {
+        label: "tagDescription",
         name: "linkedin.com/school/*",
         type: "text",
         placeholder: "Add your unique Linkedin address",
       },
       {
+        label: "websitelink",
         name: "Website",
         type: "text",
         placeholder: "Begin with http://, https://, or www",
       },
       {
+        label: "name",
         name: "Industry*",
         type: "text",
         placeholder: "ex: Information service",
       },
       {
+        label: "pagesize",
         name: "Organization size *",
         type: "dropdown",
-        value: "",
+        value: [],
       },
       {
+        label: "pagetype",
         name: "Organization type*",
         type: "dropdown",
         value: [],
       },
       {
+        label: "logopic",
         name: "Logo",
         type: "file",
       },
       {
+        label: "description",
         renderType: "paragraph",
         name: "Tagline",
         type: "text",
@@ -1618,6 +1626,7 @@ export const pageBuilder = {
   "Showcase pages": {
     data: [
       {
+        label: "title",
         name: "Name*",
         type: "text",
         placeholder: "Add your organisation's name",
@@ -1627,35 +1636,42 @@ export const pageBuilder = {
         name: "Learn more about the Page Public URL",
       },
       {
-        name: "linkedin.com/school/*",
+        label: "linkedinaddress",
+        name: "linkedin.com/Showcase/*",
         type: "text",
         placeholder: "Add your unique Linkedin address",
       },
       {
+        label: "websitelink",
         name: "Website",
         type: "text",
         placeholder: "Begin with http://, https://, or www",
       },
       {
+        label: "industryName",
         name: "Industry*",
         type: "text",
         placeholder: "ex: Information service",
       },
       {
+        label: "organizationsize",
         name: "Organization size *",
         type: "dropdown",
         value: "",
       },
       {
+        label: "organizationtype",
         name: "Organization type*",
         type: "dropdown",
         value: [],
       },
       {
+        label: "photourl",
         name: "Logo",
         type: "file",
       },
       {
+        label: "description",
         renderType: "paragraph",
         name: "Tagline",
         type: "text",
@@ -1664,6 +1680,7 @@ export const pageBuilder = {
       },
     ],
     name: "Showcase pages",
+    link: "/page/create",
     img: "https://res.cloudinary.com/dibccigcp/image/upload/v1667722067/2nozouqfl4dxqy8iv6mergx0v_px03qr.svg",
   },
   "Educational institution": {

@@ -47,10 +47,11 @@ function Company() {
           Connect with clients, employees, and the LinkedIn community. To get
           started, choose a page type.
         </p>
-        <div className="d-flex gap-5" style={{ marginTop: "4rem" }}>
-          {list.map((d) => {
+        <div className="d-flex gap-5" style={{ marginTop: "32px" }}>
+          {list.map((d, index) => {
             return (
               <div
+                key={index}
                 className="card d-flex flex-column align-items-center companyCard justify-content-center companyType pointer"
                 style={{
                   flexWrap: "wrap",
@@ -59,7 +60,7 @@ function Company() {
                 onClick={() => handleClick(d.heading)}
               >
                 <img src={d.img} style={{ width: "40px" }} />
-                <p className="makeBold" style={{ marginTop: "1.5rem" }}>
+                <p className="makeBold" style={{ marginTop: "16px" }}>
                   {d.heading}
                 </p>
                 <div style={{ textAlign: "center" }}>{d.desc}</div>
@@ -67,7 +68,7 @@ function Company() {
             );
           })}
         </div>
-        <div style={{ position: "relative", marginTop: "5rem" }}>
+        <div style={{ position: "relative", marginTop: "32px" }}>
           <img
             src="https://res.cloudinary.com/dibccigcp/image/upload/v1667719823/ev2ewp91pnvtl0gcyt4xht0b5_hwbhmd.png"
             className="DesktopImg"

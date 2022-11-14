@@ -42,6 +42,7 @@ function NetworkList({ data }) {
   }
   return (
     <div
+      key={data.firstName}
       className="list card d-flex flex-column gap-2 justify-content-between"
       style={{
         position: "relative",
@@ -131,7 +132,7 @@ function NetworkList({ data }) {
           </div>
         </div>
       </div>
-      <div className="d-flex gap-2" style={{ margin: "0px 20px" }}>
+      <div className="d-flex gap-2" style={{ margin: "0px 16px" }}>
         {data.firstName ? (
           state === "initial" ? (
             <button

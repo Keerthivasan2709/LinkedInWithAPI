@@ -29,12 +29,12 @@ function SettingOptions() {
   return (
     <>
       <div
-        style={{ margin: "10px" }}
+        style={{ margin: "8px" }}
         className="d-flex flex-column gap-2 align-items-center"
       >
-        {state.map((d) => {
+        {state.map((d, index) => {
           return (
-            <div className="card" style={{ width: "50%" }}>
+            <div className="card" style={{ width: "50%" }} key={index}>
               <h3 style={{ padding: "10px" }}>{d[0]}</h3>
               {d[1].map((d) => {
                 return (
@@ -62,6 +62,7 @@ function SettingOptions() {
             {FooterLink.map((d) => {
               return (
                 <Link
+                  key={d.name}
                   style={{ color: "black", fontWeight: "300" }}
                   className="smallText"
                   to={d.link}

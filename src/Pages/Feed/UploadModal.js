@@ -25,7 +25,7 @@ function UploadModal({ setModalRef }) {
         <div className="modal-content w-40 p-2" style={{ width: "100%" }}>
           <input type="file" ref={inputFile} multiple onChange={showImage} />
           <span
-            class="close"
+            className="close"
             onClick={() => {
               modalRef.current.style.display = "none";
             }}

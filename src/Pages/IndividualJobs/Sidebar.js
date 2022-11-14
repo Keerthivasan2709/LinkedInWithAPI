@@ -11,10 +11,10 @@ function Sidebar() {
         Jobs based on your project
       </div>
       <div className="d-flex flex-column">
-        {suggestionList.map((data) => {
+        {suggestionList.map((data, index) => {
           return (
             <>
-              <div className="d-flex flex-row gap-2 p-2">
+              <div className="d-flex flex-row gap-2 p-2" key={index}>
                 <img src={data.image} />
                 <div className="d-flex flex-column gap-2">
                   <div className="d-flex flex-column gap-1">

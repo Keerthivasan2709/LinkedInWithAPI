@@ -1,7 +1,6 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import Modal from "../Components/Modal/Modal";
-import Dropdown from "../Pages/Dropdown";
 import Feed from "../Pages/Feed";
 import Jobs from "../Pages/Jobs";
 import Join from "../Pages/JoinNow";
@@ -16,16 +15,14 @@ import IndividualJobs from "../Pages/IndividualJobs";
 import LoadingAnimation from "../Components/LoadingAnimation";
 import ResourcePage from "../Pages/ResourcePage";
 import SideBar from "../Components/SideBar";
-import SkeletonLoader from "../Components/SkeletonLoader";
-import ProfileModal from "../Components/ProfileModal";
 import EducationalModal from "../Components/EducationalModal";
 import Premium from "../Pages/Premium";
 import Company from "../Pages/Company";
-import CompanyPage from "../Pages/Company/Company";
 function Router() {
   return (
     <>
       <Routes>
+        <Route path="/" element={<Signin />} />
         <Route path="/signin" element={<Signin />} />
         <Route path="/join" element={<Join />} />
         <Route path="/verify" element={<Modal />} />
@@ -49,6 +46,7 @@ function Router() {
         <Route path="/educationalModal" element={<EducationalModal />} />
         <Route path="/premium" element={<Premium />} />
         <Route path="/company/setup/new" element={<Company />} />
+        <Route path="/verify" element={<Modal />} />
       </Routes>
     </>
   );

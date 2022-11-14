@@ -5,11 +5,12 @@ function FeedFooter() {
   return (
     <div>
       <div style={{ padding: "10px" }} className="feedFooter">
-        {feedFooterLink.map((data) => {
+        {feedFooterLink.map((data, index) => {
           return (
             <Link
+              key={index}
               to={data.link}
-              style={{ marginTop: "10px" }}
+              style={{ marginTop: "16px" }}
               className="smallText black footerLink p-1"
             >
               {data.name}

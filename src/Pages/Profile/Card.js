@@ -10,9 +10,12 @@ function Card({ title, data, showSkill, imgSrc, link, skill }) {
         <p className="heading2 makeBold mb-2">{title}</p>
 
         <>
-          {data?.map((d) => {
+          {data?.map((d, index) => {
             return (
-              <div className="d-flex flex-row align-items-start gap-2">
+              <div
+                className="d-flex flex-row align-items-start gap-2"
+                key={index}
+              >
                 <img src={imgSrc} style={{ maxWidth: "50px" }} />
                 <div className="d-flex flex-column gap-1">
                   <p className="makeBold">{d.course}</p>
@@ -26,7 +29,7 @@ function Card({ title, data, showSkill, imgSrc, link, skill }) {
                     <div style={{ fontSize: "15px" }}>
                       <span className="makeBold">Skills: </span>
                       {skill?.map((d) => {
-                        return <span>{d.name}</span>;
+                        return <span key={d.name}>{d.name}</span>;
                       })}
                     </div>
                   ) : (

@@ -39,15 +39,17 @@ export function Collage2(props) {
         height: "60vh",
       }}
     >
-      {props.data.map((data) => {
+      {props.data.map((data, index) => {
         return data.type == "image" ? (
           <img
+            key={index}
             src={data.data}
             className="post w-100"
             style={{ maxHeight: "600px", objectFit: "cover" }}
           />
         ) : (
           <video
+            key={index}
             autoPlay
             muted
             src={data.data}

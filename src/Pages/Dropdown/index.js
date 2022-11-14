@@ -26,14 +26,18 @@ function Dropdown({ setRef, className }) {
         <Button name="View profile" className="btnBlue mt-1" />
       </Link>
       <div className="hr mt-1 mb-1"></div>
-      {profileLinks.map((data) => {
+      {profileLinks.map((data, index) => {
         return (
-          <div>
+          <div key={index}>
             <p className="makeText makeBold mb-1">{data.name}</p>
             <div className="d-flex flex-column gap-2">
-              {data.arr.map((d) => {
+              {data.arr.map((d, index) => {
                 return (
-                  <Link className="profileLink hoverLine pointer" to={d.link}>
+                  <Link
+                    className="profileLink hoverLine pointer"
+                    to={d.link}
+                    key={index}
+                  >
                     {d.name}
                   </Link>
                 );

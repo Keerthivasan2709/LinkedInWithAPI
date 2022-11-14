@@ -30,6 +30,7 @@ function Carousel({ dataSlider }) {
         {dataSlider.map((obj, index) => {
           return (
             <div
+              key={index}
               className={
                 slideIndex === index + 1 ? "slide active-anim" : "slide"
               }

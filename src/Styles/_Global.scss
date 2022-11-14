@@ -135,7 +135,7 @@ textarea {
 }
 
 .mt-2 {
-  margin-top: 10px !important;
+  margin-top: 8px !important;
 }
 
 .hr {
@@ -145,8 +145,8 @@ textarea {
 }
 
 .my-2 {
-  margin-top: 15px;
-  margin-bottom: 15px;
+  margin-top: 16px;
+  margin-bottom: 16px;
 }
 
 .vr {
@@ -287,7 +287,7 @@ button:disabled {
 }
 
 .mt-3 {
-  margin-top: 20px;
+  margin-top: 16px;
 }
 
 .searchBtn {
@@ -333,4 +333,51 @@ button:disabled {
 }
 .h-45px {
   height: 45px;
+}
+@keyframes moveForwardSearchBar {
+  0% {
+    width: 40%;
+  }
+  25% {
+    width: 50%;
+  }
+  35% {
+    width: 60%;
+  }
+  50% {
+    width: 70%;
+  }
+  75% {
+    width: 80%;
+  }
+  100% {
+    width: 90%;
+  }
+}
+@keyframes moveBackwardSearchBar {
+  0% {
+    width: 90%;
+  }
+  25% {
+    width: 80%;
+  }
+  35% {
+    width: 70%;
+  }
+  50% {
+    width: 60%;
+  }
+  75% {
+    width: 50%;
+  }
+  100% {
+    width: 40%;
+  }
+}
+.suggestionBox {
+  width: 60%;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
 }

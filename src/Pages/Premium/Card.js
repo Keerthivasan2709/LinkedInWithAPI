@@ -20,7 +20,11 @@ function Card({ list, heading1, color, desc, heading2 }) {
           <h3 className="mb-2">{heading2}</h3>
           <ul>
             {list.map((d) => {
-              return <li className="mb-1">{d}</li>;
+              return (
+                <li key={d} className="mb-1">
+                  {d}
+                </li>
+              );
             })}
           </ul>
         </div>

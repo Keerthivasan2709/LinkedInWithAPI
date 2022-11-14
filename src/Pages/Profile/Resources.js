@@ -14,7 +14,7 @@ export default class Resources extends Component {
           {list.slice(0, 2).map((d, index) => {
             return (
               <>
-                <div className="mt-2 d-flex gap-5">
+                <div className="mt-2 d-flex gap-5" key={index}>
                   <img src={d.img} />
                   <div>
                     <p className="makeBold">{d.title}</p>

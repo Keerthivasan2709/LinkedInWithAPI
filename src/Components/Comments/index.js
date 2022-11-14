@@ -59,9 +59,10 @@ function Comments({ getRef, postId, ref }) {
       <div>
         <p className="smallText makeBold mt-1 mb-1">Most revelant</p>
         {commentList.comments != undefined ? (
-          commentList.comments.map((d) => {
+          commentList.comments.map((d, index) => {
             return (
               <CommentList
+                key={index}
                 d={d}
                 showLike={showLike}
                 setReply={setReply}
@@ -83,7 +84,7 @@ function Comments({ getRef, postId, ref }) {
   );
 }
 
-export const CommentList = ({ d, showLike, getRef, setInputBoxRef }) => {
+export const CommentList = ({ d, showLike, getRef, setInputBoxRef, key }) => {
   const [reply, setReply] = useState(false);
   const [peopleComment, setPeopleComment] = useState();
   const [state, setState] = useState("initial");
@@ -124,7 +125,7 @@ export const CommentList = ({ d, showLike, getRef, setInputBoxRef }) => {
   };
   return (
     <>
-      <div className="d-flex align-items-center gap-5 mt-1">
+      <div className="d-flex align-items-center gap-5 mt-1" key={key}>
         <img
           src={d.profile.profilepic}
           style={{ maxWidth: "40px" }}
@@ -174,7 +175,7 @@ export const CommentList = ({ d, showLike, getRef, setInputBoxRef }) => {
       </div>
       <div
         className={reply ? "show" : "hidden"}
-        style={{ marginLeft: "30px", padding: "15px" }}
+        style={{ marginLeft: "16px", padding: "16px" }}
       >
         <CommentBox
           state={state}
@@ -186,11 +187,12 @@ export const CommentList = ({ d, showLike, getRef, setInputBoxRef }) => {
       </div>
 
       {commentReply ? (
-        commentReply.map((d) => {
+        commentReply.map((d, index) => {
           return (
             <div
+              key={index}
               className="d-flex align-items-center gap-5 mt-1"
-              style={{ marginLeft: "2rem" }}
+              style={{ marginLeft: "32px" }}
             >
               <img
                 src={d.profile.profilepic}

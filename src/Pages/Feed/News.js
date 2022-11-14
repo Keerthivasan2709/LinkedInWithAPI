@@ -29,10 +29,10 @@ function News() {
       )}
 
       {readyForRender ? (
-        news.map((data) => {
+        news.map((data, index) => {
           return (
             <>
-              <div className="p-1 mb-1 d-flex gap-2 pointer">
+              <div className="p-1 mb-1 d-flex gap-2 pointer" key={index}>
                 <div className="bullet">&bull;</div>
                 <div>
                   <div

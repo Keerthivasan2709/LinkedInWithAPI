@@ -13,7 +13,7 @@ function Posts(props) {
   const [commentBoxRef, setCommentBoxRef] = useState();
   const [postRef, setPostRef] = useState(null);
   const [count, setCount] = useState(props.data._count);
-  const [likeChange, setLikeChange] = useReducer((s) => !s, false);
+  const [likeChange, setLikeChange] = useState(props.isLiked);
   let [followed, setFollowed] = useState(props.data.isFollowed);
   console.log(props.data.isFollowed);
   const setRef = (e) => {
@@ -46,7 +46,7 @@ function Posts(props) {
   return (
     <>
       <div
-        key={props.data.id}
+        key={props.data.profileid}
         className="card d-flex flex-column individualPost mt-2  gap-2 p-2 bg-white w-100"
         style={{ width: "98%" }}
       >
@@ -138,26 +138,14 @@ function Posts(props) {
         <div className="d-flex justify-content-between p-2">
           <div style={{ position: "relative" }} className="likeReaction">
             <LikeReaction
+              likeChange={likeChange}
               postId={props.data.id}
               setCount={setCount}
               data={count}
               setLikeChange={setLikeChange}
             />
             <div className="d-flex flex-row align-items-center pointer">
-              {likeChange ? (
-                <>
-                  <img src="https://res.cloudinary.com/dibccigcp/image/upload/v1667467453/5zhd32fqi5pxwzsz78iui643e_kyjgaw.svg" />
-                  <p
-                    style={{
-                      color: "#0a66c2",
-                      fontWeight: 900,
-                      fontSize: "12px",
-                    }}
-                  >
-                    Like
-                  </p>
-                </>
-              ) : props.data.isLiked ? (
+              {!likeChange ? (
                 <>
                   <img src="https://res.cloudinary.com/dibccigcp/image/upload/v1667467453/5zhd32fqi5pxwzsz78iui643e_kyjgaw.svg" />
                   <p

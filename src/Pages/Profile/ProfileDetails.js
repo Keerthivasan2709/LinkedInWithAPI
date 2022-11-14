@@ -23,7 +23,7 @@ function ProfileDetails() {
                 maxWidth: "30px",
                 position: "absolute",
                 right: "70px",
-                marginTop: "20px",
+                marginTop: "16px",
               }}
               src="https://res.cloudinary.com/dibccigcp/image/upload/v1665071974/index_gbgfvp.svg"
             />

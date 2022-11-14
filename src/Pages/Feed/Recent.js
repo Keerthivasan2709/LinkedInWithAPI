@@ -26,7 +26,10 @@ function Recent({ stick }) {
       {readyForRender ? (
         recent.recent.map((data) => {
           return (
-            <div className="d-flex  list align-items-center gap-2 mb-1 hoverBackground pointer">
+            <div
+              className="d-flex  list align-items-center gap-2 mb-1 hoverBackground pointer"
+              key={data.title}
+            >
               <div className="smallText makeBold grey">{data.title}</div>
             </div>
           );
@@ -45,7 +48,10 @@ function Recent({ stick }) {
       {readyForRender ? (
         recent.group.map((data) => {
           return (
-            <div className="d-flex  list align-items-center gap-2 mb-1 hoverBackground pointer">
+            <div
+              className="d-flex  list align-items-center gap-2 mb-1 hoverBackground pointer"
+              key={data.name}
+            >
               <div className="smallText makeBold grey">{data.name}</div>
             </div>
           );

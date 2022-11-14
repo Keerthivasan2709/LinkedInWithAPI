@@ -50,9 +50,10 @@ function SideBar({ setWorkRef }) {
               {products.map((data) => {
                 return (
                   <Link
+                    key={data.name}
                     to={data.link}
                     className="d-flex flex-column align-items-center"
-                    style={{ margin: "10px" }}
+                    style={{ margin: "16px" }}
                   >
                     <div className="imgBorder">
                       <img src={data.img} style={{ width: "30px" }} />
@@ -75,9 +76,9 @@ function SideBar({ setWorkRef }) {
               style={{ padding: "15px " }}
               className="d-flex gap-5 flex-column"
             >
-              {BusinessService.map((data) => {
+              {BusinessService.map((data, index) => {
                 return (
-                  <Link to={data.link}>
+                  <Link to={data.link} key={index}>
                     <div className="black" style={{ fontWeigth: "600" }}>
                       {data.name}
                     </div>

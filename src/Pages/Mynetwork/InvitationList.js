@@ -50,6 +50,7 @@ function InvitationList({ data, setCount, count }) {
   }
   return (
     <div
+      key={data.profile.firstName}
       ref={invitationRef}
       className="d-flex invitationList gap-5 justify-content-between mb-2 list align-items-center"
     >
