@@ -5,7 +5,7 @@ function Reaction({ src, name, className }) {
       className={`${className} pointer d-flex align-items-center button gap-2 p-0`}
     >
       <img src={src} />
-      <div style={{ fontWeight: 900, fontSize: "12px" }}>{name}</div>
+      <div className="font-1 reaction">{name}</div>
     </div>
   );
 }

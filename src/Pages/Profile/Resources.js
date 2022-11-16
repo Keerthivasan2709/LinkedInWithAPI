@@ -6,10 +6,12 @@ export default class Resources extends Component {
     return (
       <div className="card mt-2">
         <div className=" p-5">
-          <p className="heading2 makeBold">Resources</p>
-          <div className="d-flex flex-row gap-2">
+          <p className="heading2 makeBold font-3">Resources</p>
+          <div className="d-flex flex-row gap-2 mb-2">
             <img src="https://res.cloudinary.com/dibccigcp/image/upload/v1666783516/index_i2jnxg.svg" />
-            <div className="grey">Private to you</div>
+            <div className="grey font-1" style={{ fontWeight: "500" }}>
+              Private to you
+            </div>
           </div>
           {list.slice(0, 2).map((d, index) => {
             return (
@@ -17,8 +19,19 @@ export default class Resources extends Component {
                 <div className="mt-2 d-flex gap-5" key={index}>
                   <img src={d.img} />
                   <div>
-                    <p className="makeBold">{d.title}</p>
-                    <p>{d.description}</p>
+                    <p
+                      className="makeBold"
+                      style={{
+                        fontSize: "16px",
+                        marginBottom: "4px",
+                        fontWeight: "600",
+                      }}
+                    >
+                      {d.title}
+                    </p>
+                    <p className="font-1" style={{ fontWeight: "400" }}>
+                      {d.description}
+                    </p>
                   </div>
                 </div>
                 {index < 1 ? <div className="vr mt-2"></div> : <></>}
@@ -28,7 +41,11 @@ export default class Resources extends Component {
         </div>
         <div className="vr"></div>
         <center className="p-2 pointer">
-          <Link to="./details/resources/" className="black">
+          <Link
+            to="./details/resources/"
+            className="black"
+            style={{ fontWeight: "600", fontSize: "16px" }}
+          >
             See more
           </Link>
         </center>

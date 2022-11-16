@@ -52,7 +52,7 @@ function InvitationList({ data, setCount, count }) {
     <div
       key={data.profile.firstName}
       ref={invitationRef}
-      className="d-flex invitationList gap-5 justify-content-between mb-2 list align-items-center"
+      className="d-flex invitationList gap-5 justify-content-between list align-items-center"
     >
       <div className="d-flex gap-2">
         <img src={data.profile.profilepic} className="rounded profilePic" />

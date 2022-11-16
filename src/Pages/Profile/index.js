@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import NavBar from "../../Components/NavBar/NavBar";
 import ProfileDetails from "./ProfileDetails";
 import Ads from "../../Components/Ads/Ads";
@@ -12,18 +12,31 @@ import Resources from "./Resources";
 import GlobalFooter from "../../Components/GlobalFooter";
 import SideBar from "../../Components/SideBar";
 import ProfileModal from "../../Components/ProfileModal";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import EducationalModal from "../../Components/EducationalModal";
 import ExperienceModal from "../../Components/ExperienceModal";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
+import { setUserDetails } from "../../Reducers/UserDetails";
 
 function Profile() {
-  document.title = "Keerthivasan B";
+  document.title = "Keerthivasan B | LinkedIn";
+  const dispatch = useDispatch();
   const [workRef, setWorkRef] = useState();
   const { params } = useParams();
   const [state, setState] = useState(true);
-  let data = useSelector((state) => state.profile.data);
+  useEffect(() => {
+    axios
+      .get(`${process.env.REACT_APP_API_KEY}/profile/my`, {
+        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+      })
+      .then((res) => {
+        dispatch(setUserDetails(res.data));
+      })
+      .catch((err) => console.log(err));
+  }, []);
 
+  let data = useSelector((state) => state.UserDetails.userDetails);
   console.log(data);
   let obj = {
     editIntro: <ProfileModal state={true} />,
@@ -42,21 +55,21 @@ function Profile() {
     return obj[params];
   }
   return (
-    <div>
+    <>
       <NavBar onClick={renderWorkSection} />
       <div
-        className="mt-2 headflex profileGrid"
-        style={{ marginBottom: "70px" }}
+        className=" headflex d-flex flex-row"
+        style={{ marginBottom: "70px", marginTop: "23px", gap: "20px" }}
       >
-        <div>
+        <div style={{ width: "782px" }}>
           <ProfileDetails />
           {data ? (
             <Card
               imgSrc="https://res.cloudinary.com/dibccigcp/image/upload/v1664890021/profile_1_mhhrgo.jpg"
               title="Experience"
-              data={data.companys}
+              data={data?.companys}
               showSkill={true}
-              skill={data.skills}
+              skill={data?.skills}
               link="./editExperience"
             />
           ) : (
@@ -66,7 +79,7 @@ function Profile() {
             <Card
               imgSrc="https://res.cloudinary.com/dibccigcp/image/upload/v1665059590/1659541201558_pb42vz.jpg"
               title="Education"
-              data={data.usereducation}
+              data={data?.usereducation}
               showSkill={false}
               link="./editEducation"
             />
@@ -96,10 +109,20 @@ function Profile() {
             {SkillsList.map((data) => {
               return (
                 <div key={data.name}>
-                  <p className="makeBold mt-1 mb-1">{data.name}</p>
+                  <p
+                    className="makeBold mt-1 mb-1"
+                    style={{ fontSize: "16px", fontWeight: "600" }}
+                  >
+                    {data?.name}
+                  </p>
                   <div className="d-flex mb-1 align-items-center gap-5">
-                    <img src="https://res.cloudinary.com/dibccigcp/image/upload/v1664963003/index_t6htx7.svg" />
-                    <div>{data.endorsement} endorsement</div>
+                    <img
+                      src="https://res.cloudinary.com/dibccigcp/image/upload/v1664963003/index_t6htx7.svg"
+                      style={{ width: "24px" }}
+                    />
+                    <div className="font-1" style={{ fontWeight: "400" }}>
+                      {data?.endorsement} endorsement
+                    </div>
                   </div>
                   <div className="hr"></div>
                 </div>
@@ -107,21 +130,45 @@ function Profile() {
             })}
           </div>
         </div>
-        <div className="d-flex sm-hide flex-column gap-2">
+        <div
+          className="d-flex sm-hide flex-column gap-2"
+          style={{ width: "322px" }}
+        >
+          <div className="card mt-2">
+            <div
+              className="d-flex justify-content-between"
+              style={{ padding: "20px 10px" }}
+            >
+              <Link className="makeBold grey">Edit public profile&url</Link>
+              <img src="https://res.cloudinary.com/dibccigcp/image/upload/v1666804120/index_dpumnt.svg" />
+            </div>
+            <div className="vr"></div>
+            <div
+              className="d-flex justify-content-between"
+              style={{ padding: "20px 10px" }}
+            >
+              <Link className="makeBold grey">
+                Add profile in another language
+              </Link>
+              <img src="https://res.cloudinary.com/dibccigcp/image/upload/v1666804120/index_dpumnt.svg" />
+            </div>
+          </div>
           <Ads className="card p-2" />
           <div className="card">
             {connectedPeople.map((data) => {
               return (
                 <div key={data.name}>
-                  <div className="list d-flex flex-row gap-1 mt-1 mb-1 align-items-start">
+                  <div className="list d-flex flex-row mt-1 mb-1 gap-1 align-items-start">
                     <img
-                      src={data.profilepic}
+                      src={data?.profilepic}
                       className="rounded"
-                      style={{ maxWidth: "60px" }}
+                      style={{ width: "48px", height: "48px" }}
                     />
-                    <div className="d-flex flex-column gap-2">
-                      <p className="makeBold">{data.name}</p>
-                      <p className="smallText grey">{data.description}</p>
+                    <div className="d-flex flex-column" style={{ gap: "4px" }}>
+                      <p className="makeBold font-1">{data?.name}</p>
+                      <p className="smallText grey font-05">
+                        {data?.description}
+                      </p>
                       <Button
                         name="Message"
                         className="msgBtn"
@@ -139,7 +186,7 @@ function Profile() {
       <SecondaryNav />
       <SideBar setWorkRef={setWorkRef} />
       {renderModal()}
-    </div>
+    </>
   );
 }
 

@@ -1,45 +1,45 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import SkeletonLoader from "../../Components/SkeletonLoader";
-import { setPremium } from "../../Reducers/Premium";
+import { setProfile } from "../../Reducers/Feed";
+import useFetch from "../../Requests";
 
 function Profile() {
-  const [state, setState] = useState({});
-  const [render, setRender] = useState(false);
-  const dispatch = useDispatch();
-  const [readyForRender, setReadyForRender] = useState(false);
+  useFetch("/feed/profile", setProfile);
+
+  const state = useSelector((state) => state.feed.profile);
+  const [readyForRender, setReadyForRender] = useState();
+
   useEffect(() => {
-    axios
-      .get(`${process.env.REACT_APP_API_KEY}/feed/profile`, {
-        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-      })
-      .then((res) => {
-        setState(res.data.data);
-        setReadyForRender(true);
-      });
-  }, []);
-  dispatch(setPremium(state.Premium));
+    setReadyForRender(Object.keys(state).length === 0 ? false : true);
+  }, [state]);
   return (
-    <div className="d-flex card flex-column gap-5">
+    <div
+      className="d-flex card flex-column"
+      style={{ position: "relative", overflow: "hidden", gap: "15px" }}
+    >
       <div
         className="profileBackground"
         style={{ position: "relative", bottom: "1px" }}
       >
         {readyForRender ? (
-          <img
-            src={state.profile.backgroundpic}
-            style={{ borderRadius: "10px 10px 0px 0px" }}
-          />
+          <img src={state?.profile?.backgroundpic} />
         ) : (
           <SkeletonLoader className="h-3" />
         )}
       </div>
       {readyForRender ? (
         <img
-          style={{ position: "absolute", right: "50%" }}
-          src={state.profile.profilepic}
+          style={{
+            position: "absolute",
+            top: "18px",
+            left: "92px",
+            width: "60px",
+            height: "60px",
+          }}
+          src={state?.profile?.profilepic}
           className="profileImage rounded title"
         />
       ) : (
@@ -49,41 +49,53 @@ function Profile() {
       )}
       <div className="welcomeMsg hoverLine pointer">
         {readyForRender ? (
-          `Welcome! ${state.profile.firstName} ${state.profile.lastName} `
+          <p
+            className="black"
+            style={{ fontWeight: "600", fontSize: "16px", marginBottom: "4px" }}
+          >
+            {`Welcome! ${state?.profile?.firstName} ${state?.profile?.lastName}`}
+          </p>
         ) : (
           <SkeletonLoader className="w-70 h-1 rounded-1 center" />
         )}
+        {Object.keys(state).length != 0 ? (
+          <Link to="/profile" className="addAProfile hoverLine pointer font-05">
+            Add a photo
+          </Link>
+        ) : (
+          <SkeletonLoader className="w-50 mt-2 rounded-1 h-1 center" />
+        )}
       </div>
-      {Object.keys(state).length != 0 ? (
-        <Link to="/profile" className="addAProfile hoverLine pointer">
-          Add a photo
-        </Link>
-      ) : (
-        <SkeletonLoader className="w-50 h-1 center" />
-      )}
+
       {readyForRender ? (
         <>
           <div className="vr"></div>
           <div className="d-flex flex-column gap-5">
             <div
-              className="d-flex justify-content-between align-items-center pointer"
-              style={{ padding: "0px 5px" }}
+              className="d-flex justify-content-between align-items-center pointer  "
+              style={{ padding: "0px 15px" }}
             >
               <div>
-                <div className="smallText makeBold grey">Connections</div>
-                <div className="smallText makeBold">Grow your network</div>
+                <div className="smallText makeBold grey font-05">
+                  Connections
+                </div>
+                <div className="smallText makeBold font-05 black">
+                  Grow your network
+                </div>
               </div>
-              <div className="smallText blue makeBold">{state.connection}</div>
+              <div className="smallText blue makeBold font-05">
+                {state?.connection}
+              </div>
             </div>
             <div
               className="d-flex justify-content-between align-items-center pointer"
-              style={{ padding: "0px 5px" }}
+              style={{ padding: "0px 15px" }}
             >
-              <div className="smallText makeBold grey p-1">
+              <div className="smallText makeBold grey font-05">
                 Who's viewed your profile
               </div>
-              <div className="smallText makeBold blue">
-                {state.profile._count.viewed}
+              <div className="smallText makeBold blue font-05">
+                {state?.profile?._count?.viewed}
               </div>
             </div>
           </div>
@@ -98,14 +110,14 @@ function Profile() {
         <>
           <div className="vr"></div>
           <div className=" pointer hoverLine smallText makeBold grey">
-            <div className="p-1">
+            <div style={{ padding: "0px 15px" }} className="font-05">
               Access exclusive tools & insights
-              {state.profile.Premium === false ? (
+              {state?.profile?.Premium === false ? (
                 <></>
               ) : (
                 <div className="d-flex align-items-center premium">
                   <img src="https://res.cloudinary.com/dibccigcp/image/upload/v1664264188/Premium_ulz6sv.svg" />
-                  <Link to="/premium" className="makeBold black">
+                  <Link to="/premium" className="makeBold black font-05">
                     Try premium for free
                   </Link>
                 </div>
@@ -123,9 +135,12 @@ function Profile() {
       {readyForRender ? (
         <>
           <div className="vr"></div>
-          <div className="d-flex p-1 mb-2 gap-2 pointer hoverLine">
+          <div
+            className="d-flex gap-2 pointer hoverLine"
+            style={{ padding: "0px 15px", marginBottom: "8px" }}
+          >
             <img src="https://res.cloudinary.com/dibccigcp/image/upload/v1664264182/Bookmark_rjju4f.svg" />
-            <div className="smallText makeBold">My items</div>
+            <div className="smallText makeBold font-05 black">My items</div>
           </div>
         </>
       ) : (

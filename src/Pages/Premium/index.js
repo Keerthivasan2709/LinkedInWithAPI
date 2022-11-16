@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import ErrorBoundary from "../../Components/ErrorBoundary";
 import Card from "./Card";
 
 function Premium() {

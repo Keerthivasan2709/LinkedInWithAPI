@@ -1,27 +1,27 @@
 import axios from "axios";
 import React, { useEffect } from "react";
-import { useReducer } from "react";
 import { useState } from "react";
 import SkeletonLoader from "../../Components/SkeletonLoader";
+import useFetch from "../../Requests";
 import { findDays } from "../../Utils/Helpers";
+import { setNews } from "../../Reducers/Feed";
+import { useSelector } from "react-redux";
 function News() {
-  const [news, setNews] = useState([]);
+  useFetch("/feed/news", setNews);
+  const news = useSelector((state) => state.feed.news);
   const [readyForRender, setReadyForRender] = useState(false);
   useEffect(() => {
-    axios
-      .get(`${process.env.REACT_APP_API_KEY}/feed/news`, {
-        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-      })
-      .then((res) => {
-        setNews(res.data.data);
-        setReadyForRender(true);
-      });
-  }, []);
+    setReadyForRender(Object.keys(news).length === 0 ? false : true);
+  });
+
   return (
     <div className="card">
       {readyForRender ? (
-        <div className="p-1 d-flex justify-content-between">
-          <div className="makeBold mt-1 mb-1">LinkedIn News</div>
+        <div
+          className="p-1 d-flex justify-content-between"
+          style={{ padding: "0px 15px" }}
+        >
+          <div className="makeBold mt-1 mb-1 font-1 black">LinkedIn News</div>
           <img src="https://res.cloudinary.com/dibccigcp/image/upload/v1664264184/info_ytx2pv.svg" />
         </div>
       ) : (
@@ -29,14 +29,18 @@ function News() {
       )}
 
       {readyForRender ? (
-        news.map((data, index) => {
+        Object.keys(news).map((data, index) => {
           return (
             <>
-              <div className="p-1 mb-1 d-flex gap-2 pointer" key={index}>
+              <div
+                className="p-1 mb-1 d-flex gap-2 pointer"
+                key={index}
+                style={{ padding: "3px 15px" }}
+              >
                 <div className="bullet">&bull;</div>
                 <div>
                   <div
-                    className="newsHeading"
+                    className="newsHeading font-1 black"
                     style={{
                       width: "250px",
                       overflow: "hidden",
@@ -44,14 +48,19 @@ function News() {
                       textOverflow: "ellipsis",
                     }}
                   >
-                    {data.title}
+                    {news[data].title}
                   </div>
-                  <div className="d-flex gap-2 align-items-center">
-                    <div className="newsDetails">
-                      {findDays(data.createdAt)}days ago
+                  <div
+                    className="d-flex gap-2 align-items-center"
+                    style={{ marginTop: "3px" }}
+                  >
+                    <div className="newsDetails font-05 grey">
+                      {findDays(news[data].createdAt)}days ago
                     </div>
                     &bull;
-                    <div className="newsDetails">{data.readers} Readers</div>
+                    <div className="newsDetails font-05 grey">
+                      {news[data].readers} Readers
+                    </div>
                   </div>
                 </div>
               </div>

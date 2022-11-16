@@ -6,47 +6,28 @@ import Recent from "./Recent";
 import News from "./News";
 import Ads from "../../Components/Ads/Ads";
 import FeedFooter from "../../Components/FeedFooter/FeedFooter";
-import SecondaryNav from "../../Components/SecondaryNav/SecondaryNav";
 import Upload from "./Upload";
-import axios from "axios";
 import Loader from "../../Components/Loader";
-import SideBar from "../../Components/SideBar";
 import LoadingAnimation from "../../Components/LoadingAnimation";
-import { useDispatch } from "react-redux";
-import { addDetails } from "../../Reducers/Profile";
-import Suggestion from "../../Components/Suggestion";
+import { useDispatch, useSelector } from "react-redux";
+import useFetch from "../../Requests";
+import { setPost } from "../../Reducers/Feed";
+import SecondaryNav from "../../Components/SecondaryNav/SecondaryNav";
+import SideBar from "../../Components/SideBar";
+import { Navigate } from "react-router-dom";
+import axios from "axios";
+import { setUserDetails } from "../../Reducers/UserDetails";
 export const PostContext = createContext();
 function Feed() {
+  const loginState = useSelector((state) => state.login.login);
   document.title = "Feed | LinkedIn";
-  const [PostList, setPostList] = useState([]);
   const [workRef, setWorkRef] = useState();
   const [state, setState] = useState(true);
   const [page, setPage] = useState(0);
-  const dispatch = useDispatch();
   const [loader, setLoader] = useState(true);
-
-  useEffect(() => {
-    axios
-      .get(`${process.env.REACT_APP_API_KEY}/post?page=${page}`, {
-        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-      })
-      .then((res) => {
-        console.log(res.data.data);
-        setPostList([...PostList, ...res.data.data]);
-      });
-  }, [page]);
-
-  useEffect(() => {
-    axios
-      .get(`${process.env.REACT_APP_API_KEY}/profile/my`, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      })
-      .then((res) => {
-        dispatch(addDetails(res.data));
-      });
-  });
+  useFetch(`/post?page=${page}`, setPost);
+  const dispatch = useDispatch();
+  const PostList = useSelector((state) => state.feed.post);
 
   function renderWorkSection() {
     setState(!state);
@@ -70,44 +51,75 @@ function Feed() {
   }
   return (
     <>
-      {loader ? (
-        <LoadingAnimation />
-      ) : (
-        <div>
-          <NavBar onClick={renderWorkSection} />
-          <div
-            className="headflex mt-2 feedGrid"
-            style={{ paddingBottom: "100px" }}
-          >
-            <div className="d-flex flex-column gap-2 sm-hide makeSticky">
-              <Profile />
-              <Recent />
-            </div>
-            <div className="d-flex flex-column gap-5">
-              <div className="sm-hide">
-                <Upload />
+      {loginState ? (
+        loader ? (
+          <LoadingAnimation />
+        ) : (
+          <div>
+            <NavBar onClick={renderWorkSection} />
+            <div
+              className="headflex d-flex"
+              style={{
+                paddingBottom: "100px",
+                gap: "1.5rem",
+                marginTop: "23px",
+              }}
+            >
+              <div
+                className="d-flex flex-column gap-2 sm-hide"
+                style={{ width: "230px" }}
+              >
+                <Profile />
+                <Recent />
               </div>
-              <div className="sm-hide d-flex align-items-center">
-                <div className="vr"></div>
-                <div className="smallText grey">Sort&nbsp;by:&nbsp;Top</div>
+              <div
+                className="d-flex flex-column"
+                style={{ width: "540px", gap: "5px" }}
+              >
+                <div className="sm-hide">
+                  <Upload />
+                </div>
+                <div
+                  className="sm-hide d-flex align-items-center"
+                  style={{ gap: "10px", marginTop: "5px" }}
+                >
+                  <div className="vr" style={{ width: "90%" }}></div>
+                  <div className="grey font-05 d-flex align-items-center gap-1">
+                    Sort&nbsp;by:&nbsp;{" "}
+                    <span className="makeBold black d-flex align-items-center">
+                      Top
+                      <img
+                        src="https://res.cloudinary.com/dibccigcp/image/upload/v1664264182/Dropdown_v49cvk.svg"
+                        style={{ marginLeft: "2px" }}
+                      />
+                    </span>
+                  </div>
+                </div>
+                {PostList.length >= 1 ? (
+                  PostList.map((data) => {
+                    return <Posts data={data} />;
+                  })
+                ) : (
+                  <Loader />
+                )}
               </div>
-              {PostList.length >= 1 ? (
-                PostList.map((data) => {
-                  return <Posts data={data} />;
-                })
-              ) : (
-                <Loader />
-              )}
+              <div
+                className="d-flex flex-column gap-2 sm-hide"
+                style={{ width: "315px" }}
+              >
+                <News />
+                <div style={{ position: "sticky", top: "60px" }}>
+                  {/* <Ads className="card" /> */}
+                  <FeedFooter />
+                </div>
+              </div>
             </div>
-            <div className="d-flex flex-column gap-2 sm-hide makeSticky">
-              <News />
-              <Ads className="card" />
-              <FeedFooter />
-            </div>
+            <SecondaryNav />
+            <SideBar setWorkRef={setWorkRef} />
           </div>
-          <SecondaryNav />
-          <SideBar setWorkRef={setWorkRef} />
-        </div>
+        )
+      ) : (
+        <Navigate to="/signin" />
       )}
     </>
   );

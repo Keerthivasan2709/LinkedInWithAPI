@@ -4,8 +4,18 @@
 .navBarIcons {
   width: 1.4rem;
 }
-.searchBar:focus {
+.search:focus {
   outline: none;
+}
+.search::placeholder {
+  color: var(--text);
+  font-weight: 400;
+}
+.search {
+  color: var(--text);
+}
+.searchBar {
+  background-color: var(--searchBar) !important;
 }
 .navBarContainer {
   display: grid;
@@ -18,7 +28,7 @@
 .premiumLink {
   font-size: 0.7rem;
   width: 80px;
-  color: $brown;
+  color: var(--brown);
   font-weight: normal;
   text-decoration: underline;
   text-align: center;

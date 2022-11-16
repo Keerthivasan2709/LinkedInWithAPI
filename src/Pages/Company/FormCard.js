@@ -17,18 +17,16 @@ function FormCard({ data }) {
     for (let key in state) {
       formData.append(`${key}`, state[key]);
     }
-    console.log(`${process.env.REACT_APP_API_KEY}${data.link}`);
     formData.append("photourl", image);
-    data.link ? (
-      axios
-        .post(`${process.env.REACT_APP_API_KEY}${data.link}`, formData, {
-          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-        })
-        .then((res) => console.log(res.data))
-        .catch((err) => console.log(err))
-    ) : (
-      <></>
-    );
+    for (var pair of formData.entries()) {
+      console.log(pair[0] + ", " + pair[1]);
+    }
+    axios
+      .post(`${process.env.REACT_APP_API_KEY}/page/create`, formData, {
+        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+      })
+      .then((res) => console.log(res.data))
+      .catch((err) => console.log(err));
   };
   return (
     <div className="headflex mt-2">

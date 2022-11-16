@@ -9,13 +9,15 @@ import { Like } from "../../Assets/Images/Images";
 import PostComment from "../../Components/PostComment/PostComment";
 import axios from "axios";
 function Posts(props) {
+  console.log(props);
   const [show, setShow] = useState(false);
   const [commentBoxRef, setCommentBoxRef] = useState();
   const [postRef, setPostRef] = useState(null);
   const [count, setCount] = useState(props.data._count);
-  const [likeChange, setLikeChange] = useState(props.isLiked);
+  const [likeChange, setLikeChange] = useState(props.data.isLiked);
   let [followed, setFollowed] = useState(props.data.isFollowed);
   console.log(props.data.isFollowed);
+
   const setRef = (e) => {
     setCommentBoxRef(e.current);
   };
@@ -47,38 +49,53 @@ function Posts(props) {
     <>
       <div
         key={props.data.profileid}
-        className="card d-flex flex-column individualPost mt-2  gap-2 p-2 bg-white w-100"
-        style={{ width: "98%" }}
+        className="card d-flex flex-column individualPost mt-2  gap-2 bg-white w-100"
+        style={{ width: "98%", padding: "10px 0px" }}
       >
-        <div className="d-flex flex-row align-items-center gap-5">
-          <p className="smallText">
-            <b className="name">{props.data.whoLiked}</b> likes this
+        <div
+          className="d-flex flex-row align-items-center gap-5"
+          style={{ padding: "0px 15px" }}
+        >
+          <img
+            className="rounded"
+            src={props?.data?.likes[0]?.likedby?.profilepic}
+            style={{ width: "24px" }}
+          />
+          <p className="smallText d-flex gap-1 w-20 font-05 black">
+            <b className="name">{props?.data?.likes[0]?.likedby?.firstName}</b>
+            <p>likes this</p>
           </p>
         </div>
-        <div className="hr"></div>
-        <div className="d-flex justify-content-between align-items-center">
+        <div className="hr" style={{ margin: "0px 15px" }}></div>
+        <div
+          className="d-flex justify-content-between align-items-center "
+          style={{ padding: "0px 15px" }}
+        >
           <div className="d-flex flex-row align-items-center gap-2">
             <img
               className="profilePic profileImg rounded"
+              style={{ width: "40px" }}
               src={props.data.userpost.profilepic}
             />
-            <div className="profileDetails d-flex flex-column">
-              <h3 className="profileName">{props.data.userpost.firstName}</h3>
+            <div className="profileDetails d-flex flex-column gap-1">
+              <h3 className="profileName font-1 black">
+                {props.data.userpost.firstName}
+              </h3>
               <div className="d-flex">
                 {props.data.userpost.companys.length == 0 ? (
                   <></>
                 ) : (
-                  <div className="smallText">
+                  <div className="font-05 grey">
                     {props.data.userpost.companys[0].position} at{" "}
                     {props.data.userpost.companys[0].company.name}||
                   </div>
                 )}
-                <span className="smallText followers">
+                <span className="smallText followers font-05 grey">
                   {props.data.followers} Followers
                 </span>
               </div>
 
-              <div className="d-flex gap-1">
+              <div className="d-flex gap-1 grey">
                 <div className="postedDate smallText">
                   {findDays(props.data.createdAt)}days
                 </div>
@@ -86,6 +103,7 @@ function Posts(props) {
                 <img
                   src="https://res.cloudinary.com/dibccigcp/image/upload/v1664716461/world_hwygvt.svg"
                   className="postDate"
+                  style={{ width: "10px" }}
                 />
               </div>
             </div>
@@ -93,11 +111,11 @@ function Posts(props) {
           <div className="pointer">
             {followed ? (
               <a
-                className="d-flex align-items-center gap-1"
+                className="d-flex align-items-center gap-1 following"
                 onClick={() => {
                   handleFollow(props.data.profileid);
                 }}
-                style={{ color: "rgba(0,0,0,0.6)", fontSize: "14px" }}
+                style={{ fontSize: "14px" }}
               >
                 <img src="https://res.cloudinary.com/dibccigcp/image/upload/v1667825381/index_oyxwh5.svg" />
                 <div>Following</div>
@@ -111,7 +129,7 @@ function Posts(props) {
                   }}
                 >
                   <img src="https://res.cloudinary.com/dibccigcp/image/upload/v1664264181/Add_mh0lce.svg" />
-                  <div>Follow</div>
+                  <div className="font-05 makeBold">Follow</div>
                 </a>
               </>
             )}
@@ -132,10 +150,14 @@ function Posts(props) {
             <Collage3 data={props.data.data} />
           )}
         </div>
-        <div>
+        <div style={{ padding: "0px 15px" }}>
           <PostComment data={count} />
         </div>
-        <div className="d-flex justify-content-between p-2">
+        <div className="vr" style={{ margin: "0px 15px", width: "95%" }}></div>
+        <div
+          className="d-flex justify-content-between p-2"
+          style={{ padding: "5px 25px" }}
+        >
           <div style={{ position: "relative" }} className="likeReaction">
             <LikeReaction
               likeChange={likeChange}
@@ -145,15 +167,14 @@ function Posts(props) {
               setLikeChange={setLikeChange}
             />
             <div className="d-flex flex-row align-items-center pointer">
-              {!likeChange ? (
+              {likeChange ? (
                 <>
                   <img src="https://res.cloudinary.com/dibccigcp/image/upload/v1667467453/5zhd32fqi5pxwzsz78iui643e_kyjgaw.svg" />
                   <p
                     style={{
                       color: "#0a66c2",
-                      fontWeight: 900,
-                      fontSize: "12px",
                     }}
+                    className="font-1"
                   >
                     Like
                   </p>
@@ -161,7 +182,12 @@ function Posts(props) {
               ) : (
                 <>
                   <Like />
-                  <p style={{ fontWeight: 900, fontSize: "12px" }}>Like</p>
+                  <p
+                    style={{ fontWeight: 900, fontSize: "12px" }}
+                    className="font-1"
+                  >
+                    Like
+                  </p>
                 </>
               )}
             </div>
@@ -189,7 +215,10 @@ function Posts(props) {
             className="sm-hide send"
           />
         </div>
-        <div className={show ? "show" : "hidden"}>
+        <div
+          className={show ? "show" : "hidden"}
+          style={{ padding: "0px 15px" }}
+        >
           <Comments getRef={setRef} postId={props.data.id} />
         </div>
       </div>

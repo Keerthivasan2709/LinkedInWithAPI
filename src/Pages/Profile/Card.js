@@ -5,9 +5,9 @@ import SkeletonLoader from "../../Components/SkeletonLoader";
 function Card({ title, data, showSkill, imgSrc, link, skill }) {
   console.log(data);
   return (
-    <div className="card mt-2 p-5 d-flex justify-content-between align-items-start w-100">
+    <div className="card mt-2 p-5 d-flex justify-content-between align-items-start">
       <div className="w-100">
-        <p className="heading2 makeBold mb-2">{title}</p>
+        <p className="heading2 makeBold mb-2 font-3">{title}</p>
 
         <>
           {data?.map((d, index) => {
@@ -16,13 +16,15 @@ function Card({ title, data, showSkill, imgSrc, link, skill }) {
                 className="d-flex flex-row align-items-start gap-2"
                 key={index}
               >
-                <img src={imgSrc} style={{ maxWidth: "50px" }} />
-                <div className="d-flex flex-column gap-1">
-                  <p className="makeBold">{d.course}</p>
-                  <p style={{ fontSize: "15px" }} className="grey">
+                <img src={imgSrc} style={{ width: "48px", height: "48px" }} />
+                <div className="d-flex flex-column" style={{ gap: "4px" }}>
+                  <p className="makeBold" style={{ fontSize: "16px" }}>
+                    {d.course}
+                  </p>
+                  <p className="font-1" style={{ fontWeight: "500" }}>
                     {d.organization.name}
                   </p>
-                  <p style={{ fontSize: "15px" }} className="grey">
+                  <p className="grey font-1" style={{ fontWeight: "400" }}>
                     {d.startDate}
                   </p>
                   {showSkill.length != 0 ? (

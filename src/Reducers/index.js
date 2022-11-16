@@ -1,14 +1,18 @@
 import { configureStore } from "@reduxjs/toolkit";
-import Premium from "./Premium";
-import Theme from "./Theme";
-import Profile from "./Profile";
+import UserDetails from "./UserDetails";
 import JoinNow from "./JoinNow";
+import Feed from "./Feed";
+import Connections from "./Connections";
+import Login from "./Login";
+import Notification from "./Notification";
 
 export default configureStore({
   reducer: {
-    profile: Profile,
-    theme: Theme,
-    premium: Premium,
+    UserDetails: UserDetails,
+    feed: Feed,
     joinNow: JoinNow,
+    Connection: Connections,
+    login: Login,
+    Notification: Notification,
   },
 });

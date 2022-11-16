@@ -9,7 +9,7 @@
 
 .join {
   font-weight: 900;
-  color: $blue;
+  color: var(--blue);
 }
 
 .linkedInNew {
@@ -18,7 +18,7 @@
 
 .fontLink {
   font-weight: 900;
-  color: $text;
+  color: var(--text);
   font-size: 0.8rem;
   cursor: pointer;
   white-space: nowrap;

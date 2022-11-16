@@ -11,18 +11,18 @@
   left: 20px;
 }
 .details {
-  padding: 0px 40px;
+  padding: 0px 25px;
 }
 .w-auto {
   width: auto !important;
 }
 .makeBlueLine:hover {
-  color: $blue;
+  color: var(--blue);
   text-decoration: underline;
   cursor: pointer;
 }
 .msgBtn {
-  padding: 4px 0px;
-  width: 70%;
+  padding: 6px 16px;
+  width: 50%;
   background: transparent;
 }

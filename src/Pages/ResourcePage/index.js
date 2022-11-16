@@ -5,7 +5,7 @@ import NavBar from "../../Components/NavBar/NavBar";
 import GlobalFooter from "../../Components/GlobalFooter";
 function ResourcePage() {
   return (
-    <div>
+    <>
       <NavBar />
       <div
         className="d-flex flex-column justify-content-between"
@@ -71,7 +71,7 @@ function ResourcePage() {
         </div>
         <GlobalFooter />
       </div>
-    </div>
+    </>
   );
 }
 

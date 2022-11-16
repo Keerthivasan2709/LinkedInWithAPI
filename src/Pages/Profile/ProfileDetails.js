@@ -4,19 +4,19 @@ import { Link } from "react-router-dom";
 import Button from "../../Components/Button/Button";
 import SkeletonLoader from "../../Components/SkeletonLoader";
 function ProfileDetails() {
-  const [data, setData] = useState({});
-  const profile = useSelector((state) => state.profile.data);
+  let data = useSelector((state) => state.UserDetails.userDetails);
 
-  useEffect(() => {
-    setData(profile);
-    console.log(data.id);
-  }, [profile]);
+  console.log(data);
   return (
     <>
       <div className="card" style={{ position: "relative" }}>
         <div>
           <img src={data.backgroundpic} />
-          <img src={data.profilepic} className="profilePicture rounded" />
+          <img
+            src={data.profilepic}
+            className="profilePicture rounded"
+            style={{ position: "absolute", top: "110px", left: "30px" }}
+          />
           <Link to="./editIntro">
             <img
               style={{
@@ -29,22 +29,36 @@ function ProfileDetails() {
             />
           </Link>
         </div>
-        <div className="details d-flex flex-row justify-content-between sm-column">
-          <div className="d-flex flex-column gap-2 w-100">
+        <div
+          className="details d-flex flex-row justify-content-between sm-column"
+          style={{ marginTop: "3.5rem" }}
+        >
+          <div className="d-flex flex-column gap-2 w-80">
             {data.id != undefined ? (
-              <p className="heading2 makeBold">
-                {data.firstName} {data.lastName}
-              </p>
+              <>
+                <p
+                  style={{
+                    fontSize: "24px",
+                    fontWeight: "600",
+                    lineHeight: "30px",
+                  }}
+                >
+                  {data.firstName} {data.lastName}
+                </p>
+                <p className="font-1">--</p>
+              </>
             ) : (
               <SkeletonLoader className="w-80 h-2 rounded-1" />
             )}
             {data.id != undefined ? (
               <>
-                <div className="d-flex">
-                  {data.address.city},{data.address.state},
-                  {data.address.country}-<Link>Personal Info</Link>
+                <div className="d-flex gap-2 font-05 grey">
+                  {data.address.city}, {data.address.state},{" "}
+                  {data.address.country} - <Link>Personal Info</Link>
                 </div>
-                <Link>{data.following.length} Connections</Link>
+                <Link className="font-1">
+                  {data.following.length} Connections
+                </Link>
               </>
             ) : (
               <>
@@ -54,15 +68,15 @@ function ProfileDetails() {
             )}
           </div>
 
-          <div>
-            <div className="d-flex flex-row align-items-center gap-5 mb-2 w-100">
+          <div className=" w-40">
+            <div className="d-flex flex-row align-items-center gap-5 mb-1">
               {data.id != undefined ? (
                 <>
                   <img
                     src="https://res.cloudinary.com/dibccigcp/image/upload/v1664890021/profile_1_mhhrgo.jpg"
                     style={{ maxWidth: "30px" }}
                   />
-                  <Link to="/" className="smallText makeBold hoverLine">
+                  <Link to="/" className="black font-1 hoverLine">
                     {data.usereducation[0].organization.name}
                   </Link>
                 </>
@@ -70,14 +84,14 @@ function ProfileDetails() {
                 <></>
               )}
             </div>
-            <div className="d-flex flex-row align-items-center gap-5 mb-2 w-100">
+            <div className="d-flex flex-row align-items-center gap-5 mb-1 w-100">
               {data.id != undefined ? (
                 <>
                   <img
                     src="https://res.cloudinary.com/dibccigcp/image/upload/v1664890021/profile_1_mhhrgo.jpg"
                     style={{ maxWidth: "30px" }}
                   />
-                  <Link to="/" className="smallText makeBold hoverLine">
+                  <Link to="/" className="black font-1 hoverLine">
                     {data.companys[0].organization.name}
                   </Link>
                 </>

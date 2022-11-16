@@ -54,16 +54,20 @@
   font-weight: 600;
 }
 .blue {
-  color: $blue;
+  color: var(--blue);
 }
 .grey {
-  color: #5e6262;
+  color: var(--grey);
+}
+.reaction {
+  color: var(--reaction);
 }
 .premium {
   margin-top: 4px;
 }
+
 .black {
-  color: black;
+  color: var(--text);
 }
 .mb-2 {
   margin-bottom: 16px;
@@ -78,11 +82,12 @@
   margin-bottom: 8px;
 }
 .discover {
-  font-size: 16px;
-  font-weight: 500;
-  color: black;
+  color: var(--discover);
   text-align: center;
   padding: 10px 0px;
+}
+.following {
+  color: var(--following);
 }
 .bullet {
   font-size: 21px;
@@ -113,7 +118,7 @@
   font-weight: 900;
 }
 .hoverBackground:hover {
-  background: $grey;
+  background: var(--grey);
   width: 100%;
 }
 .modalFlex {
@@ -218,4 +223,7 @@
 }
 .w-150px {
   width: 150px;
+}
+.feedFooter a {
+  padding: 5px;
 }

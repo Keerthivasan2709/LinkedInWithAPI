@@ -15,11 +15,11 @@
   margin: 0 auto;
 }
 .btnBlue {
-  color: $blue;
-  border: 2px solid $blue;
+  color: var(--blue);
+  border: 2px solid var(--blue);
   background-color: transparent;
   border-radius: 50px;
-  padding: 10px 35px;
+  padding: 6px 16px;
 }
 .btnBlue:hover {
   background-color: transparent;
@@ -40,4 +40,9 @@
 }
 .jobsHover:hover .dataRole {
   text-decoration: underline;
+}
+.font-3 {
+  font-size: 20px;
+  line-height: 25px;
+  font-weight: 600;
 }

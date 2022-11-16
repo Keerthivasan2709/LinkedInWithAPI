@@ -5,7 +5,7 @@ class Setting extends Component {
   render() {
     document.title = "Account Preferences";
     return (
-      <div>
+      <>
         <div className="bg-white">
           <img
             src="https://res.cloudinary.com/dibccigcp/image/upload/v1664264186/LinkedIn_Icon_naugpk.svg"
@@ -23,7 +23,7 @@ class Setting extends Component {
           <SettingTitle />
           <SettingOptions />
         </div>
-      </div>
+      </>
     );
   }
 }

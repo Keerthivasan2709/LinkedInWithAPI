@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
+import { Navigate } from "react-router-dom";
 import NavBar from "../../Components/NavBar/NavBar";
 import SecondaryNav from "../../Components/SecondaryNav/SecondaryNav";
 import SideBar from "../../Components/SideBar";
@@ -7,6 +9,7 @@ import Manage from "./Manage";
 import Network from "./Network";
 
 function MyNetwork() {
+  const loginState = useSelector((state) => state.login.login);
   const [workRef, setWorkRef] = useState();
   const [state, setState] = useState(true);
   function renderWorkSection() {
@@ -16,21 +19,27 @@ function MyNetwork() {
       : (workRef.current.style.display = "none");
   }
   return (
-    <div>
-      <NavBar onClick={renderWorkSection} />
-      <div
-        className="headflex mynetworkGrid align-items-start"
-        style={{ marginBottom: "70px" }}
-      >
-        <Manage />
+    <>
+      {loginState ? (
         <div>
-          <Invitation />
-          <Network />
+          <NavBar onClick={renderWorkSection} />
+          <div
+            className="headflex mynetworkGrid align-items-start"
+            style={{ marginBottom: "70px" }}
+          >
+            <Manage />
+            <div>
+              <Invitation />
+              <Network />
+            </div>
+          </div>
+          <SecondaryNav />
+          <SideBar setWorkRef={setWorkRef} />
         </div>
-      </div>
-      <SecondaryNav />
-      <SideBar setWorkRef={setWorkRef} />
-    </div>
+      ) : (
+        <Navigate to="/signin" />
+      )}
+    </>
   );
 }
 

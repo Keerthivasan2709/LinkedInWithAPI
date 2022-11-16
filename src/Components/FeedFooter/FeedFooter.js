@@ -4,14 +4,13 @@ import { feedFooterLink } from "../../Assets/Link";
 function FeedFooter() {
   return (
     <div>
-      <div style={{ padding: "10px" }} className="feedFooter">
+      <div className="feedFooter">
         {feedFooterLink.map((data, index) => {
           return (
             <Link
               key={index}
               to={data.link}
-              style={{ marginTop: "16px" }}
-              className="smallText black footerLink p-1"
+              className="black footerLink p-1 font-05 makeBold"
             >
               {data.name}
             </Link>

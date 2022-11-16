@@ -1,6 +1,7 @@
 import React, { useReducer, useRef } from "react";
 import { useState } from "react";
 import { pageBuilder } from "../../Assets/Link";
+import ErrorBoundary from "../../Components/ErrorBoundary";
 import NavBar from "../../Components/NavBar/NavBar";
 import CompanyPage from "./Company";
 function Company() {
@@ -34,7 +35,7 @@ function Company() {
     headingRef.current.classList.toggle("displayNone");
   };
   return (
-    <div>
+    <>
       <NavBar />
       <div
         className="headflex d-flex flex-column align-items-center"
@@ -83,7 +84,7 @@ function Company() {
       <div ref={formRef} className="displayNone">
         <CompanyPage onClick={handleBack} data={state} />
       </div>
-    </div>
+    </>
   );
 }
 

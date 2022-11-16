@@ -21,14 +21,10 @@ function CardList({ list }) {
         })
       ) : (
         <>
-          {[1, 2, 3, 4, 5, 6, 8, 8, 12].map((d) => {
-            return (
-              <div key={d}>
-                <SkeletonLoader className="w-100 h-1 mb-02 rounded-1" />
-                <SkeletonLoader className="w-60 h-1 mb-05 rounded-1" />
-              </div>
-            );
-          })}
+          <div>
+            <SkeletonLoader className="w-100 h-1 mb-02 rounded-1" />
+            <SkeletonLoader className="w-60 h-1 mb-05 rounded-1" />
+          </div>
         </>
       )}
     </div>

@@ -1,36 +1,37 @@
-import axios from "axios";
-import React, { useEffect, useRef } from "react";
-import { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import SkeletonLoader from "../../Components/SkeletonLoader";
-function Recent({ stick }) {
-  const [recent, setRecent] = useState([]);
-  const [readyForRender, setReadyForRender] = useState(false);
+import { setRecent } from "../../Reducers/Feed";
+import useFetch from "../../Requests";
+function Recent() {
+  useFetch("/feed/recent", setRecent);
+  const [readyForRender, setReadyForRender] = useState();
+  const recent = useSelector((state) => state.feed.recent);
+
   useEffect(() => {
-    axios
-      .get(`${process.env.REACT_APP_API_KEY}/feed/recent`, {
-        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-      })
-      .then((res) => {
-        setRecent(res.data.data);
-        setReadyForRender(true);
-      });
-  }, []);
+    recent.length != 0 ? setReadyForRender(true) : setReadyForRender(false);
+  }, [recent]);
   return (
-    <div className="card d-flex flex-column p-1">
+    <div
+      className="card d-flex flex-column p-1"
+      style={{ position: "sticky", top: "60px" }}
+    >
       {readyForRender ? (
-        <div className="mt-1 mb-1 list smallText">Recent</div>
+        <div className="mt-1 mb-1 list font-05 black">Recent</div>
       ) : (
         <SkeletonLoader className="w-70 h-1 mr-1 mt-2 mb-2" />
       )}
       {readyForRender ? (
-        recent.recent.map((data) => {
+        recent?.recent?.map((data) => {
           return (
             <div
               className="d-flex  list align-items-center gap-2 mb-1 hoverBackground pointer"
               key={data.title}
             >
-              <div className="smallText makeBold grey">{data.title}</div>
+              <div className="smallText grey font-05 makeBold">
+                {data.title}
+              </div>
             </div>
           );
         })
@@ -41,18 +42,20 @@ function Recent({ stick }) {
         </div>
       )}
       {readyForRender ? (
-        <Link className="list smallText mt-2 mb-2">Groups</Link>
+        <Link className="list smallText mt-2 mb-2 font-05 makeBold">
+          Groups
+        </Link>
       ) : (
         <SkeletonLoader className="w-60 h-1 mr-1 mt-1" />
       )}
       {readyForRender ? (
-        recent.group.map((data) => {
+        recent?.group?.map((data) => {
           return (
             <div
-              className="d-flex  list align-items-center gap-2 mb-1 hoverBackground pointer"
+              className="d-flex list align-items-center gap-2 mb-1 hoverBackground pointer"
               key={data.name}
             >
-              <div className="smallText makeBold grey">{data.name}</div>
+              <div className="smallText makeBold grey font-05">{data.name}</div>
             </div>
           );
         })
@@ -61,13 +64,24 @@ function Recent({ stick }) {
       )}
       {readyForRender ? (
         <>
-          <Link className="list smallText mb-2">Events</Link>
-          <Link className="list smallText mb-2">Followed Hashtags</Link>
-          <div className="list smallText grey makeBold mt-1 mb-1 pointer">
+          <Link className="list smallText mb-2 font-05 makeBold mt-1">
+            Events
+          </Link>
+          <Link className="list smallText mb-2 font-05 makeBold">
+            Followed Hashtags
+          </Link>
+          <div className="list smallText grey makeBold mt-1 mb-1 pointer font-05">
             See more..
           </div>
           <div className="vr"></div>
-          <Link to="" className="discover">
+          <Link
+            to=""
+            className="discover"
+            style={{
+              fontSize: "14px",
+              fontWeight: "600",
+            }}
+          >
             Discover more
           </Link>
         </>

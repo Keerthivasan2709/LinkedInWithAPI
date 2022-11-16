@@ -115,7 +115,11 @@ function NetworkList({ data }) {
           )}
           <center className="description">
             {data.companys ? (
-              `${data.companys[0].position} at ${data.companys[0].company.name} `
+              data.companys.length != 0 ? (
+                `${data?.companys[0]?.position} at ${data?.companys[0]?.company.name} `
+              ) : (
+                <></>
+              )
             ) : (
               <SkeletonLoader className="w-150px h-1 rounded-1" />
             )}

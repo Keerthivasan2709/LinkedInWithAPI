@@ -2,32 +2,16 @@ import axios from "axios";
 import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
+import { useSelector } from "react-redux";
 import { network_list } from "../../Assets/Link";
 import Button from "../../Components/Button/Button";
+import { setSuggestion } from "../../Reducers/Connections";
+import useFetch from "../../Requests";
 import NetworkList from "./NetworkList";
 
 function Network() {
-  const [recommendation, setRecommendation] = useState([
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-  ]);
-  useEffect(() => {
-    axios
-      .get(`${process.env.REACT_APP_API_KEY}/connection/recommend`, {
-        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-      })
-      .then((res) => {
-        setRecommendation(res.data.data);
-      });
-  }, []);
+  useFetch("/connection/recommend", setSuggestion);
+  const recommendation = useSelector((state) => state.Connection.suggestion);
   return (
     <div className="card mt-2">
       <div className="list d-flex align-items-center justify-content-between">

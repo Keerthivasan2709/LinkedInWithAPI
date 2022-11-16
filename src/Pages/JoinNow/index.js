@@ -5,6 +5,7 @@ import Email from "./FormPages/Email";
 import Name from "./FormPages/Name";
 import Experience from "./FormPages/Experience";
 import Education from "./FormPages/Education";
+import ErrorBoundary from "../../Components/ErrorBoundary";
 function Join() {
   const [render, setRender] = useState("0");
   const Render = [

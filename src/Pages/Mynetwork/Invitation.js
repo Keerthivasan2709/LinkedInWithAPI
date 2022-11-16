@@ -2,26 +2,19 @@ import axios from "axios";
 import React, { useEffect, useRef } from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { invitationList } from "../../Assets/Link";
-import Button from "../../Components/Button/Button";
+import { setInvitation } from "../../Reducers/Connections";
 import InvitationList from "./InvitationList";
+import useFetch from "../../Requests";
+import { useSelector } from "react-redux";
 function Invitation() {
-  const [invitation, setInvitation] = useState([]);
+  // const [invitation, setInvitation] = useState([]);
   const [invitationCount, setInvitationCount] = useState(0);
   const seeMoreRef = useRef();
   const cardContainer = useRef();
-  function getInvitationList() {
-    axios
-      .get(`${process.env.REACT_APP_API_KEY}/connection/vreq`, {
-        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-      })
-      .then((res) => {
-        setInvitation(res.data.data);
-      });
-  }
-  useEffect(() => {
-    getInvitationList();
-  }, []);
+  useFetch("/connection/vreq", setInvitation);
+  const invitation = useSelector((state) => state.Connection.invitation);
+  console.log(invitation);
+
   useEffect(() => {
     setInvitationCount(invitation.length);
   }, [invitation]);
@@ -36,7 +29,7 @@ function Invitation() {
   }, [invitationCount]);
   return (
     <>
-      <div className="card">
+      <div className="card" style={{ marginTop: "16px" }}>
         <div
           ref={cardContainer}
           className=" mt-2"
@@ -49,7 +42,7 @@ function Invitation() {
           <div className="hr mb-1"></div>
           {invitationCount != 0 ? (
             <>
-              {invitation.map((data) => {
+              {invitation?.map((data) => {
                 return (
                   <InvitationList
                     data={data}

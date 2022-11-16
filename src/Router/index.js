@@ -19,6 +19,7 @@ import EducationalModal from "../Components/EducationalModal";
 import Premium from "../Pages/Premium";
 import Company from "../Pages/Company";
 function Router() {
+  document.documentElement.setAttribute("data-theme", "dark");
   return (
     <>
       <Routes>

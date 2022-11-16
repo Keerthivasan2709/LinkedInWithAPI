@@ -5,6 +5,7 @@ import Details from "./Details";
 import Sidebar from "./Sidebar";
 import SecondaryNav from "../../Components/SecondaryNav/SecondaryNav";
 import SideBar from "../../Components/SideBar";
+import ErrorBoundary from "../../Components/ErrorBoundary";
 function IndividualJobs() {
   const { id } = useParams();
   console.log(id);
@@ -17,7 +18,7 @@ function IndividualJobs() {
       : (workRef.current.style.display = "none");
   }
   return (
-    <div>
+    <>
       <NavBar onClick={renderWorkSection} />
       <div className="headflex mt-2 card jobsGrid">
         <Sidebar />
@@ -25,7 +26,7 @@ function IndividualJobs() {
       </div>
       <SideBar setWorkRef={setWorkRef} />
       <SecondaryNav />
-    </div>
+    </>
   );
 }
 

@@ -4,9 +4,8 @@
 }
 body {
   margin: 0;
-  font-family: "Noto Sans Georgian", sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: -apple-system, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 code {
   font-family: Arial, sans-serif;
@@ -30,7 +29,7 @@ code {
 }
 
 body {
-  background-color: $grey;
+  background-color: #f3f2ef;
 }
 
 .d-flex {
@@ -117,8 +116,8 @@ textarea {
 }
 
 .headflex {
-  max-width: 1167px;
-  width: 92%;
+  max-width: 1140px;
+  width: 100%;
   margin: 0 auto;
 }
 
@@ -140,8 +139,8 @@ textarea {
 
 .hr {
   height: 1px;
-  background-color: #c8c8c8;
-  width: 100%;
+  background-color: var(--border);
+  width: 95%;
 }
 
 .my-2 {
@@ -152,7 +151,7 @@ textarea {
 .vr {
   width: 100%;
   height: 1px;
-  background-color: $border;
+  background-color: var(--border);
 }
 
 .w-25 {
@@ -232,11 +231,11 @@ textarea {
 }
 
 .background {
-  background-color: white;
+  background-color: var(--navBar);
 }
 
 .bg-grey {
-  background: $grey;
+  background: var(--grey);
 }
 
 .bg-transparent {
@@ -257,7 +256,7 @@ input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
-  -webkit-box-shadow: 0 0 0 30px $grey inset !important;
+  -webkit-box-shadow: 0 0 0 30px var(--grey) inset !important;
 }
 
 .w-40 {
@@ -269,9 +268,11 @@ button:disabled {
 }
 
 .card {
-  background-color: white;
+  background-color: var(--cardBackground);
   border-radius: 10px;
-  border: 1px solid $border;
+  border: 1px solid var(--border);
+  overflow: hidden;
+  border-radius: 0.8rem;
 }
 
 .lg-hide {
@@ -291,15 +292,24 @@ button:disabled {
 }
 
 .searchBtn {
-  color: $blue;
+  color: var(--blue);
   font-size: 12px;
   font-weight: 700;
   background-color: transparent;
-  border: 1px solid $blue;
+  border: 1px solid var(--blue);
   padding: 3px 25px !important;
   width: auto !important;
 }
-
+.p-05 {
+  padding: 5px 10px !important;
+  font-size: 14px;
+  font-weight: 500;
+}
+.font-2 {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 16px;
+}
 .makeSticky {
   position: sticky;
   top: 70px;
@@ -339,36 +349,36 @@ button:disabled {
     width: 40%;
   }
   25% {
-    width: 50%;
+    width: 45%;
   }
   35% {
-    width: 60%;
+    width: 50%;
   }
   50% {
-    width: 70%;
+    width: 60%;
   }
   75% {
-    width: 80%;
+    width: 65%;
   }
   100% {
-    width: 90%;
+    width: 75%;
   }
 }
 @keyframes moveBackwardSearchBar {
   0% {
-    width: 90%;
+    width: 75%;
   }
   25% {
-    width: 80%;
+    width: 65%;
   }
   35% {
-    width: 70%;
-  }
-  50% {
     width: 60%;
   }
-  75% {
+  50% {
     width: 50%;
+  }
+  75% {
+    width: 45%;
   }
   100% {
     width: 40%;
@@ -380,4 +390,47 @@ button:disabled {
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 1;
   overflow: hidden;
+}
+.font-05 {
+  font-size: 12px;
+  font-weight: 400;
+}
+.font-1 {
+  font-size: 14px !important;
+  font-weight: 600;
+}
+.fontColor-1 {
+  color: rgba(0, 0, 0, 0.9);
+}
+.commentBox::placeholder {
+  font-size: 10px;
+  font-weight: 300;
+  color: var(--text);
+  padding-left: 0.7rem;
+}
+.commentBox {
+  padding-left: 0.7rem;
+}
+.linkColor {
+  color: var(--text);
+}
+.notificationList {
+  width: 100%;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+}
+.uploadInput {
+  border-radius: 35px !important;
+  border: 1px solid var(--uploadBar);
+  padding-left: 1.6rem;
+  padding-right: 0.8rem;
+}
+
+.uploadInput::placeholder {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text);
+  padding-left: 0.7rem;
 }

@@ -13,11 +13,11 @@ function NavBar({ onClick }) {
   const Icon = useRef();
   window.addEventListener("animationend", (e) => {
     if (e.animationName === "moveForwardSearchBar") {
-      searchBarRef.current.style.width = "90%";
+      searchBarRef.current.style.width = "80%";
       suggestionListRef.current.style.display = "block";
       modalRef.current.style.display = "block";
     } else if (e.animationName === "moveBackwardSearchBar") {
-      searchBarRef.current.style.width = "40%";
+      searchBarRef.current.style.width = "60%";
     }
   });
   function setRef(ref) {
@@ -26,6 +26,7 @@ function NavBar({ onClick }) {
   const handleDropdown = () => {
     dropDown.current.classList.toggle("show");
   };
+
   useEffect(() => {
     let number = pageNavigation();
     if (number <= 4) {
@@ -58,6 +59,7 @@ function NavBar({ onClick }) {
       })
       .then((res) => setSuggestionList(res.data.result));
   };
+
   return (
     <div
       style={{
@@ -74,6 +76,7 @@ function NavBar({ onClick }) {
               <img
                 src="https://res.cloudinary.com/dibccigcp/image/upload/v1664264186/LinkedIn_Icon_naugpk.svg"
                 className="iconImg sm-hide"
+                style={{ width: "34px", height: "34px" }}
               />
             </Link>
             <Link to="/profile">
@@ -85,10 +88,10 @@ function NavBar({ onClick }) {
             </Link>
             <div
               ref={searchBarRef}
-              style={{ width: "40%", position: "relative" }}
+              style={{ width: "60%", position: "relative" }}
             >
               <div
-                className="d-flex align-items-center gap-1"
+                className="d-flex align-items-center gap-1 rounded-1 searchBar"
                 style={{
                   backgroundColor: "#EEF3F8",
                   height: "24px",
@@ -108,7 +111,7 @@ function NavBar({ onClick }) {
                 />
                 <input
                   style={{ background: "transparent" }}
-                  className="noBorder searchBar"
+                  className="noBorder search"
                   placeholder="Search"
                   onChange={(e) => throttleFunc(e, handleChange, 300)}
                   onFocus={() => {
@@ -198,7 +201,7 @@ function NavBar({ onClick }) {
           >
             {NavBarLinks.map((data, index) => {
               return data.name == "vr" ? (
-                <div key={data.name} className="verticalLine"></div>
+                <div key={data.name} className="verticalLine font-05"></div>
               ) : index === 7 ? (
                 <div
                   className="d-flex flex-column align-items-center pointer"
@@ -206,7 +209,7 @@ function NavBar({ onClick }) {
                 >
                   <img src={data.img} className="navBarIcons" />
                   <div className="d-flex align-items-center sm-hide">
-                    <div className="smallText">{data.name}</div>
+                    <div className="smallText font-05 black">{data.name}</div>
                     <img src={data.dropDownImg} />
                   </div>
                 </div>
@@ -229,12 +232,14 @@ function NavBar({ onClick }) {
                     )}
                     {data.dropDownImg ? (
                       <div className="d-flex  sm-hide">
-                        <div className="smallText">{data.name}</div>
+                        <div className="smallText font-05 black">
+                          {data.name}
+                        </div>
                         <img src={data.dropDownImg} />
                       </div>
                     ) : (
                       <div
-                        className="smallText sm-hide"
+                        className="smallText sm-hide font-05 black"
                         style={{ marginBottom: "4px" }}
                       >
                         {data.name}
@@ -244,14 +249,14 @@ function NavBar({ onClick }) {
                 </Link>
               );
             })}
-            <Link to="/premium" className="premiumLink">
+            <Link to="/premium" className="premiumLink font-05">
               Try premium for free
             </Link>
           </div>
           <div
             className="modal"
             ref={modalRef}
-            style={{ display: "none", marginTop: "16px" }}
+            style={{ display: "none", marginTop: "58px" }}
           >
             <div className="modalCnt"></div>
           </div>

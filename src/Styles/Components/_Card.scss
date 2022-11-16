@@ -2,7 +2,7 @@
 .SignInInput:-webkit-autofill:hover,
 .SignInInput:-webkit-autofill:focus,
 .SignInInput:-webkit-autofill:active {
-  -webkit-box-shadow: 0 0 0 30px $grey inset !important;
+  -webkit-box-shadow: 0 0 0 30px var(--grey) inset !important;
 }
 
 .SignInInput {
