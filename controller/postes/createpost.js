@@ -74,12 +74,19 @@ exports.createPost = asynchandler( async (req,res,next) => {
       }
   }
     // loging the activity 
-    await activityUpdate({
-        userid:req.user.id,
-        targetid:post.id,
-        message:"the post published",
-        type:"post"
-        
+    await client.activity.create({
+        data:{
+            useractivity:{
+                connect:{
+                    id:req.user.id
+                }
+            },
+            type:"post",
+            message:"the post is created and published",
+            targetid:post.id,
+            belongsTo:req.user.id,
+            tagetpic:"https://res.cloudinary.com/dibccigcp/image/upload/v1665033764/1554406342596_afmara.jpg"
+        }
     })
     
         res.status(200).json({

@@ -50,11 +50,11 @@ app.use(xss());
 
 //using the static resourse
 app.use('/api/v1/data',express.static(path.resolve('resourse')))
-app.use('/',(req,res,next)=>{
-    console.log(req);
-    next()
-})
-app
+// app.use('/',(req,res,next)=>{
+//     console.log(req);
+//     next()
+// })
+
 //setting the routes for the app 
 app.use('/api/v1/user',user)
 app.use('/api/v1/profile',profile)

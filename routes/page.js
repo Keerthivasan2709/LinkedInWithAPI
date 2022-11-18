@@ -8,7 +8,7 @@ const upload  = require('../utils/multer')
 
 //mounting the routes 
 routes.route('/assignrole').post(protect,pageAuthentication,page.assignPageRole)
-routes.route('/create').post(protect,upload.array('image'),page.createPage)
+routes.route('/create').post(protect,upload.single('logopic'),page.createPage)
 routes.route('/:pageid').get(protect,page.viewPage)
 routes.route('/post').post(protect,pageAuthentication,page.createPagePosts)
 routes.route('/post/edit').post(protect,pageAuthentication,page.pagePostEdit)

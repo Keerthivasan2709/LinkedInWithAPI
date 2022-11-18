@@ -149,12 +149,39 @@ const { date } = require("joi");
 // }
 // some()
 
-const some = async ()=>{await client.profile.updateMany({
-    where:{},
-    data:{
-        profilepic:faker.image.avatar(),
-        backgroundpic:"https://res.cloudinary.com/dibccigcp/image/upload/v1664890021/Background_japmti.svg"
-    }
-})
+// 
+// const some = async()=> {
+//  await client.page.deleteMany({});
+
+// }
+// some()
+
+// const some  = async()=>{
+//   for(let i=0;i<10;i++){
+//     await client.advertisement.create({
+//         data:{
+//             advertisemenLogo:faker.image.business(),
+//             title:faker.lorem.word(),
+//             type:"private",
+//             about:faker.lorem.lines(),
+//             company:{
+//                 connect:{
+//                     id:"f3b6784a-9e52-4a87-abac-1674769240de",
+//                 }
+//             },
+//             records:{
+//                 create:{
+//                     displayed:faker.datatype.number(precision=0),
+//                     viewed:faker.datatype.number(precision=0)
+//                 }
+//             }
+//         }
+    
+
+//     })
+// }
+// }
+const some  = async()=>{
+    
 }
 some()

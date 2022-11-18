@@ -12,7 +12,7 @@ const {filterUsers} = require("../../utils/utilityfuc");
 exports.getProfile = asynchandler(async (req,res,next)=>{
     try{
       if(!req.params.profileid) return next(new ErrorResponse("invaild request parameter",402))
-      const profile = await client.profile.findUnique({
+      const data = await client.profile.findUnique({
         where:{
                 id:req.params.profileid,
         },
@@ -71,7 +71,7 @@ exports.getProfile = asynchandler(async (req,res,next)=>{
         }
         
       })
-    if(!profile) return next(new ErrorResponse("profile not found",404))
+    if(!data) return next(new ErrorResponse("profile not found",404))
     //getting the mutual connection 
     let connection = await client.connection.findMany({
       where:{
@@ -118,7 +118,7 @@ exports.getProfile = asynchandler(async (req,res,next)=>{
       //getting the address details 
       const address = await client.address.findUnique({
         where:{
-          id:profile.addressid
+          id:data.addressid
         },
         select:{
           country:true,
@@ -144,10 +144,52 @@ exports.getProfile = asynchandler(async (req,res,next)=>{
         viewedAt:new Date(Date.now())
       }
     })
-    
+    await client.activity.create({
+      data:{
+          useractivity:{
+              connect:{
+                  id:req.user.id
+              }
+          },
+          type:"profile",
+          message:"profile is viewd activity",
+          targetid:req.params.profileid,
+          belongsTo:req.user.id,
+          tagetpic:"https://res.cloudinary.com/dibccigcp/image/upload/v1665059590/1659541201558_pb42vz.jpg",
+      }
+    })
+    // getting the address details
+    //destructuring the array 
+    //doing for the education
+    data.usereducation.forEach((ele,index) => {
+      const obj = {
+          course:ele.course,
+          startDate:ele.startDate,
+          endDate:ele.endDate,
+          organization:ele.student
+
+      } 
+      data.usereducation[index] = obj
+
+  }
+  )
+  //doing for company
+  data.companys.forEach((ele,index) => {
+      const obj = {
+          course:ele.position,
+          startDate:ele.startDate,
+          endDate:ele.endDate,
+          organization:ele.company,
+          status:ele.status
+
+      } 
+      data.companys[index] = obj
+
+  }
+  )
     res.status(200).json({
       status:true,
-      profile,
+      data,
       mutualConnection,
       address
     })

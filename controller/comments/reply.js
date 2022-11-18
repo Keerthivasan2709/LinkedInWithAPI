@@ -21,6 +21,39 @@ exports.setReply = asynchandler(async (req,res,next)=>{
         }
     })
     if(!data) return next(new ErrorResponse("the replay not sent"))
+    const target = await client.comments.findFirst({
+        where:{
+            id:req.params.cid,
+        },
+        select:{
+            comment:{
+                select:{
+                    id:true,
+                    userpost:{
+                        select:{
+                            id:true
+                        }
+                    }
+                }
+            }
+        }
+    })
+    const profile = await client.profile.findFirst({where:{id:req.user.id},select:{profilepic:true}});
+    await client.activity.create({
+        data:{
+            useractivity:{
+                connect:{
+                    id:req.user.id,
+                }
+            },
+            type:"replay",
+            message:"replayed to your comment",
+            targetid:target.comment.id,
+            belongsTo:target.comment.userpost.id,
+            tagetpic:profile.profilepic
+        }
+
+    })
     res.status(200).json({
         status:true,
         msg: "replay sent"

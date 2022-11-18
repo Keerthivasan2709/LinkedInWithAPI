@@ -55,7 +55,22 @@ exports.like = asynchandler(async (req,res,next)=>{
             
         }
     })
+    const belongto = await client.posts.findFirst({where:{id:req.body.postid},select:{profileid:true}})
     if(!data) return next(new ErrorResponse("unable to perform the requested operation",500))
+    await client.activity.create({
+        data:{
+            useractivity:{
+                connect:{
+                    id:req.user.id
+                }
+            },
+            type:"post",
+            message:"the post is liked",
+            targetid:req.body.postid,
+            belongsTo:belongto.profileid,
+            tagetpic:"https://res.cloudinary.com/dibccigcp/image/upload/v1667963352/mowsrw245cbs74dvevvq.jpg"
+        }
+    })
     res.status(200).json({
         status:true,
         like:true,

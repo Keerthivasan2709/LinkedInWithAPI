@@ -78,6 +78,7 @@ exports.viwedProfile = asynchandler(async (req, res, next) => {
     if (!data) {
       return next(new ErrorHandler("unable to fetch the data", 500));
     }
+    
     res.status(200).json({
       status: true,
       premium:req.user.premium,

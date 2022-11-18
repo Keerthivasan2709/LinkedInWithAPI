@@ -31,6 +31,20 @@ exports.followPeople = asynchandler(async (req, res, next) => {
       })
     }
     if(!data) return next(new ErrorHandler("unable to do the requested operation "))
+    await client.activity.create({
+      data:{
+          useractivity:{
+              connect:{
+                  id:req.user.id
+              }
+          },
+          type:"profile",
+          message:"following activity",
+          targetid:req.body.id,
+          belongsTo:req.user.id,
+          tagetpic:"https://res.cloudinary.com/dibccigcp/image/upload/v1665059590/1659541201558_pb42vz.jpg",
+      }
+    })
     res.status(200).json({
       status:true,
       data

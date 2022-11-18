@@ -7,16 +7,6 @@ cloudinary.config({
     api_secret:process.env.CLOUD_SECRET_KEY,
 })
 
-exports.uploads = (file,folder) =>{
-    return new Promise(resolve=> {
-        cloudinary.uploader.upload(file,(result)=>{
-            resolve({
-                url:result.url,
-            }) 
-        },
-        {
-          resource_type:"auto",
-          folder:folder
-        })
-    })
-}
+exports.uploads = async (file)=>cloudinary.uploader.upload(file);
+            
+        

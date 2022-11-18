@@ -10,7 +10,7 @@ const ErrorResponse  = require('../../utils/errorhandler');
 exports.searchForContent  =  asynchandler( async (req,res,next)=>{
   try{
     if(!req.params.keyword) return next(new ErrorResponse("search element not found",402))
-    let search = {contains:req.params.keyword}
+    let search = {contains:req.params.keyword,mode:"insensitive"}
     let data =  await Promise.allSettled([
      client.profile.findMany({
         take:3,

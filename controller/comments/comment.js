@@ -22,6 +22,7 @@ exports.updateComment = asynchandler(async (req,res,next)=>{
         }
     })
     if(!data) return next(new ErrorResponse("failed to update",457))
+
     res.status(200).json({
         status:true,
         msg:"comment updated"
@@ -153,14 +154,26 @@ exports.setComment  = asynchandler(async (req,res,next)=>{
                 }
             }
         }
+    
     })
+    const belongsto = await client.posts.findFirst({where:{id:req.body?.id},select:{profileid:true}})
+    const profile = await client.profile.findFirst({where:{id:req.user.id},select:{profilepic:true}})
     if(!data) return next(new ErrorResponse("Problem in storing",423))
-    await activityUpdate({
-       userid:req.user.id,
-       tagerid:data.id,
-       message:"added comment on the post",
-       type:"comment"
-    })
+    try{await client.activity.create({
+        data:{
+            useractivity:{
+                connect:{
+                    id:req.user.id
+                }
+            },
+            type:"comment",
+            targetid:data?.id,
+            belongsTo:belongsto?.profileid,
+            tagetpic:profile?.profilepic
+           
+        }
+    })}
+    catch(err) { console.log("activity error")}
     res.status(200).json({status:true})
 }catch(err) {return next(new ErrorResponse(err.message,500))}
 })

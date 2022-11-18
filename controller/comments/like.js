@@ -36,6 +36,40 @@ exports.likeComment = asynchandler(async (req,res,next)=>{
            }
         })
         if(!data) return next(new ErrorResponse("unable to perform the requested operation",500))
+        const taget  = await client.comments.findFirst({
+            where:{
+                id:req.params.cid,
+            },
+            select:{
+                usercomment:{
+                    select:{
+                        id:true,
+                    }
+                },
+                comment:{
+                    select:{
+                        id:true
+                    }
+                }
+            }
+        })
+        const profile  = await client.profile.findFirst({where:{id:req.user.id},select:{profilepic:true}})
+        await client.activity.create({
+            data:{
+                useractivity:{
+                    connect:{
+                        id:req.user.id
+                    }
+
+                },
+                message:"liked your comment",
+                type:"comment",
+                targetid:taget.comment.id,
+                belongsTo:taget.usercomment.id,
+                tagetpic:profile.profilepic
+
+            }
+        })
         res.status(200).json({
            status:true,
            like:true
@@ -112,6 +146,44 @@ exports.likeReplay  = asynchandler( async (req,res,next)=>{
            }
         })
         if(!data) return next(new ErrorResponse("unable to perform the requested operation",500))
+        const target = await client.reply.findFirst({
+            where:{
+                id:req.user.id,
+            },
+            select:{
+                replay:{
+                   
+                   select:{
+                     id:true,   
+                     userid:true,
+                   }   
+                }
+            }
+        })
+        const profile = await client.profile.findFirst({
+            where:{
+                id:req.user.id,
+            },
+            select:{
+                profilepic:true
+            }
+        })
+        await client.activity.create({
+            data:{
+                useractivity:{
+                    connect:{
+                        id:req.user.id
+                    }
+
+                },
+                message:"liked your comment",
+                type:"comment",
+                targetid:target.replay.id,
+                belongsTo:target.replay.userid,
+                tagetpic:profile.profilepic
+
+            }
+        })
         res.status(200).json({
            status:true,
            like:true

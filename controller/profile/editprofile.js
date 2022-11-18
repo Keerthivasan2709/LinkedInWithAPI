@@ -45,17 +45,26 @@ exports.editProfile = asynchandler(async (req,res,next)=>{
         }
 
       })
+      await client.activity.create({
+        data:{
+            useractivity:{
+                connect:{
+                    id:req.user.id
+                }
+            },
+            type:"profile",
+            message:"the user had updated the profile",
+            targetid:req.user.id,
+            belongsTo:req.user.id,
+            tagetpic:"https://res.cloudinary.com/dibccigcp/image/upload/v1665059590/1659541201558_pb42vz.jpg",
+        }
+    })
      res.status(200).json({status:true,data})
    
 
             
      // logging the activity 
-     await activityUpdate({
-        userid : req.user.id,
-        tagetid: req.user.id,
-        messsage:"the profile is update",
-        type:"profile"
-    })
+     
 } catch (error) {
       console.log(error)
        return next(new ErrorResponse(error.messsage,500)) 

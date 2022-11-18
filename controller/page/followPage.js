@@ -8,7 +8,7 @@ const ErrorResponse = require('../../utils/errorhandler');
 //@access Private 
 
 exports.followPage = asynchandler(async (req,res,next)=>{
-    try{await client.page.update({
+    try{const page = await client.page.update({
         where:{
             id:req.body.pageid,
         },
@@ -24,6 +24,20 @@ exports.followPage = asynchandler(async (req,res,next)=>{
     res.status(200).json({
         status:true,
         following:true
+    })
+    await client.activity.create({
+        data:{
+            useractivity:{
+                connect:{
+                    id:req.user.id
+                }
+            },
+            type:"page",
+            message:"followed the page",
+            targetid:page.id,
+            belongsTo:page.belongsto,
+            tagetpic:page.logpic
+        }
     })
 }catch(err){
     

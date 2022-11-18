@@ -74,6 +74,20 @@ exports.editPost = asynchandler( async (req,res,next)=>{
             }
         }
         if(!data) return next(new ErrorHandler("update failed",500))
+        await client.activity.create({
+            data:{
+                useractivity:{
+                    connect:{
+                        id:req.user.id
+                    }
+                },
+                type:"post",
+                message:"the post is edited",
+                targetid:req.body?.postid,
+                belongsTo:req.user.id,
+                tagetpic:"https://res.cloudinary.com/dibccigcp/image/upload/v1667963352/mowsrw245cbs74dvevvq.jpg"
+            }
+        })
         res.status(200).json({
             status:true,
             data

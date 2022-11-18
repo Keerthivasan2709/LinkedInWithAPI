@@ -80,7 +80,20 @@ exports.deletePost = asynchandler(async (req,res,next)=>{
     
     if(!post) return next(new ErrorHandler("deletion failed",500))
 
-    
+    await client.activity.create({
+        data:{
+            useractivity:{
+                connect:{
+                    id:req.user.id
+                }
+            },
+            type:"post",
+            message:"the post is deleted",
+            targetid:req.params.postid,
+            belongsTo:req.user.id,
+            tagetpic:"https://res.cloudinary.com/dibccigcp/image/upload/v1667963352/mowsrw245cbs74dvevvq.jpg"
+        }
+    })
     res.status(200).json({
         status:true,
         msg:"deletion completed ",

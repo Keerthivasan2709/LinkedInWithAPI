@@ -5,7 +5,7 @@ const {feedProfile} = require('./feedprofile')
 const {searchForContent} = require("./search")
 const {getNews} = require('./feednews')
 const {getRandomAds} = require('./feedAds')
-
+const {getNotification} = require('./notification')
 
 //controller object
 const obj = {
@@ -13,8 +13,8 @@ const obj = {
     feedProfile,
     searchForContent,
     getNews,
-    getRandomAds
-
+    getRandomAds,
+    getNotification
 }
 
 //freezing the object 

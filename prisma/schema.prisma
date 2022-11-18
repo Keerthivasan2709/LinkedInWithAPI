@@ -247,7 +247,9 @@ model Page {
   websitelink String?
   logpic      String?      @default("file/defaultlog0")
   description String?      @default("add description")
-  pagetype    String
+  pagetype    String       @default("public")
+  organizationtype String? 
+  organizationsize String?
   createdAt   DateTime     @default(now())
   viewed      Int          @default(1)
   pageAccess  PageAccess[]
