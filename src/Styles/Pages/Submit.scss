@@ -11,7 +11,7 @@ input[type="submit"] {
 }
 
 .btnSecondary {
-  color: black;
-  border: 1px solid black;
+  color: var(--text);
+  border: 1px solid var(--text);
   background-color: transparent;
 }

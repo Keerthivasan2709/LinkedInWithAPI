@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import SkeletonLoader from "../../Components/SkeletonLoader";
 import { setProfile } from "../../Reducers/Feed";
 import useFetch from "../../Requests";
-
+import { Bookmark } from "../../Assets/Images/Pictures";
 function Profile() {
   useFetch("/feed/profile", setProfile);
 
@@ -139,7 +139,7 @@ function Profile() {
             className="d-flex gap-2 pointer hoverLine"
             style={{ padding: "0px 15px", marginBottom: "8px" }}
           >
-            <img src="https://res.cloudinary.com/dibccigcp/image/upload/v1664264182/Bookmark_rjju4f.svg" />
+            <Bookmark className="fill1" />
             <div className="smallText makeBold font-05 black">My items</div>
           </div>
         </>

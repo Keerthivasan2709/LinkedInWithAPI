@@ -407,6 +407,7 @@ export const AccountPreference = [
         id: "id003",
         name: "Dark mode",
         description: "",
+        link: "./change-mode",
       },
     ],
   ],

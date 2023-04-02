@@ -2,7 +2,7 @@ import React from "react";
 function Dropdown({ name, list, handleForm, className }) {
   console.log(list);
   return (
-    <div className={`${className} rounded-5`}>
+    <div className={`${className} border rounded-5`}>
       <select
         onChange={handleForm}
         name={name}

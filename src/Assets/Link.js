@@ -6,6 +6,25 @@ import {
   SignIn,
   Visibility,
 } from "./Images/Images.js";
+import {
+  ApplicationPics,
+  BellIcon,
+  Bookmark,
+  Creator,
+  Home,
+  ImpressionPics,
+  InterviewPics,
+  Jobs,
+  JobseekerPics,
+  Messaging,
+  Network,
+  Notification,
+  ProfileViewsPics,
+  ResumeBuilderPics,
+  Search,
+  SkillsPics,
+  Work,
+} from "./Images/Pictures.js";
 
 export const FooterLink = [
   {
@@ -40,27 +59,27 @@ export const FooterLink = [
 
 export const NavBarLinks = [
   {
-    img: "https://res.cloudinary.com/dibccigcp/image/upload/v1665379437/index_bf2jdk.svg",
+    img: <Home />,
     name: "Home",
     link: "/feed",
   },
   {
-    img: "https://res.cloudinary.com/dibccigcp/image/upload/v1664264187/MyNetwork_tkdbzr.svg",
+    img: <Network />,
     name: "My Network",
     link: "/mynetwork",
   },
   {
-    img: "https://res.cloudinary.com/dibccigcp/image/upload/v1664264184/Jobs_pv9qeu.svg",
+    img: <Jobs />,
     name: "Jobs",
     link: "/jobs",
   },
   {
-    img: "https://res.cloudinary.com/dibccigcp/image/upload/v1664264186/Messaging_qxqkve.svg",
+    img: <Messaging />,
     name: "Messaging",
     link: "/messaging",
   },
   {
-    img: "https://res.cloudinary.com/dibccigcp/image/upload/v1664264187/Notification_rquatl.svg",
+    img: <Notification />,
     name: "Notification",
     link: "/notification",
   },
@@ -75,7 +94,7 @@ export const NavBarLinks = [
     name: "vr",
   },
   {
-    img: "https://res.cloudinary.com/dibccigcp/image/upload/v1664264190/Work_nxijqb.svg",
+    img: <Work />,
     name: "Work",
     link: "/work",
     dropDownImg:
@@ -535,49 +554,41 @@ export const invitationList = [
 
 export const JobsAssets = [
   {
-    image:
-      "https://res.cloudinary.com/dibccigcp/image/upload/v1664264182/Bookmark_rjju4f.svg",
+    image: <Bookmark className="Passivefill1" />,
     name: "My Jobs",
   },
   {
-    image:
-      "https://res.cloudinary.com/dibccigcp/image/upload/v1664264187/Notification_rquatl.svg",
+    image: <BellIcon />,
     name: "Job alert",
     no: "",
   },
   {
-    image:
-      "https://res.cloudinary.com/dibccigcp/image/upload/v1665032510/index_yfahha.svg",
+    image: <SkillsPics />,
     name: "Salary",
     no: "",
   },
   {
-    image:
-      "https://res.cloudinary.com/dibccigcp/image/upload/v1665032556/index_q7pylp.svg",
+    image: <InterviewPics />,
     name: "Skill assessment",
     no: "",
   },
   {
-    image:
-      "https://res.cloudinary.com/dibccigcp/image/upload/v1665032601/index_ppystd.svg",
+    image: <InterviewPics />,
     name: "Interview prep",
     no: "",
   },
   {
-    image:
-      "https://res.cloudinary.com/dibccigcp/image/upload/v1665032643/index_jabefo.svg",
+    image: <ResumeBuilderPics />,
     name: "Resume builder",
     no: "",
   },
   {
-    image:
-      "https://res.cloudinary.com/dibccigcp/image/upload/v1665032686/index_om3ano.svg",
+    image: <JobseekerPics />,
     name: "Job seeker guidance",
     no: "",
   },
   {
-    image:
-      "https://res.cloudinary.com/dibccigcp/image/upload/v1665032731/index_qhsji1.svg",
+    image: <ApplicationPics />,
     name: "Application settings",
     no: "",
   },
@@ -1405,7 +1416,7 @@ export const SettingLinks = [
 export const Languages = ["English", "தமிழ்", "español", "广州话 [廣州話] "];
 export const list = [
   {
-    img: "https://res.cloudinary.com/dibccigcp/image/upload/v1666796187/index_tggdub.svg",
+    img: <Creator />,
     title: "Creator Mode",
     badge: true,
     badgeValue: "Off",
@@ -1414,7 +1425,7 @@ export const list = [
   },
 
   {
-    img: "https://res.cloudinary.com/dibccigcp/image/upload/v1664963003/index_t6htx7.svg",
+    img: <Network />,
     title: "My Network",
     badge: false,
     badgeValue: "",
@@ -1445,19 +1456,19 @@ export const list = [
 ];
 export const AnalyticsList = [
   {
-    img: "https://res.cloudinary.com/dibccigcp/image/upload/v1664963003/index_t6htx7.svg",
+    img: <ProfileViewsPics />,
     profileviews: 39,
     description: "profile views",
     subDescription: "Discover who's viewed your profile.",
   },
   {
-    img: "https://res.cloudinary.com/dibccigcp/image/upload/v1666783696/index_yvnqnk.svg",
+    img: <ImpressionPics />,
     profileviews: 24,
     description: "post impression",
     subDescription: "Check out who's engaging with your posts.",
   },
   {
-    img: "https://res.cloudinary.com/dibccigcp/image/upload/v1666496387/index_zez2kr.svg",
+    img: <Search />,
     profileviews: 14,
     description: "search appearances",
     subDescription: "see how often you appear in a week",

@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { Threedots } from "../../Assets/Images/Pictures";
 import { findDays } from "../../Utils/Helpers";
 
 function NotificationList() {
@@ -24,7 +25,10 @@ function NotificationList() {
                   src={data.targetpic}
                   style={{ width: "40px", height: "40px" }}
                 />
-                <p className="notificationList" style={{ fontSize: "17px" }}>
+                <p
+                  className="notificationList grey"
+                  style={{ fontSize: "17px" }}
+                >
                   {data.message}
                 </p>
               </div>
@@ -35,13 +39,10 @@ function NotificationList() {
                 <p className="smallText grey" style={{ fontSize: "12px" }}>
                   {findDays(data.createdAt)}d ago
                 </p>
-                <img
-                  src="https://res.cloudinary.com/dibccigcp/image/upload/v1664264189/Threedots_zyt2e8.svg"
-                  style={{ width: "20px" }}
-                />
+                <Threedots />
               </div>
             </div>
-            <div className="hr"></div>
+            <div className="vr"></div>
           </div>
         );
       })}

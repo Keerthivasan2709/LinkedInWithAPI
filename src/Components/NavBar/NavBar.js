@@ -3,6 +3,7 @@ import { NavBarLinks } from "../../Assets/Link";
 import { Link } from "react-router-dom";
 import Dropdown from "../../Pages/Dropdown";
 import axios from "axios";
+import { DropdownPics, Search } from "../../Assets/Images/Pictures";
 
 function NavBar({ onClick }) {
   const [dropDown, setDropdown] = useState();
@@ -100,31 +101,28 @@ function NavBar({ onClick }) {
                   marginLeft: "8px",
                 }}
               >
-                <img
-                  src="https://res.cloudinary.com/dibccigcp/image/upload/v1667987788/index_cviuuq.svg"
-                  style={{
-                    width: "16px",
-                    height: "16px",
-                    padding: "7px 10px",
-                    outline: "none",
-                  }}
-                />
-                <input
-                  style={{ background: "transparent" }}
-                  className="noBorder search"
-                  placeholder="Search"
-                  onChange={(e) => throttleFunc(e, handleChange, 300)}
-                  onFocus={() => {
-                    searchBarRef.current.style.animation =
-                      "moveForwardSearchBar 750ms linear";
-                  }}
-                  onBlur={() => {
-                    modalRef.current.style.display = "none";
-                    suggestionListRef.current.style.display = "none";
-                    searchBarRef.current.style.animation =
-                      "moveBackwardSearchBar 750ms linear";
-                  }}
-                />
+                <div className="sm-hide">
+                  <Search className="searchBarIcon" />
+                  <input
+                    style={{ background: "transparent" }}
+                    className="noBorder search"
+                    placeholder="Search"
+                    onChange={(e) => throttleFunc(e, handleChange, 300)}
+                    onFocus={() => {
+                      searchBarRef.current.style.animation =
+                        "moveForwardSearchBar 750ms linear";
+                    }}
+                  />
+                </div>
+                <div className="lg-hide">
+                  <Search className="searchBarIcon" />
+                  <input
+                    style={{ background: "transparent", width: "100%" }}
+                    className="noBorder search"
+                    placeholder="Search"
+                    onChange={(e) => throttleFunc(e, handleChange, 300)}
+                  />
+                </div>
               </div>
               <div
                 style={{
@@ -144,7 +142,7 @@ function NavBar({ onClick }) {
                     gap: "30px",
                   }}
                 >
-                  <p className="smallText">Recent</p>
+                  <p className="font-1 black">Recent</p>
                   <div className="d-flex flex-row gap-5">
                     <div className="d-flex flex-column align-items-center p-2">
                       <img
@@ -152,7 +150,7 @@ function NavBar({ onClick }) {
                         style={{ width: "35px" }}
                       />
                       <div>
-                        <b style={{ fontSize: "12px" }}>Keerthi</b>
+                        <b className="font-05 grey">Keerthi</b>
                       </div>
                     </div>
                     <div className="d-flex flex-column align-items-center p-2">
@@ -161,11 +159,10 @@ function NavBar({ onClick }) {
                         style={{ width: "35px" }}
                       />
                       <div>
-                        <b style={{ fontSize: "12px" }}>Keerthi</b>
+                        <b className="font-05 grey">Keerthi</b>
                       </div>
                     </div>
                   </div>
-                  {console.log(suggestionList)}
                   {suggestionList.length != 0 ? (
                     suggestionList.map((d, index) => {
                       return d.map((data, ind) => {
@@ -207,35 +204,31 @@ function NavBar({ onClick }) {
                   className="d-flex flex-column align-items-center pointer"
                   onClick={onClick}
                 >
-                  <img src={data.img} className="navBarIcons" />
+                  {data.img}
                   <div className="d-flex align-items-center sm-hide">
                     <div className="smallText font-05 black">{data.name}</div>
-                    <img src={data.dropDownImg} />
+                    <DropdownPics />
                   </div>
                 </div>
               ) : (
                 <Link key={data.name} to={data.link} className="navBarLink">
                   <div className="d-flex flex-column align-items-center">
                     {index === 5 ? (
-                      <div className="profileTooltip">
-                        <img
-                          src={data.img}
-                          className="navBarIcons"
-                          onClick={handleDropdown}
-                        />
+                      <div className="profileTooltip" onClick={handleDropdown}>
+                        <img src={data.img} style={{ width: "25px" }} />
                         <div className="tooltiptext">
                           <Dropdown setRef={setRef} className="" />
                         </div>
                       </div>
                     ) : (
-                      <img src={data.img} className="navBarIcons" />
+                      <>{data.img}</>
                     )}
                     {data.dropDownImg ? (
                       <div className="d-flex  sm-hide">
                         <div className="smallText font-05 black">
                           {data.name}
                         </div>
-                        <img src={data.dropDownImg} />
+                        <DropdownPics />
                       </div>
                     ) : (
                       <div
@@ -257,6 +250,12 @@ function NavBar({ onClick }) {
             className="modal"
             ref={modalRef}
             style={{ display: "none", marginTop: "58px" }}
+            onClick={() => {
+              modalRef.current.style.display = "none";
+              suggestionListRef.current.style.display = "none";
+              searchBarRef.current.style.animation =
+                "moveBackwardSearchBar 750ms linear";
+            }}
           >
             <div className="modalCnt"></div>
           </div>
@@ -267,20 +266,25 @@ function NavBar({ onClick }) {
 }
 
 const ListOfSuggestion = ({ data, type }) => {
-  console.log(type);
+  console.log(data);
   return (
-    <div className="d-flex align-items-center w-100 mb-1" key={data.firstName}>
-      <img
-        src="https://res.cloudinary.com/dibccigcp/image/upload/v1667987788/index_cviuuq.svg"
+    <div
+      className="d-flex align-items-center w-100 mb-1 font-1 black"
+      key={data.firstName}
+    >
+      <div
         style={{
           width: "16px",
           height: "16px",
           padding: "7px 10px",
           outline: "none",
         }}
-      />
-      <div
-        className="d-flex gap-2 align-items-center w-100"
+      >
+        <Search />
+      </div>
+      <Link
+        to={`/profile/${data.id}`}
+        className="d-flex gap-2 align-items-center w-100 black"
         style={{ position: "relative" }}
       >
         <p className="smallText makeBold">
@@ -293,13 +297,13 @@ const ListOfSuggestion = ({ data, type }) => {
           className="rounded"
           src={data.profilepic}
           style={{
-            width: "32px",
+            width: "25px",
             alignSelf: "flex-end",
             position: "absolute",
             right: "0px",
           }}
         />
-      </div>
+      </Link>
     </div>
   );
 };

@@ -30,6 +30,7 @@ function Feed() {
   const PostList = useSelector((state) => state.feed.post);
 
   function renderWorkSection() {
+    console.log("clciked");
     setState(!state);
     state
       ? (workRef.current.style.display = "block")

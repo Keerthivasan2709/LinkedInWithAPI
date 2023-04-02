@@ -24,11 +24,11 @@ function MyNetwork() {
         <div>
           <NavBar onClick={renderWorkSection} />
           <div
-            className="headflex mynetworkGrid align-items-start"
-            style={{ marginBottom: "70px" }}
+            className="headflex d-flex flex-row align-items-start"
+            style={{ marginBottom: "70px", gap: "20px", marginTop: "23px" }}
           >
             <Manage />
-            <div>
+            <div style={{ width: "782px" }}>
               <Invitation />
               <Network />
             </div>

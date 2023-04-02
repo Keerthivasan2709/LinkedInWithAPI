@@ -8,6 +8,14 @@ import PostModal from "./PostModal";
 import { Like } from "../../Assets/Images/Images";
 import PostComment from "../../Components/PostComment/PostComment";
 import axios from "axios";
+import {
+  Comment,
+  CommentPic,
+  LikePic,
+  RepostPic,
+  SendPic,
+} from "../../Assets/Images/Pictures";
+import { Link } from "react-router-dom";
 function Posts(props) {
   console.log(props);
   const [show, setShow] = useState(false);
@@ -66,48 +74,50 @@ function Posts(props) {
             <p>likes this</p>
           </p>
         </div>
-        <div className="hr" style={{ margin: "0px 15px" }}></div>
+        <div className="vr"></div>
         <div
           className="d-flex justify-content-between align-items-center "
           style={{ padding: "0px 15px" }}
         >
-          <div className="d-flex flex-row align-items-center gap-2">
-            <img
-              className="profilePic profileImg rounded"
-              style={{ width: "40px" }}
-              src={props.data.userpost.profilepic}
-            />
-            <div className="profileDetails d-flex flex-column gap-1">
-              <h3 className="profileName font-1 black">
-                {props.data.userpost.firstName}
-              </h3>
-              <div className="d-flex">
-                {props.data.userpost.companys.length == 0 ? (
-                  <></>
-                ) : (
-                  <div className="font-05 grey">
-                    {props.data.userpost.companys[0].position} at{" "}
-                    {props.data.userpost.companys[0].company.name}||
-                  </div>
-                )}
-                <span className="smallText followers font-05 grey">
-                  {props.data.followers} Followers
-                </span>
-              </div>
-
-              <div className="d-flex gap-1 grey">
-                <div className="postedDate smallText">
-                  {findDays(props.data.createdAt)}days
+          <Link to={`/profile/${props.data.profileid}`}>
+            <div className="d-flex flex-row align-items-center gap-2">
+              <img
+                className="profilePic profileImg rounded"
+                style={{ width: "40px" }}
+                src={props.data.userpost.profilepic}
+              />
+              <div className="profileDetails d-flex flex-column gap-1">
+                <h3 className="profileName font-1 black">
+                  {props.data.userpost.firstName}
+                </h3>
+                <div className="d-flex">
+                  {props.data.userpost.companys.length == 0 ? (
+                    <></>
+                  ) : (
+                    <div className="font-05 grey">
+                      {props.data.userpost.companys[0].position} at{" "}
+                      {props.data.userpost.companys[0].company.name}||
+                    </div>
+                  )}
+                  <span className="smallText followers font-05 grey">
+                    {props.data.followers} Followers
+                  </span>
                 </div>
-                &bull;
-                <img
-                  src="https://res.cloudinary.com/dibccigcp/image/upload/v1664716461/world_hwygvt.svg"
-                  className="postDate"
-                  style={{ width: "10px" }}
-                />
+
+                <div className="d-flex gap-1 grey">
+                  <div className="postedDate smallText">
+                    {findDays(props.data.createdAt)}days
+                  </div>
+                  &bull;
+                  <img
+                    src="https://res.cloudinary.com/dibccigcp/image/upload/v1664716461/world_hwygvt.svg"
+                    className="postDate"
+                    style={{ width: "10px" }}
+                  />
+                </div>
               </div>
             </div>
-          </div>
+          </Link>
           <div className="pointer">
             {followed ? (
               <a
@@ -153,7 +163,7 @@ function Posts(props) {
         <div style={{ padding: "0px 15px" }}>
           <PostComment data={count} />
         </div>
-        <div className="vr" style={{ margin: "0px 15px", width: "95%" }}></div>
+        <div className="vr"></div>
         <div
           className="d-flex justify-content-between p-2"
           style={{ padding: "5px 25px" }}
@@ -181,10 +191,10 @@ function Posts(props) {
                 </>
               ) : (
                 <>
-                  <Like />
+                  <LikePic />
                   <p
                     style={{ fontWeight: 900, fontSize: "12px" }}
-                    className="font-1"
+                    className="font-1 black"
                   >
                     Like
                   </p>
@@ -199,21 +209,17 @@ function Posts(props) {
             }}
           >
             <Reaction
-              src="https://res.cloudinary.com/dibccigcp/image/upload/v1664264182/Comment_g6srr8.svg"
+              src={<CommentPic />}
               name="Comment"
               className="sm-show comment"
             />
           </div>
           <Reaction
-            src="https://res.cloudinary.com/dibccigcp/image/upload/v1664264189/Share_nhixhn.svg"
+            src={<RepostPic />}
             name="Share"
             className="sm-show share"
           />
-          <Reaction
-            src="https://res.cloudinary.com/dibccigcp/image/upload/v1664264189/send_dngnfl.svg"
-            name="Send"
-            className="sm-hide send"
-          />
+          <Reaction src={<SendPic />} name="Send" className="sm-hide send" />
         </div>
         <div
           className={show ? "show" : "hidden"}

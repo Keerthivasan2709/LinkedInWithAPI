@@ -44,7 +44,10 @@ function Carousel({ dataSlider }) {
               ) : (
                 <video
                   src={obj.data}
-                  style={{ objectFit: "contain", height: "100%" }}
+                  style={{
+                    objectFit: "contain",
+                    height: "100%",
+                  }}
                   controls
                   autoPlay
                   muted

@@ -15,7 +15,7 @@ function Network() {
   return (
     <div className="card mt-2">
       <div className="list d-flex align-items-center justify-content-between">
-        <p className="smallHeading p-2">People you may follow</p>
+        <p className="smallHeading p-2 black">People you may follow</p>
         <div className="bold grey">See All</div>
       </div>
       <div className="gridNetwork gap-2 list" style={{ margin: "16px 0px" }}>

@@ -6,7 +6,7 @@ import Input from "../../Components/Input/Input";
 function PersonalContact() {
   return (
     <div className="list d-flex flex-column align-items-center">
-      <p className="smallHeading makeCenter">Add personal contacts</p>
+      <p className="smallHeading makeCenter black">Add personal contacts</p>
       <p className="smallText black footerLink makeCenter mt-1">
         We’ll periodically import and store your contacts to help you and others
         connect. You choose who to connect to and who to invite. Learn more

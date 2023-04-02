@@ -11,7 +11,7 @@ function SideBar({ setWorkRef }) {
   return (
     <div className="modal" style={{ marginTop: "58px" }} ref={modalRef}>
       <div
-        className="card modalCnt"
+        className="card modalCnt workBackground"
         style={{
           width: "380px",
           height: "100vh",
@@ -25,19 +25,19 @@ function SideBar({ setWorkRef }) {
           className="d-flex justify-content-between align-items-center"
           style={{ padding: "10px 30px" }}
         >
-          <p className="heading2 makeBold">Work</p>
+          <p className="font-1 makeBold black">Work</p>
           <img
             src="https://res.cloudinary.com/dibccigcp/image/upload/v1664680585/icons8-close-30_fyzjpw.png"
             className="pointer"
-            style={{ width: "20px", height: "20px" }}
+            style={{ width: "15px", height: "15x", filter: "invert(1)" }}
             onClick={() => {
               modalRef.current.style.display = "none";
             }}
           />
         </div>
         <div className="p-5">
-          <div className="card">
-            <h3 style={{ padding: "10px 20px" }}>
+          <div className="card themeBorder">
+            <h3 style={{ padding: "10px 20px" }} className="black font-1">
               Visit more Linkedin Products
             </h3>
             <div className="vr"></div>
@@ -59,7 +59,7 @@ function SideBar({ setWorkRef }) {
                       <img src={data.img} style={{ width: "30px" }} />
                     </div>
                     <div
-                      className="smallText black "
+                      className="smallText black font-05"
                       style={{ fontWeight: "200" }}
                     >
                       {data.name}
@@ -69,8 +69,10 @@ function SideBar({ setWorkRef }) {
               })}
             </div>
           </div>
-          <div className="card mt-2">
-            <h3 style={{ padding: "10px 20px" }}>LinkedIn Business Services</h3>
+          <div className="card mt-2 themeBorder">
+            <h3 style={{ padding: "10px 20px" }} className="black font-1">
+              LinkedIn Business Services
+            </h3>
             <div className="vr"></div>
             <div
               style={{ padding: "15px " }}
@@ -79,17 +81,21 @@ function SideBar({ setWorkRef }) {
               {BusinessService.map((data, index) => {
                 return (
                   <Link to={data.link} key={index}>
-                    <div className="black" style={{ fontWeigth: "600" }}>
+                    <div className="black font-1" style={{ fontWeigth: "600" }}>
                       {data.name}
                     </div>
-                    <div className="smallText grey">{data.description}</div>
+                    <div className="smallText font-05 grey">
+                      {data.description}
+                    </div>
                   </Link>
                 );
               })}
             </div>
             <div className="vr"></div>
             <Link to="/company/setup/new/">
-              <h3 style={{ padding: "10px 20px" }}>Create a company page +</h3>
+              <h3 style={{ padding: "10px 20px" }} className="font-1 black">
+                Create a company page +
+              </h3>
             </Link>
           </div>
         </div>

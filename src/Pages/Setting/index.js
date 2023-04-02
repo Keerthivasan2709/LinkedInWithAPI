@@ -17,7 +17,6 @@ class Setting extends Component {
           style={{
             display: "grid",
             gridTemplateColumns: "0.2fr 1fr",
-            gap: "1%",
           }}
         >
           <SettingTitle />

@@ -6,17 +6,22 @@
   --black: #000;
   --text: rgba(0, 0, 0, 0.8);
   --border: rgba(0, 0, 0, 0.1);
-  --blue: #0a66c2;
+  --blue: #0a7cdd;
   --green: green;
   --navBar: white;
   --cardBackground: white;
-  --searchBar: white;
+  --searchBar: #eef3f8;
   --discover: RGBA(0, 0, 0, 0.64);
   --border1: #5e6262;
   --uploadBar: rgba(0, 0, 0, 0.3);
   --following: rgba(0, 0, 0, 0.6);
   --reaction: hsla(0, 0%, 100%, 0.6);
   --footerLink: #5e6262;
+  --iconActiveColor: rgba(0, 0, 0, 0.8);
+  --workBackground: white;
+  --borderColor: rgba(0, 0, 0, 0.1);
+  --iconPassiveColor: #5e5e5e;
+  --loadingAnimation: #f3f2ef;
 }
 html[data-theme="dark"] {
   --Internaldark: rgb(118, 118, 118), rgb(133, 133, 133);
@@ -25,7 +30,7 @@ html[data-theme="dark"] {
   --brown: white;
   --black: white;
   --text: white;
-  --blue: #0a66c2;
+  --blue: #6caff9;
   --green: green;
   --navBar: #1d2226;
   --searchBar: #38434f;
@@ -36,6 +41,11 @@ html[data-theme="dark"] {
   --following: white;
   --reaction: white;
   --footerLink: #dbdbdb;
+  --iconActiveColor: #e9e9ea;
+  --workBackground: #1d2226;
+  --borderColor: rgba(255, 255, 255, 0.3);
+  --iconPassiveColor: #b5b7b8;
+  --loadingAnimation: black;
 
   body {
     background-color: #000000;

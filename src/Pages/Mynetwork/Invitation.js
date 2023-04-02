@@ -36,10 +36,10 @@ function Invitation() {
           style={{ height: "288px", overflow: "hidden", width: "100%" }}
         >
           <div className="list d-flex align-items-center justify-content-between">
-            <p className="smallHeading p-2">Invitation</p>
+            <p className="smallHeading p-2 black">Invitation</p>
             <div className="bold grey">See All {invitationCount}</div>
           </div>
-          <div className="hr mb-1"></div>
+          <div className="vr mb-1 w-100"></div>
           {invitationCount != 0 ? (
             <>
               {invitation?.map((data) => {

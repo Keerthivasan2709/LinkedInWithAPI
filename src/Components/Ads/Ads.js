@@ -21,7 +21,7 @@ function Ads({ className }) {
     <>
       <div className={`${className} d-flex flex-column gap-5`}>
         {readyForRender ? (
-          <div className="list d-flex justify-content-end align-items-center smallText gap-2 mt-2">
+          <div className="list d-flex justify-content-end align-items-center smallText gap-2 mt-2 black">
             Ads
           </div>
         ) : (

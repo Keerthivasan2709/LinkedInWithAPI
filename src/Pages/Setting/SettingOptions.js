@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import { LeftArrow } from "../../Assets/Images/Pictures";
 import { FooterLink } from "../../Assets/Link";
 import {
   AccountPreference,
@@ -32,26 +33,28 @@ function SettingOptions() {
         style={{ margin: "8px" }}
         className="d-flex flex-column gap-2 align-items-center"
       >
-        {state.map((d, index) => {
+        {state?.map((d, index) => {
           return (
             <div className="card" style={{ width: "50%" }} key={index}>
-              <h3 style={{ padding: "10px" }}>{d[0]}</h3>
-              {d[1].map((d) => {
+              <h3 className="black" style={{ padding: "10px" }}>
+                {d[0]}
+              </h3>
+              {d[1]?.map((d) => {
                 return (
-                  <>
+                  <Link to={d.link}>
                     <div
                       key={d.id}
                       style={{ padding: "20px" }}
-                      className="d-flex align-items-center justify-content-between"
+                      className="d-flex align-items-center justify-content-between grey"
                     >
                       {d.name}
                       <div className="d-flex align-items-center">
                         <div className="smallText">{d.description}</div>
-                        <img src="https://res.cloudinary.com/dibccigcp/image/upload/v1666678678/index_ovlhvx.svg" />
+                        <LeftArrow />
                       </div>
                     </div>
                     <div className="vr"></div>
-                  </>
+                  </Link>
                 );
               })}
             </div>
@@ -59,7 +62,7 @@ function SettingOptions() {
         })}
         <div>
           <div className="d-flex gap-2">
-            {FooterLink.map((d) => {
+            {FooterLink?.map((d) => {
               return (
                 <Link
                   key={d.name}

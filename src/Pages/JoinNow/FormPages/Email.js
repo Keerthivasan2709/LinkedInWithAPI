@@ -20,7 +20,8 @@ function Email({ setRender }) {
         email: form.email,
       })
       .then((res) => {
-        if (res.status === 200) {
+        console.log(res)
+        if (res.status !== 404) {
           dispatch(joinDetails({ email: form.email, password: form.password }));
           setRender(1);
         }

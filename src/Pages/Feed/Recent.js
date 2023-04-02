@@ -26,7 +26,7 @@ function Recent() {
         recent?.recent?.map((data) => {
           return (
             <div
-              className="d-flex  list align-items-center gap-2 mb-1 hoverBackground pointer"
+              className="d-flex  list align-items-center gap-2 mb-1 pointer"
               key={data.title}
             >
               <div className="smallText grey font-05 makeBold">
@@ -52,7 +52,7 @@ function Recent() {
         recent?.group?.map((data) => {
           return (
             <div
-              className="d-flex list align-items-center gap-2 mb-1 hoverBackground pointer"
+              className="d-flex list align-items-center gap-2 mb-1 pointer"
               key={data.name}
             >
               <div className="smallText makeBold grey font-05">{data.name}</div>

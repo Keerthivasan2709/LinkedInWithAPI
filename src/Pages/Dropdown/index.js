@@ -2,9 +2,10 @@ import React, { useEffect, useRef } from "react";
 import Button from "../../Components/Button/Button";
 import { profileLinks } from "../../Assets/Link";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setLoginState } from "../../Reducers/Login";
 function Dropdown({ setRef, className }) {
+  const data = useSelector((state) => state.feed.profile.profile);
   const dispatch = useDispatch();
   const DropdownMenu = useRef();
   useEffect(() => {
@@ -28,19 +29,20 @@ function Dropdown({ setRef, className }) {
           src="https://res.cloudinary.com/dibccigcp/image/upload/v1664264187/man_cpgmaa.png"
           style={{ maxWidth: "50px" }}
         />
-        <p className="heading2 makeBold font-2">
-          Keerthivasan B<p className="font-05">--</p>
+        <p className="heading2 makeBold font-2 black">
+          {data?.firstName} {data?.lastName}
+          <p className="font-05 grey">--</p>
         </p>
       </div>
-      <Link to="/profile">
+      <Link to="/profile/my">
         <Button name="View profile" className="btnBlue mt-1 p-05" />
       </Link>
-      <div className="hr mt-1 mb-1"></div>
+      <div className="vr mt-1 mb-1"></div>
       {profileLinks.map((data, index) => {
         return (
           <div key={index}>
             <p
-              className="makeText makeBold mb-1 font-1"
+              className="makeText makeBold mb-1 font-1 black"
               style={{ lineHeight: "20px" }}
             >
               {data.name}
@@ -49,7 +51,7 @@ function Dropdown({ setRef, className }) {
               {data.arr.map((d, index) => {
                 return (
                   <Link
-                    className="profileLink hoverLine pointer font-1"
+                    className="profileLink hoverLine pointer font-1 grey"
                     to={d.link}
                     key={index}
                     style={{ lineHeight: "20px" }}

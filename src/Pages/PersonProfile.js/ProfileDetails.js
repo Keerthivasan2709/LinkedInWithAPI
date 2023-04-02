@@ -3,17 +3,15 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Button from "../../Components/Button/Button";
 import SkeletonLoader from "../../Components/SkeletonLoader";
-function ProfileDetails() {
-  let data = useSelector((state) => state.UserDetails.userDetails);
-
+function ProfileDetails({ data }) {
   console.log(data);
   return (
     <>
       <div className="card" style={{ position: "relative" }}>
         <div>
-          <img src={data?.backgroundpic} />
+          <img src={data?.data?.backgroundpic} />
           <img
-            src={data?.profilepic}
+            src={data?.data?.profilepic}
             className="profilePicture rounded"
             style={{ position: "absolute", top: "110px", left: "30px" }}
           />
@@ -34,7 +32,7 @@ function ProfileDetails() {
           style={{ marginTop: "3.5rem" }}
         >
           <div className="d-flex flex-column gap-2 w-80">
-            {data?.id != undefined ? (
+            {data?.status ? (
               <>
                 <p
                   style={{
@@ -43,22 +41,19 @@ function ProfileDetails() {
                     lineHeight: "30px",
                   }}
                 >
-                  {data?.firstName} {data?.lastName}
+                  {data?.data?.firstName} {data?.data?.lastName}
                 </p>
                 <p className="font-1 grey">--</p>
               </>
             ) : (
               <SkeletonLoader className="w-80 h-2 rounded-1" />
             )}
-            {data?.id != undefined ? (
+            {data?.status ? (
               <>
                 <div className="d-flex gap-2 font-05 grey">
                   {data?.address?.city}, {data?.address?.state},{" "}
                   {data?.address?.country} - <Link>Personal Info</Link>
                 </div>
-                <Link className="font-1">
-                  {data?.following?.length} Connections
-                </Link>
               </>
             ) : (
               <>
@@ -70,14 +65,14 @@ function ProfileDetails() {
 
           <div className=" w-40">
             <div className="d-flex flex-row align-items-center gap-5 mb-1">
-              {data?.id != undefined ? (
+              {data?.data?.usereducation?.length != 0 ? (
                 <>
                   <img
                     src="https://res.cloudinary.com/dibccigcp/image/upload/v1664890021/profile_1_mhhrgo.jpg"
                     style={{ maxWidth: "30px" }}
                   />
                   <Link to="/" className="black font-1 hoverLine">
-                    {data?.usereducation[0]?.organization.name}
+                    {data?.data?.usereducation?.[0]?.organization.name}
                   </Link>
                 </>
               ) : (
@@ -85,14 +80,14 @@ function ProfileDetails() {
               )}
             </div>
             <div className="d-flex flex-row align-items-center gap-5 mb-1 w-100">
-              {data?.id != undefined ? (
+              {data?.data?.companys?.length != 0 ? (
                 <>
                   <img
                     src="https://res.cloudinary.com/dibccigcp/image/upload/v1664890021/profile_1_mhhrgo.jpg"
                     style={{ maxWidth: "30px" }}
                   />
                   <Link to="/" className="black font-1 hoverLine">
-                    {data?.companys[0]?.organization?.name}
+                    {data?.data?.companys[0]?.organization?.name}
                   </Link>
                 </>
               ) : (
@@ -102,7 +97,7 @@ function ProfileDetails() {
           </div>
         </div>
         <div className="details mt-2 mb-2 d-flex flex-rows gap-5 sm-column">
-          {data?.id != undefined ? (
+          {data?.status ? (
             <>
               <Button name="Open to" className="btnPrimary makeBold w-auto" />
               <Button

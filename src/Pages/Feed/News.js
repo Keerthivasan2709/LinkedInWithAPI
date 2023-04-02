@@ -6,6 +6,7 @@ import useFetch from "../../Requests";
 import { findDays } from "../../Utils/Helpers";
 import { setNews } from "../../Reducers/Feed";
 import { useSelector } from "react-redux";
+import { Info } from "../../Assets/Images/Pictures";
 function News() {
   useFetch("/feed/news", setNews);
   const news = useSelector((state) => state.feed.news);
@@ -18,11 +19,11 @@ function News() {
     <div className="card">
       {readyForRender ? (
         <div
-          className="p-1 d-flex justify-content-between"
+          className="p-1 d-flex justify-content-between align-items-center"
           style={{ padding: "0px 15px" }}
         >
           <div className="makeBold mt-1 mb-1 font-1 black">LinkedIn News</div>
-          <img src="https://res.cloudinary.com/dibccigcp/image/upload/v1664264184/info_ytx2pv.svg" />
+          <Info />
         </div>
       ) : (
         <SkeletonLoader className="h-1 w-90 ms-1 mt-2 mb-2" />
@@ -57,7 +58,7 @@ function News() {
                     <div className="newsDetails font-05 grey">
                       {findDays(news[data].createdAt)}days ago
                     </div>
-                    &bull;
+                    <span className="grey"> &bull; </span>
                     <div className="newsDetails font-05 grey">
                       {news[data].readers} Readers
                     </div>

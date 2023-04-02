@@ -13,7 +13,7 @@ function MessageSection() {
         style={{ alignItems: "stretch" }}
       >
         <div className="d-flex justify-content-between p-2">
-          <p className="heading2">Messages</p>
+          <p className="heading2 black">Messages</p>
           <div className="d-flex align-items-center gap-2">
             <img src="https://res.cloudinary.com/dibccigcp/image/upload/v1664264189/Threedots_zyt2e8.svg" />
             <img src="https://res.cloudinary.com/dibccigcp/image/upload/v1665071974/index_gbgfvp.svg" />
@@ -40,7 +40,7 @@ function MessageSection() {
                       style={{ maxWidth: "50px" }}
                     />
                     <div className="d-flex flex-column">
-                      <p>{data.name}</p>
+                      <p className="black">{data.name}</p>
                       <p className="grey makeSmall">{data.description}</p>
                     </div>
                   </div>
@@ -60,7 +60,7 @@ function MessageSection() {
         }}
       >
         <div>
-          <div className="d-flex align-items-center justify-content-between p-2">
+          <div className="d-flex align-items-center justify-content-between p-2 black">
             {messageDetails.name}
             <div className="d-flex align-items-center gap-2">
               <img src="https://res.cloudinary.com/dibccigcp/image/upload/v1664264189/Threedots_zyt2e8.svg" />
@@ -74,15 +74,15 @@ function MessageSection() {
               className="rounded"
               style={{ maxWidth: "60px" }}
             />
-            <div className="d-flex flex-row gap-1">
-              <p className="makeBold">{messageDetails.name}</p>&bull;
-              <p className="grey">1st</p>
+            <div className="d-flex flex-row gap-1 black">
+              <p className="makeBold ">{messageDetails.name}</p>&bull;
+              <p className="black">1st</p>
             </div>
-            <div>{messageDetails.description}</div>
+            <div className="grey">{messageDetails.description}</div>
           </div>
           <div className="d-flex align-items-center gap-2">
             <div className="vr"></div>
-            <div>Aug&nbsp;30</div>
+            <div className="black">Aug&nbsp;30</div>
             <div className="vr"></div>
           </div>
           <div
@@ -95,12 +95,12 @@ function MessageSection() {
               className="rounded"
             />
             <div className="d-flex flex-column gap-5">
-              <div className="d-flex flex-row gap-2">
-                <p className="makeBold">SuryaKumar A</p>
+              <div className="d-flex flex-row gap-2 grey">
+                <p className="makeBold ">SuryaKumar A</p>
                 &bull;
                 <p>5:37 AM</p>
               </div>
-              <div>Hiii.....</div>
+              <div className="black">Hiii.....</div>
             </div>
           </div>
         </div>

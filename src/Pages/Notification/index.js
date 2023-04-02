@@ -26,21 +26,24 @@ function Notification() {
       {loginState ? (
         <>
           <NavBar onClick={renderWorkSection} />
-          <div className="mt-2 headflex notificationGrid align-items-start">
+          <div
+            className="headflex d-flex"
+            style={{ marginTop: "23px", gap: "20px" }}
+          >
             <div
               className="sm-hide card p-2 gap-2 d-flex flex-column align-items-center makeSticky"
-              style={{ minWidth: "255px" }}
+              style={{ width: "255px" }}
             >
-              <p className="heading2 makeBold">Notification</p>
+              <p className="heading2 makeBold black">Notification</p>
               <p className="grey w-50 makeCenter">You have new notification</p>
-              <div className="hr"></div>
+              <div className="vr"></div>
               <p className="grey">Improve your notification</p>
               <Link>View Setting</Link>
             </div>
-            <div style={{ minWidth: "540px" }}>
+            <div style={{ width: "540px" }}>
               <NotificationList />
             </div>
-            <div className="sm-hide makeSticky" style={{ minWidth: "267px" }}>
+            <div className="sm-hide makeSticky" style={{ width: "267px" }}>
               <Ads className="card" />
               <FeedFooter />
             </div>

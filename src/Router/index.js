@@ -18,8 +18,14 @@ import SideBar from "../Components/SideBar";
 import EducationalModal from "../Components/EducationalModal";
 import Premium from "../Pages/Premium";
 import Company from "../Pages/Company";
+import Theme from "../Components/Themes/Theme";
+import { useSelector } from "react-redux";
+import PersonProfile from "../Pages/PersonProfile.js";
 function Router() {
-  document.documentElement.setAttribute("data-theme", "dark");
+  document.documentElement.setAttribute(
+    "data-theme",
+    `${useSelector((state) => state.Theme.theme)}`
+  );
   return (
     <>
       <Routes>
@@ -32,11 +38,13 @@ function Router() {
         <Route path="/jobs" element={<Jobs />} />
         <Route path="/notification" element={<Notification />} />
         <Route path="/messaging" element={<Messaging />} />
-        <Route path="/profile/" element={<Profile />}>
-          <Route path=":params" element={<Profile />} />
+        <Route path="/profile">
+          <Route path="my" element={<Profile />} />
+          <Route path=":id" element={<PersonProfile />} />
         </Route>
         <Route path="/postModal" element={<PostModal />} />
         <Route path="/setting/">
+          <Route path="account/change-mode" element={<Theme />} />
           <Route path=":settingName" element={<Settings />} />
           <Route path="" element={<Settings />} />
         </Route>

@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigation } from "react-router-dom";
 
 class ErrorBoundary extends React.Component {
   constructor(props) {
@@ -27,8 +28,10 @@ class ErrorBoundary extends React.Component {
             flexDirection: "column",
           }}
         >
-          <h1 style={{ fontWeight: "100" }}>Something went wrong.</h1>
-          <h2 style={{ fontWeight: "100", marginTop: "8px" }}>
+          <h1 className="black" style={{ fontWeight: "100" }}>
+            Something went wrong.
+          </h1>
+          <h2 className="black" style={{ fontWeight: "100", marginTop: "8px" }}>
             We are working on it.
           </h2>
           <button
@@ -50,7 +53,6 @@ class ErrorBoundary extends React.Component {
         </div>
       );
     }
-    // Normally, just render children
     return this.props.children;
   }
 }

@@ -9,7 +9,15 @@ function Button({ name, className, imgSrc, handleSubmit, disabled }) {
       style={{ fontSize: "14px", fontWeight: "600" }}
       className={`btn rounded-pill d-flex align-items-center grey justify-content-center gap-1 ${className}`}
     >
-      {imgSrc != null ? <img src={imgSrc} style={{ width: "15px" }} /> : <></>}
+      {imgSrc != null ? (
+        <img
+          src={imgSrc}
+          style={{ width: "15px" }}
+          className={`${document.documentElement.getAttribute("data-theme")}`}
+        />
+      ) : (
+        <></>
+      )}
       {name}
     </button>
   );

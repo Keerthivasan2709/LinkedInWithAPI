@@ -9,8 +9,7 @@ class SettingTitle extends Component {
   changeLinkStyle = (e) => {
     console.log(this.linkRef.current);
     if (this.linkRef.current) {
-      this.linkRef.current.style.cssText = `color: black
-      `;
+      this.linkRef.current.style.cssText = `color:--black`;
       e.currentTarget.style.cssText =
         "color: #057642;border-left: 5px solid #057642";
       this.linkRef.current = e.currentTarget;
@@ -40,14 +39,14 @@ class SettingTitle extends Component {
               src="https://res.cloudinary.com/dibccigcp/image/upload/v1664264189/profile_w2xjxw.png"
               style={{ width: "50px" }}
             />
-            <h1>Settings</h1>
+            <h1 className="black">Settings</h1>
           </div>
           {SettingLinks.map((d) => {
             return (
               <Link
                 key={d.id}
                 onClick={this.changeLinkStyle}
-                style={{ color: "black" }}
+                className="black"
                 to={`/setting${d.link}`}
               >
                 <div className="d-flex align-items-center gap-5">

@@ -12,8 +12,8 @@ function CardList({ list }) {
               key={data.name}
             >
               <div className="d-flex gap-2 align-items-center">
-                <img src={data.image} style={{ width: "20px" }} />
-                <div>{data.name}</div>
+                {data.image}
+                <div className="grey font-1 black">{data.name}</div>
               </div>
               <div className="blue">{data.no}</div>
             </div>

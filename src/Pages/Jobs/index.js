@@ -28,8 +28,11 @@ function Jobs() {
       {loginState ? (
         <>
           <NavBar onClick={renderWorkSection} />
-          <div className="headflex sm-head-flex mt-2 JobsGrid">
-            <div className="sm-hide makeSticky">
+          <div
+            className="headflex sm-head-flex d-flex flex-row"
+            style={{ marginTop: "23px", gap: "20px" }}
+          >
+            <div className="sm-hide makeSticky" style={{ width: "225px" }}>
               <div className="list card">
                 <CardList list={JobsAssets} />
               </div>
@@ -39,9 +42,12 @@ function Jobs() {
                 className="btnBlue pointer mt-2 mb-2"
               />
             </div>
-            <div className="list d-flex flex-column  sm-card gap-2">
+            <div
+              className="list d-flex flex-column  sm-card gap-2"
+              style={{ width: "540px" }}
+            >
               <div className="card list">
-                <p className="makeBold heading2 mt-3 mb-1">
+                <p className="makeBold heading2 mt-3 mb-1 black">
                   Suggested job searches
                 </p>
                 <div
@@ -72,7 +78,7 @@ function Jobs() {
                 list={suggestionList}
               />
             </div>
-            <div className="sm-hide makeSticky">
+            <div className="sm-hide makeSticky" style={{ width: "315px" }}>
               <Resume />
               <FeedFooter />
             </div>

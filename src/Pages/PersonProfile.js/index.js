@@ -25,24 +25,23 @@ import {
   QuestionMark,
 } from "../../Assets/Images/Pictures";
 
-function Profile() {
-  document.title = "Keerthivasan B | LinkedIn";
-  const dispatch = useDispatch();
+function PersonProfile() {
+  const { id } = useParams();
+  const [data, setData] = useState();
   const [workRef, setWorkRef] = useState();
   const { params } = useParams();
   const [state, setState] = useState(true);
   useEffect(() => {
     axios
-      .get(`${process.env.REACT_APP_API_KEY}/profile/my`, {
+      .get(`${process.env.REACT_APP_API_KEY}/profile/${id}`, {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       })
       .then((res) => {
-        dispatch(setUserDetails(res.data));
+        setData(res.data);
       })
       .catch((err) => console.log(err));
   }, []);
 
-  let data = useSelector((state) => state.UserDetails.userDetails);
   console.log(data);
   let obj = {
     editIntro: <ProfileModal state={true} />,
@@ -60,6 +59,7 @@ function Profile() {
   function renderModal() {
     return obj[params];
   }
+  console.log(data?.data?.companys);
   return (
     <>
       <NavBar onClick={renderWorkSection} />
@@ -68,12 +68,12 @@ function Profile() {
         style={{ marginBottom: "70px", marginTop: "23px", gap: "20px" }}
       >
         <div style={{ width: "782px" }}>
-          <ProfileDetails />
+          <ProfileDetails data={data} />
           {data ? (
             <Card
               imgSrc="https://res.cloudinary.com/dibccigcp/image/upload/v1664890021/profile_1_mhhrgo.jpg"
               title="Experience"
-              data={data?.companys}
+              data={data?.data?.companys}
               showSkill={true}
               skill={data?.skills}
               link="./editExperience"
@@ -85,7 +85,7 @@ function Profile() {
             <Card
               imgSrc="https://res.cloudinary.com/dibccigcp/image/upload/v1665059590/1659541201558_pb42vz.jpg"
               title="Education"
-              data={data?.usereducation}
+              data={data?.data?.usereducation}
               showSkill={false}
               link="./editEducation"
             />
@@ -190,4 +190,4 @@ function Profile() {
   );
 }
 
-export default Profile;
+export default PersonProfile;

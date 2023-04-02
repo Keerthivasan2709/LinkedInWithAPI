@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { AddPics, EditPics } from "../../Assets/Images/Pictures";
-import SkeletonLoader from "../../Components/SkeletonLoader";
 
 function Card({ title, data, showSkill, imgSrc, link, skill }) {
   console.log(data);
@@ -34,7 +33,7 @@ function Card({ title, data, showSkill, imgSrc, link, skill }) {
                       {skill?.map((d) => {
                         return (
                           <span key={d.name} className="grey">
-                            {d.name},
+                            {d.name}
                           </span>
                         );
                       })}
